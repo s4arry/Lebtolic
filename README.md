@@ -1,5 +1,13 @@
 # LEPTOLIC
 
+Round 3 development (NHEFS, same eight-year reported-diagnosis target):
+start with the [Thai evidence review and plan](round3/REVIEW_TH.md),
+then [the round 3 notebook](LEPTOLIC_Round3_Review.ipynb) or
+[CLI instructions](round3/README.md).
+The new workflow has software tests, but real-data training remains unverified
+because the development environment blocks CDC downloads with proxy HTTP 403.
+The original notebook and its saved outputs are preserved for comparison.
+
 **An Experimental 8-Year Future Hypertension Prediction Model Using NHEFS Data**
 
 LEPTOLIC is a machine learning research prototype that estimates the probability of a participant receiving their first reported physician diagnosis of hypertension within eight years, based on historical baseline health data.
