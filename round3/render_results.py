@@ -75,6 +75,8 @@ def render(root):
                  'Fixed protocol; previously exposed Test; no Thai/external validation', fontsize=13)
     fig.savefig(root/'results_summary.png', dpi=180)
     fig.savefig(root/'results_summary.svg')
+    svg = root/'results_summary.svg'
+    svg.write_text('\n'.join(line.rstrip() for line in svg.read_text().splitlines())+'\n', encoding='utf-8')
     plt.close(fig)
 
 
