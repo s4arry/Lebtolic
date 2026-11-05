@@ -1,58 +1,78 @@
-# LEPTOLIC round 3 — NHEFS development workflow
+# LEPTOLIC round 3 — selected approach 2
 
-**Selected approach 2:** use the [repeated nested-CV protocol](CV_PROTOCOL_TH.md)
-and `python -m round3.cv_study --work-dir round3_work/nested_run_01`.
-This supersedes the single-Tune experiment below for new model comparisons.
-The primary improvement criterion is a positive 95% paired-bootstrap interval for
-legacy-minus-new Test Brier. A positive result is not guaranteed or external validation.
-See `results/nested_cv_attempt_01/study_status.json` for the recorded real-data attempt.
-The [current results status](RESULTS_STATUS_TH.md) separates software checks from
-the real-data run, which remains blocked pending data.
+Read [the repeated nested-CV protocol](CV_PROTOCOL_TH.md) before new comparisons.
+[The original Thai review](REVIEW_TH.md) describes saved notebook outputs, not
+newly reproduced metrics. [Current status](RESULTS_STATUS_TH.md) records what has
+been tested and what is still blocked.
 
-With the eight-file Colab archive, no CDC connection is needed during the run:
+## Setup
 
-```bash
-python -m round3.cv_study --data-zip /path/NHEFS_data_and_layouts.zip --work-dir round3_work/nested_zip_01
-```
-
-The importer validates all four waves against their supplied layouts before moving
-files into raw/, rejects incomplete/ambiguous/HTML inputs, and records input hashes.
-It records user-reported provenance; format checks do not authenticate CDC origin.
-
-Read [the Thai evidence review and protocol](REVIEW_TH.md) before interpreting results.
-The original notebook is preserved. This code reuses its cohort/target functions;
-it does not establish that unverified CDC codebook interpretations are correct.
-
-From the repository root, with Python 3.12:
+From the checkout root, with Python 3.12:
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate
 python -m pip install -r round3/requirements.txt
 python -m unittest discover -s tests -v
-python -m round3.workflow --work-dir round3_work
 ```
 
-Or open `LEPTOLIC_Round3_Review.ipynb` in a Jupyter kernel with these dependencies.
-Run the notebook from the checkout. For Colab, first place the full `dev-by-gunner`
-checkout in the runtime and set its working directory to that checkout.
-Opening the notebook alone is insufficient because it imports repository modules.
+The cloud instance already has `/workspace/lebtolic-env/bin/python` with dependencies.
+Jupyter additionally needs ipykernel/nbformat and a notebook frontend. Open
+`LEPTOLIC_Round3_Review.ipynb` from the checkout root in that environment.
+For Colab, first put the full `dev-by-gunner` checkout in the runtime and use it as
+the working directory; opening the notebook alone does not provide its modules.
 
-CDC access through `https://wwwn.cdc.gov` is required. Keep TLS verification enabled.
-The onboarding instance has `/workspace/lebtolic-env/bin/python` with dependencies.
-Its actual data run currently fails with proxy CONNECT 403; tests passing does not
-mean a real model was trained. No new data-dependent metrics or band cutoffs are committed.
+## Real-data input
 
-On success, inspect `round3_work/outputs/` for original target audits and
-`round3_work/round3_outputs/` for `metrics.json`, `data_quality.json`,
-`split_manifest.csv`, `test_predictions.csv`, `model.json` and `demo.json`.
-The ZIP is `round3_work/LEPTOLIC_round3_outputs.zip`.
-Choose a new work directory for each completed run; existing nonempty result directories are rejected.
-An incomplete download may be retried in the same directory when no round3 results exist.
-Do not treat preexisting cached raw files as proof of provenance: the original loader
-reuses files by name. Use official fresh downloads for validation and retain source hashes.
+If the CDC host is accessible:
 
-To experiment after a successful real-data run, create `input.json`:
+```bash
+python -m round3.cv_study --work-dir round3_work/nested_run_01
+```
+
+If you downloaded `NHEFS_data_and_layouts.zip` in Colab:
+
+```bash
+python -m round3.cv_study --data-zip /path/to/NHEFS_data_and_layouts.zip --work-dir round3_work/nested_run_01
+```
+
+The ZIP must contain `N82int.txt`, `N86int.txt`, `N87int.txt`, `N92int.txt` and
+the four corresponding `intvYY.inputs.labels.txt` files. Files can be in the ZIP
+root or an enclosing folder. Required filenames must be unique.
+The importer checks required files, rejects HTML/empty files, parses layouts and
+all wave records, and records hashes before installing inputs in the run's `raw/`.
+It never extracts arbitrary ZIP paths. File-format validation is not independent
+authentication of CDC origin. `input_archive_manifest.json` records this distinction.
+No CDC requests are needed when all inputs are supplied in the ZIP.
+
+Each attempt needs a new work directory. `protocol.json` and `study_status.json`
+are kept even on failure; intermediate files do not establish completed training.
+
+## Output and interpretation
+
+Check `study_status.json` before interpreting any artifacts. A complete run writes:
+
+- `metrics.json` and `report_TH.md`: comparisons and uncertainty.
+- `data_audit.json`, `additional_exclusions.csv`, `split_manifest.csv`: provenance,
+  joins, target changes and preserved split membership.
+- `test_predictions.csv` and `development_oof.csv`: paired predictions.
+- `model.json`: portable final parameters, not executable pickle.
+
+Original target audits remain under the work directory's `outputs/`.
+The primary criterion is a strictly positive lower 95% paired-bootstrap bound for
+legacy-minus-new Test Brier. A positive result is not guaranteed. Test was already
+exposed; this is not external validation or proof of use in Thai people.
+Both models use identical guarded cohort/Test IDs. Saved scores from a different
+cohort cannot serve as the direct comparator if additional exclusions change it.
+
+The conservative death-year guard still needs official codebook confirmation.
+Preprocessing, calibration and selection stay inside development training folds.
+Thresholds/bands use development out-of-fold predictions. Unsupported three-level
+splits return a null level and warning. Nonempty bands alone do not validate categories.
+
+## Try a trained model
+
+After a successful run, create `input.json`, for example:
 
 ```json
 {"age_years": 50, "sex_female": 0, "baseline_sbp": 120,
@@ -60,20 +80,13 @@ To experiment after a successful real-data run, create `input.json`:
 ```
 
 ```bash
-python -m round3.predict --model round3_work/round3_outputs/model.json --input input.json
+python -m round3.predict --model round3_work/nested_run_01/model.json --input input.json
 ```
 
-These sample inputs may be rejected if outside the actual training range. Missing
-sleep is allowed only in a five-feature model and is imputed from Train. Four-feature
-models ignore sleep. Prior diagnosis is outside the cohort (the CLI also has
-`--previously-diagnosed`, which rejects such use).
+Sample values may be rejected outside actual training ranges. Missing sleep can
+be imputed in a five-feature model. Four-feature models ignore sleep. Prior diagnosis
+is outside the cohort; `--previously-diagnosed` rejects that use.
 
-Level 1–3 means lower/middle/upper score ranges based on Tune quantiles. It is not a
-clinical category and does not imply validated Thai risk. No threshold or risk percent
-is invented before training. Test is the previously exposed historical split, not
-new external validation. The single-Tune workflow stops on a nonpositive calibration
-slope. Unsupported three-level output is reported as null with a warning.
-
-Tests use explicitly invented fixtures only to verify software behavior, including
-export/reload consistency and that Test/Calibration changes cannot affect candidate
-selection. Their scores are never reported as NHEFS results.
+The single-Tune experiment is retained as `python -m round3.workflow`; it is not
+the selected protocol for new round 3 comparisons. All tests use explicitly invented
+fixtures for software behavior only. Their metrics are never reported as NHEFS results.

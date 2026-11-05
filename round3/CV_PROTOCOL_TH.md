@@ -1,6 +1,8 @@
 # แนวทาง 2: protocol ก่อนรันข้อมูลจริง
 
 สถานะ: โค้ดพัฒนาแล้ว แต่ยังไม่มีผล NHEFS ใหม่ เพราะ runtime ยังบล็อก CDC
+รับ ZIP ข้อมูลจาก Colab ได้แล้วโดยใช้ `--data-zip`; ดู [วิธีรัน](README.md)
+และ [หลักฐานสถานะล่าสุด](RESULTS_STATUS_TH.md)
 เอกสารนี้แทน protocol แบบ single Tune ในการทดลองใหม่ ไม่ได้แก้ผลบันทึกเดิมย้อนหลัง
 
 ## คำถามและเกณฑ์ตัดสิน
@@ -73,6 +75,7 @@ fixtures ไม่ใช่ NHEFS และไม่ใช้รายงาน 
 ```bash
 python -m unittest discover -s tests -v
 python -m round3.cv_study --work-dir round3_work/nested_run_01
+python -m round3.cv_study --data-zip /path/to/NHEFS_data_and_layouts.zip --work-dir round3_work/nested_from_zip_01
 python -m round3.predict --model round3_work/nested_run_01/model.json --input input.json
 ```
 
@@ -96,3 +99,4 @@ ZIP ต้องมีไฟล์ข้อมูลและ layouts ครบ 
 
 สิ่งที่ยังต้องทำก่อนอ้างว่างานสมบูรณ์: apply CDC network setting, ตรวจ codebook,
 รันข้อมูลจริงครบ, ตรวจจำนวนคนที่ guard คัดออก, อ่านผลและ uncertainty แล้วจึงสรุปว่าดีขึ้นหรือยังไม่ดีขึ้น
+หากใช้ ZIP ที่มีข้อมูลครบ ไม่ต้องรอ network setting เพื่อฝึก แต่ยังต้องตรวจ codebook และ provenance
