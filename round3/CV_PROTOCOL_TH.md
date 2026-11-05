@@ -1,6 +1,7 @@
 # แนวทาง 2: protocol ก่อนรันข้อมูลจริง
 
-สถานะ: โค้ดพัฒนาแล้ว แต่ยังไม่มีผล NHEFS ใหม่ เพราะ runtime ยังบล็อก CDC
+สถานะล่าสุด: รันกับ ZIP NHEFS สำเร็จแล้ว ดู [ผลจริงและข้อจำกัด](results/nhefs_20261105/README_TH.md)
+เกณฑ์การเลือกโมเดลและตัดสินผลด้านล่างกำหนดก่อนเห็นผล และไม่เปลี่ยนหลัง primary CI คร่อมศูนย์
 รับ ZIP ข้อมูลจาก Colab ได้แล้วโดยใช้ `--data-zip`; ดู [วิธีรัน](README.md)
 และ [หลักฐานสถานะล่าสุด](RESULTS_STATUS_TH.md)
 เอกสารนี้แทน protocol แบบ single Tune ในการทดลองใหม่ ไม่ได้แก้ผลบันทึกเดิมย้อนหลัง
@@ -89,7 +90,7 @@ ZIP ต้องมีไฟล์ข้อมูลและ layouts ครบ 
 ห้ามมีชื่อไฟล์เป้าหมายซ้ำ ระบบตรวจรูปแบบ ASCII records, ID, layout fields และ HTML responses
 ก่อนนำเข้าข้อมูล และเก็บ SHA-256/ขนาดไฟล์/จำนวนแถวใน input_archive_manifest.json
 การตรวจรูปแบบไม่ใช่การยืนยัน CDC origin โดยอิสระ จึงเก็บ provenance note ไว้ด้วย
-ตัวเลขผลจริงยังไม่มีจนกว่าจะได้รับ ZIP หรือเข้าถึง CDC ได้
+ได้รับ ZIP และมีผลจริงแล้วใน results/nhefs_20261105; หลักฐาน HTTP 403 เดิมเก็บไว้เป็นประวัติ
 
 เก็บ protocol ก่อนดาวน์โหลดและเขียน `study_status.json` ทุกครั้ง
 ถ้าล้มเหลวให้เลือก work directory ใหม่เพื่อรักษาหลักฐาน attempt เดิม
@@ -97,6 +98,7 @@ ZIP ต้องมีไฟล์ข้อมูลและ layouts ครบ 
 `test_predictions.csv`, `development_oof.csv` โดย raw และ original target outputs อยู่ใน work directory
 ไม่เก็บข้อมูลแต่งเป็นผลจริง ไม่รายงานคะแนนใหม่จาก saved outputs เดิม
 
-สิ่งที่ยังต้องทำก่อนอ้างว่างานสมบูรณ์: apply CDC network setting, ตรวจ codebook,
-รันข้อมูลจริงครบ, ตรวจจำนวนคนที่ guard คัดออก, อ่านผลและ uncertainty แล้วจึงสรุปว่าดีขึ้นหรือยังไม่ดีขึ้น
+การตรวจล่าสุด: ใช้ ZIP แทน CDC connection รันข้อมูลจริงครบ และ guard คัดเพิ่ม 0 คน
+อ่านผลและ uncertainty แล้วพบว่า primary CI ยังคร่อมศูนย์ ดูรายงานผลจริง
+สิ่งที่ยังเหลือคือยืนยัน codebook/skip logic ทั้งหมดและ external validation ไม่อ้างว่างานผ่านเพราะ CV อย่างเดียว
 หากใช้ ZIP ที่มีข้อมูลครบ ไม่ต้องรอ network setting เพื่อฝึก แต่ยังต้องตรวจ codebook และ provenance

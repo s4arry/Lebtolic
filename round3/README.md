@@ -1,5 +1,11 @@
 # LEPTOLIC round 3 — selected approach 2
 
+**Real-data run complete:** [Thai report, plots, model and evidence](results/nhefs_20261105/README_TH.md).
+Legacy AUC 0.6761 → new 0.7054; Brier 0.05653 → 0.05579, but the primary paired
+Brier CI includes zero. Do not claim overall superiority or Thai validation.
+Notebook Run all and CLI results match exactly. The historical HTTP 403 attempt
+remains recorded; the supplied ZIP resolved data access for this experiment.
+
 Read [the repeated nested-CV protocol](CV_PROTOCOL_TH.md) before new comparisons.
 [The original Thai review](REVIEW_TH.md) describes saved notebook outputs, not
 newly reproduced metrics. [Current status](RESULTS_STATUS_TH.md) records what has
@@ -90,3 +96,16 @@ is outside the cohort; `--previously-diagnosed` rejects that use.
 The single-Tune experiment is retained as `python -m round3.workflow`; it is not
 the selected protocol for new round 3 comparisons. All tests use explicitly invented
 fixtures for software behavior only. Their metrics are never reported as NHEFS results.
+
+Try the committed fitted model with a hypothetical input:
+
+```bash
+python -m round3.predict --model round3/results/nhefs_20261105/model.json --input round3/results/nhefs_20261105/demo_input.json
+```
+
+To regenerate the published plots from the committed paired scores:
+
+```bash
+python -m pip install -r round3/requirements-plots.txt
+python -m round3.render_results --results round3/results/nhefs_20261105
+```

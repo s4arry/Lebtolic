@@ -1,0 +1,18 @@
+{
+  "seed": 42,
+  "outer_folds": 5,
+  "repeats": 3,
+  "inner_folds": 3,
+  "calibration_folds": 3,
+  "primary": "paired_Test_Brier_old_minus_new",
+  "bootstrap_repetitions": 2000,
+  "improvement_rule": "95% paired-bootstrap Brier difference CI strictly above zero",
+  "secondary": [
+    "ROC_AUC",
+    "average_precision",
+    "log_loss",
+    "recall",
+    "precision"
+  ],
+  "warning": "Historical Test was previously exposed; no external/Thai validation"
+}

@@ -1,52 +1,47 @@
-# สถานะผลแนวทาง 2
+# สถานะผลแนวทาง 2 — อัปเดตหลังรับ ZIP
 
-**ยังไม่มีผลทดสอบโมเดลใหม่จากข้อมูล NHEFS จริง จึงยังพิสูจน์ไม่ได้ว่าผลลัพธ์ดีขึ้น**
+**รันข้อมูลจริงสำเร็จแล้ว แต่ยังไม่ผ่านเกณฑ์หลักที่จะพิสูจน์ว่า Brier ดีขึ้น**
 
-## สิ่งที่ทำและตรวจแล้ว
+อ่าน [รายงานผลจริงฉบับเต็ม](results/nhefs_20261105/README_TH.md) พร้อมกราฟ metrics โมเดล และหลักฐานการตรวจสอบ
 
-- พัฒนา repeated nested CV: outer 5-fold × 3 repeats, inner 3-fold
-- เปรียบเทียบ 4/5 features, Logistic/Tree และมี/ไม่มี sigmoid calibration รวม 20 configurations
-- กำหนด primary Brier comparison และ paired bootstrap CI ก่อนเห็นผลจริง
-- ตรวจการใช้ development เท่านั้นในการเลือกโมเดล threshold และจุดแบ่งระดับ
-- ส่งออก JSON และทดสอบผล prediction เทียบ scikit-learn ทุก candidate type
-- เพิ่มรับ ZIP จาก Colab โดยตรวจ data/layout ครบ 8 ไฟล์และบันทึก hashes/provenance
-- Tests ผ่าน 19 ข้อ และ pip check ผ่าน ทั้งหมดเป็นการตรวจซอฟต์แวร์ด้วยข้อมูลแต่ง
-  ไม่ใช่คะแนนประสิทธิภาพโมเดล NHEFS
+| รายการ | Legacy ที่ฝึกซ้ำ | โมเดลใหม่ |
+|---|---:|---:|
+| Test คน / เหตุการณ์ | 409 / 25 | 409 / 25 |
+| ROC-AUC | 0.676146 | 0.705417 |
+| Average precision | 0.122941 | 0.131922 |
+| Brier | 0.056529 | 0.055795 |
+| Log loss | 0.222744 | 0.216680 |
 
-## สถานะข้อมูลจริง
+Primary paired Brier difference = +0.000734; 95% CI [-0.000062, +0.001682] คร่อมศูนย์
+จึงไม่สรุปว่าเหนือกว่าโดยรวม แม้ point estimates ดีขึ้นใน Test นี้
+Outer CV AUC/AP ไม่ดีขึ้นโดยสม่ำเสมอ; Test เดิมเคยเปิดเผยและยังไม่มี external/Thai validation
 
-คำสั่งที่ทดลองจริง:
+## สิ่งที่ทำสำเร็จแล้ว
 
-```bash
-/workspace/lebtolic-env/bin/python -m round3.cv_study --work-dir round3/results/nested_cv_attempt_01
-```
+- รับ NHEFS_compressed.zip ครบ 8 ไฟล์ และ parse 4 waves: 12,220/3,608/9,998/9,281 แถว
+- Cohort 2,720 คน/166 เหตุการณ์, development 2,311/141, Test 409/25
+- Death guard คัดเพิ่ม 0 คน; Test IDs จึงตรงกับเดิม
+- ทำซ้ำ Legacy AUC/Brier เดิมได้ถึง tolerance 1e-14
+- Outer 5-fold × 3 repeats และ inner 3-fold รันครบตาม protocol เดิม
+- เลือก Logistic 4 features, C=0.1, ไม่ calibration ด้วยข้อมูลพัฒนา
+- ตรวจ JSON prediction ครบ 409 Test rows ตรง stored scores ถึง 1e-12
+- Notebook Run all สำเร็จ ผล metrics ทุกค่าตรง CLI ทุกประการ
+- Software tests 19 ข้อผ่าน แยกจากผลทดสอบโมเดลจริง
 
-ผล: exit 1 ก่อนฝึก ที่การดาวน์โหลด `N82int.txt` ด้วย
-`URLError: Tunnel connection failed: 403 Forbidden`
-ดูหลักฐาน `results/nested_cv_attempt_01/study_status.json` และ protocol ของ attempt นั้น
+## Trade-off ที่ต้องเปิดเผย
 
-Network draft มี CDC แล้ว แต่ policy ที่ตรวจใน runtime ยังไม่มี host นี้ใน custom allowlist
-ขณะตรวจยังไม่พบไฟล์ `NHEFS_data_and_layouts.zip` ที่แนบในแชท พบเพียง ZIP สกิล
-โค้ดดาวน์โหลด Colab ที่ส่งในแชทช่วยสร้าง ZIP ได้ แต่ไม่ได้แนบเนื้อหาข้อมูลมาในตัวมันเอง
+ที่ threshold 0.5 ทั้ง legacy/new Recall ยังเป็น 0%
+เมื่อใช้กติกา F2 จาก OOF: Legacy Recall 60%, FP 125, Precision 10.71%;
+ใหม่ Recall 92%, FP 250, Precision 8.42% จึงยังไม่พร้อมอ้างว่าเป็นเครื่องมือคัดกรองใช้งานจริง
+ระดับ 1/2/3 มีอัตราเหตุการณ์ Test 1.94%/5.22%/12.50% แต่เป็นระดับสัมพัทธ์ ไม่ใช่ clinical categories
 
-เมื่อได้รับ ZIP ให้ใช้คำสั่ง:
+## ประวัติ blocker และข้อจำกัดที่เหลือ
 
-```bash
-python -m round3.cv_study --data-zip /path/to/NHEFS_data_and_layouts.zip --work-dir round3_work/nested_from_zip_01
-```
+ก่อนรับ ZIP ดาวน์โหลด CDC ไม่ได้ด้วย proxy CONNECT 403
+เก็บหลักฐานเดิมไว้ใน results/nested_cv_attempt_01 และไม่ลบหรือแก้สถานะล้มเหลวเก่า
+รอบล่าสุดใช้ ZIP ที่ผู้ใช้ส่งจึงไม่ต้องเข้าถึง CDC จาก runtime
 
-ไม่ต้องดาวน์โหลด CDC ซ้ำ แต่ต้องตรวจคู่มือรหัส/สถานะเพิ่มเติมก่อนรับรอง conservative death guard
-รูปแบบไฟล์ที่ตรวจผ่านไม่ใช่การยืนยันแหล่งกำเนิดอย่างอิสระ จึงเก็บ provenance แยกอย่างชัดเจน
-
-## ผลอ้างอิงเดิม แยกจากผลใหม่
-
-| รายการ | saved output เดิม | ผลใหม่จากข้อมูลจริง |
-|---|---:|---|
-| ROC-AUC | 0.6761458333 | ยังไม่มี |
-| Brier หลัง calibration | 0.0565291855 | ยังไม่มี |
-| Recall ที่ threshold 0.5 | 0/25 = 0% | ยังไม่มี |
-| Test คน / เหตุการณ์ | 409 / 25 | ยังตรวจซ้ำไม่ได้ |
-
-โมเดลเดิมและใหม่ต้องประเมินบนคนชุดเดียวกัน หาก cohort เปลี่ยนจะไม่ใช้คะแนนจาก cohort เก่ามาอ้าง improvement
-ถ้า CI ของผลต่าง Brier คร่อมศูนย์จะรายงานว่ายังไม่มีหลักฐานพอ ไม่ปรับ protocol เพื่อให้ได้คำตอบบวก
-แม้ผลดีขึ้นก็เป็น internal evidence บน Test ที่เคยเปิดเผยแล้ว ไม่ยืนยันความเสี่ยงสำหรับคนไทย
+ตรวจ layouts และ labels ได้ แต่ยังไม่ได้ยืนยัน value codes/skip logic ทั้งหมดกับคู่มือทางการ
+ที่มา CDC เป็นข้อมูลที่ผู้ส่งแจ้ง ยังไม่มี independently published checksum ที่ตรวจเทียบ
+ข้อมูลเก่า reported diagnosis, selection/censoring และจำนวนเหตุการณ์น้อยยังเป็นข้อจำกัด
+raw data และ original participant IDs เก็บเฉพาะ work directory ไม่ commit

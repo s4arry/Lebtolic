@@ -2,17 +2,21 @@
 
 อัปเดตวันที่ 5 พฤศจิกายน 2026 บน branch `dev-by-gunner`
 
+**อัปเดตหลังรับ ZIP:** รัน NHEFS จริงและ notebook Run all สำเร็จแล้ว
+ดู [ผลจริง กราฟ โมเดล และ verification](results/nhefs_20261105/README_TH.md)
+Test AUC 0.6761 → 0.7054, Brier 0.05653 → 0.05579 แต่ primary paired Brier CI คร่อมศูนย์
+จึงยังยืนยันการปรับปรุงโดยรวมไม่ได้ ส่วนการตรวจที่ยังรอข้อมูลด้านล่างเป็นบันทึกก่อนรับ ZIP
+
 ## ผลงานที่ส่งขึ้น GitHub และสถานะ
 
 พัฒนาโค้ดตามแนวทางที่ 2: **repeated nested cross-validation ภายในข้อมูลพัฒนา**
 รักษาคำถาม NHEFS เดิม คือการรายงานว่าได้รับการวินิจฉัยความดันสูงครั้งแรกภายใน 8 ปี
 ไม่เปลี่ยนเป็นการคัดกรองความดันปัจจุบัน และไม่อ้างว่าประเมินคนไทยได้แล้ว
 
-**ส่วนโค้ดและการทดสอบซอฟต์แวร์ส่งขึ้น branch แล้ว แต่การทดลองข้อมูลจริงยังไม่เสร็จ**
-ไม่มีคะแนนใหม่ที่ฝึกจาก NHEFS จริง และยังไม่มีหลักฐานว่าคะแนนโมเดลดีขึ้น
-การรันข้อมูลจริงหยุดก่อนฝึกเพราะ CDC ตอบ proxy CONNECT 403
-ขณะตรวจยังไม่มีไฟล์ `NHEFS_data_and_layouts.zip` ใน workspace/ไฟล์แนบ
-ไฟล์ ZIP ที่มีอยู่เป็นสกิล ไม่ใช่ข้อมูล NHEFS
+**ส่วนโค้ด การทดสอบ และผลจริงส่งขึ้น branch แล้ว**
+ก่อนรับ ZIP การรันหยุดเพราะ CDC ตอบ proxy CONNECT 403; หลังรับ NHEFS_compressed.zip
+อ่านข้อมูลครบ 4 waves และได้ cohort 2,720 คน ทำซ้ำ Legacy AUC/Brier เดิมได้ตรง
+โมเดลใหม่มี point estimates ดีขึ้นใน Test แต่หลักฐานยังไม่ผ่าน primary criterion
 
 ## แก้อะไร เพราะอะไร และอยู่ที่ไหน
 
@@ -51,10 +55,13 @@ PYTHONDONTWRITEBYTECODE=1 /workspace/lebtolic-env/bin/python -m unittest discove
 | [test_cv_study.py](../tests/test_cv_study.py) | 6 | ระดับว่าง, feature หายทั้งหมด, death guard, paired comparison ที่โมเดลเหมือนกัน, export prediction ครบ 20 configurations และเปลี่ยน Test labels แล้วการเลือกโมเดล/threshold/ระดับไม่เปลี่ยน |
 | [test_data_archive.py](../tests/test_data_archive.py) | 5 | ZIP ที่อ่านได้พร้อม manifest, ไฟล์ขาด, HTML, ชื่อซ้ำ และ record width ผิด |
 
-Notebook ผ่านการตรวจ schema/Python cells ระหว่างพัฒนา แต่ยังไม่ได้ยืนยัน Run all ครบด้วยข้อมูลจริง
+Notebook ผ่านการตรวจ schema/Python cells ระหว่างพัฒนา และภายหลังรับ ZIP ได้ยืนยัน Run all ครบด้วยข้อมูลจริง
+ผล metrics ตรง CLI ทุกค่า ดู executed notebook ในรายงานผลจริงที่ลิงก์ด้านบน
 tests ผ่านไม่ได้ยืนยันความถูกต้องของการตีความ codebook หรือประสิทธิภาพโมเดลจริง
 
-## คะแนนเดิมที่ตรวจพบ — ไม่ใช่ผลหลังแก้
+## ประวัติ: คะแนนเดิมที่ตรวจพบก่อนรับ ZIP
+
+ตารางส่วนนี้เก็บสถานะ ณ การตรวจครั้งแรก ผลจริงล่าสุดดูรายงานที่ลิงก์ด้านบน
 
 ข้อมูลนี้มาจาก saved outputs ของ notebook เดิม เก็บสำเนาพร้อม hash ใน
 [saved_output_evidence.json](saved_output_evidence.json)
@@ -73,7 +80,7 @@ tests ผ่านไม่ได้ยืนยันความถูกต�
 ผลเดิมทำให้เห็นว่า threshold 0.5 ไม่จับเหตุการณ์ และ calibration ไม่ได้ทำให้ Brier ดีขึ้นใน Test ที่บันทึกไว้
 จึงกำหนดการเลือก calibration จาก development และรายงาน threshold trade-offs อย่างเปิดเผย
 
-## เหตุใดยังรันข้อมูลจริงไม่เสร็จ
+## ประวัติ: เหตุที่รันข้อมูลจริงไม่ได้ก่อนรับ ZIP
 
 คำสั่งข้อมูลจริงที่ทดลอง:
 

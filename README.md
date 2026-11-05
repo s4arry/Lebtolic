@@ -2,17 +2,23 @@
 
 **สรุปงานรอบ 3:** อ่าน [รายละเอียดสิ่งที่แก้ไขและผลการตรวจสอบ](round3/CHANGES_TH.md)
 สำหรับการเปลี่ยนแปลงโค้ด วิธีประเมินโมเดล และสิ่งที่ยังไม่เสร็จ
-โค้ดผ่านการทดสอบซอฟต์แวร์ 19 ข้อ แต่ยังไม่มีผลฝึกโมเดลใหม่จากข้อมูลจริง
-เพราะยังไม่ได้รับ ZIP ข้อมูลและ runtime ดาวน์โหลด CDC ไม่ได้ (`403`)
+**รัน ZIP NHEFS จริงสำเร็จแล้ว:** [รายงานผลจริง กราฟ และโมเดล](round3/results/nhefs_20261105/README_TH.md)
+Test AUC 0.6761 → 0.7054 และ Brier 0.05653 → 0.05579
+แต่ paired Brier 95% CI คร่อมศูนย์ จึงยังไม่ผ่านเกณฑ์หลักที่จะยืนยันว่าดีขึ้น
+Software tests 19 ข้อผ่าน และ notebook Run all ให้ผลตรง CLI
 
 Round 3 development (NHEFS, same eight-year reported-diagnosis target):
 the selected approach is now [repeated nested cross-validation](round3/CV_PROTOCOL_TH.md).
 start with the [Thai evidence review and plan](round3/REVIEW_TH.md),
 then [the round 3 notebook](LEPTOLIC_Round3_Review.ipynb) or
 [CLI instructions](round3/README.md).
-The new workflow has software tests, but real-data training remains unverified
-because the development environment blocks CDC downloads with proxy HTTP 403.
+The workflow completed on the supplied NHEFS ZIP; the [real-data report](round3/results/nhefs_20261105/README_TH.md)
+includes reproducibility evidence and trade-offs. The primary improvement criterion
+was not met; higher recall comes with substantially more false alerts.
 The original notebook and its saved outputs are preserved for comparison.
+The sections below describe that original five-feature notebook. The selected
+round 3 model uses four features and no added calibration; its setup and results
+are documented in the round 3 links above.
 
 **An Experimental 8-Year Future Hypertension Prediction Model Using NHEFS Data**
 

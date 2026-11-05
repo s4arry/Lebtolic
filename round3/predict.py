@@ -46,6 +46,9 @@ def predict_file(path, values, previously_diagnosed=False):
     calibration = None if 'study_calibration' in state else state['calibration']
     result = predict_demo(PortableModel(state), calibration, load_original(),
                           state['training_range'], state['level_cuts'], values, previously_diagnosed)
+    if 'study_calibration' in state:
+        result['meaning'] = 'ระดับสัมพัทธ์ตามจุดแบ่งคะแนน development OOF ของ NHEFS'
+    result['features_used'] = state['features']
     result['decision_threshold'] = state['threshold'] if 'threshold' in state else None
     return result
 
