@@ -1,6 +1,7 @@
 # LEPTOLIC
 
 Round 3 development (NHEFS, same eight-year reported-diagnosis target):
+the selected approach is now [repeated nested cross-validation](round3/CV_PROTOCOL_TH.md).
 start with the [Thai evidence review and plan](round3/REVIEW_TH.md),
 then [the round 3 notebook](LEPTOLIC_Round3_Review.ipynb) or
 [CLI instructions](round3/README.md).

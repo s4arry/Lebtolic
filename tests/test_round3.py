@@ -96,7 +96,12 @@ class Round3Tests(unittest.TestCase):
             self.assertAlmostEqual(actual['experimental_probability_8y'],
                                    expected['experimental_probability_8y'], places=12)
             self.assertEqual(actual['level'], expected['level'])
-            self.assertEqual(sum(b['n'] for b in result['test_levels']), result['test_selected']['n'])
+            if result['test_levels'] is not None:
+                self.assertEqual(sum(b['n'] for b in result['test_levels']), result['test_selected']['n'])
+            else:
+                self.assertIn('empty', result['level_status'])
+                self.assertIsNone(actual['level'])
+                self.assertIsNone(state['level_cuts'])
             self.assertTrue((Path(tmp)/'LEPTOLIC_round3_outputs.zip').is_file())
 
 

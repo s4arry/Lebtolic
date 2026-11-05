@@ -29,7 +29,12 @@ DISCLAIMER = ('คะแนนทดลองของกลุ่ม NHEFS ส�
 
 def load_original():
     notebook = json.loads(NOTEBOOK.read_text(encoding='utf-8'))
-    core = ''.join(notebook['cells'][1]['source'])
+    matches = [''.join(c['source']) for c in notebook['cells'] if c['cell_type'] == 'code'
+               and 'def prepare_cohort(' in ''.join(c['source'])
+               and 'def build_label(' in ''.join(c['source'])]
+    if len(matches) != 1:
+        raise ValueError('Expected exactly one reviewed NHEFS core cell')
+    core = matches[0]
     scope = {}
     exec(compile(core, str(NOTEBOOK) + ':cell1', 'exec'), scope)
     return scope
@@ -55,6 +60,8 @@ def level_cuts(development_scores):
     cuts = np.quantile(development_scores, [1/3, 2/3])
     if not np.isfinite(cuts).all() or cuts[0] >= cuts[1]:
         raise ValueError('Scores do not support three distinct levels; do not invent cutoffs')
+    if any(np.sum(levels(development_scores, cuts) == band) == 0 for band in (1, 2, 3)):
+        raise ValueError('A development level is empty; three levels are unsupported')
     return cuts
 
 
@@ -169,6 +176,8 @@ def data_quality(root, cohort, original):
 def fit_candidates(x, y, split):
     records, fitted = [], []
     for feature_n in (4, 5):
+        if np.any(np.all(np.isnan(x[split['train'], :feature_n]), axis=0)):
+            continue  # Do not call a dropped sleep column a five-feature model.
         for family, param in [('logistic', c) for c in (.01, .1, 1., 10., 100.)] + [('tree', 2), ('tree', 3)]:
             estimator = (LogisticRegression(C=param, max_iter=2000, random_state=42)
                          if family == 'logistic' else
@@ -204,8 +213,10 @@ def predict_demo(model, calibration, original, ranges, cuts, values, previously_
     if float(values['baseline_sbp']) >= 130 or float(values['baseline_dbp']) >= 80:
         raise ValueError('Outside baseline BP eligibility')
     raw = float(model.predict_proba([row])[0, 1])
-    score = float(apply_calibration(np.array([raw]), calibration, original)[0])
-    return dict(experimental_probability_8y=score, level=int(levels([score], cuts)[0]),
+    score = raw if calibration is None else float(apply_calibration(np.array([raw]), calibration, original)[0])
+    if cuts is None:
+        warnings.append('Three levels unsupported by development data')
+    return dict(experimental_probability_8y=score, level=int(levels([score], cuts)[0]) if cuts is not None else None,
                 meaning='ระดับสัมพัทธ์ตามจุดแบ่งคะแนน Tune ของ NHEFS',
                 warnings=warnings, limitations=DISCLAIMER)
 
@@ -239,7 +250,12 @@ def run(root):
         raise ValueError('Nonpositive calibration slope; review before publishing demo')
     calibrated = apply_calibration(raw, coefficients, original)
     tune, test = split['tune'], split['test']
-    cuts = level_cuts(calibrated[tune])
+    try:
+        cuts = level_cuts(calibrated[tune])
+        level_status = 'three_nonempty_development_bands'
+    except ValueError as exc:
+        cuts = None
+        level_status = str(exc)
     threshold = select_threshold(y[tune], calibrated[tune])
     t = threshold['threshold']
     test_report = evaluate(y[test], calibrated[test], t, original)
@@ -251,9 +267,10 @@ def run(root):
                'development_candidates': records, 'selected_on_tune_brier': selected,
                'calibration': {'policy': 'Platt retained a priori; no test-based selection',
                                'coefficients': coefficients},
-               'threshold_choice': threshold, 'level_cutoffs_from_tune': cuts.tolist(),
-               'tune_levels': band_report(y[tune], calibrated[tune], cuts),
-               'test_levels': band_report(y[test], calibrated[test], cuts),
+               'threshold_choice': threshold, 'level_status': level_status,
+               'level_cutoffs_from_tune': cuts.tolist() if cuts is not None else None,
+               'tune_levels': band_report(y[tune], calibrated[tune], cuts) if cuts is not None else None,
+               'test_levels': band_report(y[test], calibrated[test], cuts) if cuts is not None else None,
                'test_selected': test_report,
                'test_at_0_5': evaluate(y[test], calibrated[test], .5, original),
                'test_uncalibrated_diagnostic': evaluate(y[test], raw[test], .5, original),
@@ -269,7 +286,7 @@ def run(root):
                            for i, r in enumerate(cohort)], ['participant_id', 'split', 'target'])
     original['write_csv'](out/'test_predictions.csv',
                           [dict(participant_id=cohort[i]['participant_id'], target=int(y[i]),
-                                score=float(calibrated[i]), level=int(levels([calibrated[i]], cuts)[0])) for i in test],
+                                score=float(calibrated[i]), level=int(levels([calibrated[i]], cuts)[0]) if cuts is not None else None) for i in test],
                           ['participant_id', 'target', 'score', 'level'])
     ranges = {f: [float(np.nanmin(x[split['train'], j])), float(np.nanmax(x[split['train'], j]))]
               for j, f in enumerate(features[:n])}
@@ -281,7 +298,7 @@ def run(root):
     state = {'selected': selected, 'features': features[:n], 'training_range': ranges,
              'imputer_median': model.steps[0][1].statistics_.tolist(),
              'scaler_mean': model.steps[1][1].mean_.tolist(), 'scaler_scale': model.steps[1][1].scale_.tolist(),
-             'calibration': coefficients, 'level_cuts': cuts.tolist(), 'threshold': t,
+             'calibration': coefficients, 'level_cuts': cuts.tolist() if cuts is not None else None, 'threshold': t,
              'limitations': DISCLAIMER}
     if selected['family'] == 'logistic':
         state.update(coefficients=estimator.coef_.tolist(), intercept=estimator.intercept_.tolist())

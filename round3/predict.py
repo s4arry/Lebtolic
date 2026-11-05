@@ -34,13 +34,20 @@ class PortableModel:
                 else:
                     raise ValueError('Invalid tree structure')
             p = np.array(probabilities)
+        calibration = s.get('study_calibration', {'method': 'none'})
+        if calibration['method'] == 'sigmoid':
+            score = z if calibration['input'] == 'margin' else p
+            p = np.exp(-np.logaddexp(0., calibration['a']*score + calibration['b']))
         return np.column_stack([1-p, p])
 
 
 def predict_file(path, values, previously_diagnosed=False):
     state = json.loads(Path(path).read_text(encoding='utf-8'))
-    return predict_demo(PortableModel(state), state['calibration'], load_original(),
-                        state['training_range'], state['level_cuts'], values, previously_diagnosed)
+    calibration = None if 'study_calibration' in state else state['calibration']
+    result = predict_demo(PortableModel(state), calibration, load_original(),
+                          state['training_range'], state['level_cuts'], values, previously_diagnosed)
+    result['decision_threshold'] = state['threshold'] if 'threshold' in state else None
+    return result
 
 
 if __name__ == '__main__':

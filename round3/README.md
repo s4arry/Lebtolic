@@ -1,5 +1,24 @@
 # LEPTOLIC round 3 — NHEFS development workflow
 
+**Selected approach 2:** use the [repeated nested-CV protocol](CV_PROTOCOL_TH.md)
+and `python -m round3.cv_study --work-dir round3_work/nested_run_01`.
+This supersedes the single-Tune experiment below for new model comparisons.
+The primary improvement criterion is a positive 95% paired-bootstrap interval for
+legacy-minus-new Test Brier. A positive result is not guaranteed or external validation.
+See `results/nested_cv_attempt_01/study_status.json` for the recorded real-data attempt.
+The [current results status](RESULTS_STATUS_TH.md) separates software checks from
+the real-data run, which remains blocked pending data.
+
+With the eight-file Colab archive, no CDC connection is needed during the run:
+
+```bash
+python -m round3.cv_study --data-zip /path/NHEFS_data_and_layouts.zip --work-dir round3_work/nested_zip_01
+```
+
+The importer validates all four waves against their supplied layouts before moving
+files into raw/, rejects incomplete/ambiguous/HTML inputs, and records input hashes.
+It records user-reported provenance; format checks do not authenticate CDC origin.
+
 Read [the Thai evidence review and protocol](REVIEW_TH.md) before interpreting results.
 The original notebook is preserved. This code reuses its cohort/target functions;
 it does not establish that unverified CDC codebook interpretations are correct.
@@ -52,8 +71,8 @@ models ignore sleep. Prior diagnosis is outside the cohort (the CLI also has
 Level 1–3 means lower/middle/upper score ranges based on Tune quantiles. It is not a
 clinical category and does not imply validated Thai risk. No threshold or risk percent
 is invented before training. Test is the previously exposed historical split, not
-new external validation. The workflow stops if three distinct cutoffs or a positive
-calibration slope cannot be supported.
+new external validation. The single-Tune workflow stops on a nonpositive calibration
+slope. Unsupported three-level output is reported as null with a warning.
 
 Tests use explicitly invented fixtures only to verify software behavior, including
 export/reload consistency and that Test/Calibration changes cannot affect candidate
