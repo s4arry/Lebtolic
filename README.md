@@ -1,5 +1,10 @@
 # LEPTOLIC
 
+**สรุปงานรอบ 3:** อ่าน [รายละเอียดสิ่งที่แก้ไขและผลการตรวจสอบ](round3/CHANGES_TH.md)
+สำหรับการเปลี่ยนแปลงโค้ด วิธีประเมินโมเดล และสิ่งที่ยังไม่เสร็จ
+โค้ดผ่านการทดสอบซอฟต์แวร์ 19 ข้อ แต่ยังไม่มีผลฝึกโมเดลใหม่จากข้อมูลจริง
+เพราะยังไม่ได้รับ ZIP ข้อมูลและ runtime ดาวน์โหลด CDC ไม่ได้ (`403`)
+
 Round 3 development (NHEFS, same eight-year reported-diagnosis target):
 the selected approach is now [repeated nested cross-validation](round3/CV_PROTOCOL_TH.md).
 start with the [Thai evidence review and plan](round3/REVIEW_TH.md),
