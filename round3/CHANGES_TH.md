@@ -1,5 +1,12 @@
 # รายละเอียดการแก้ไข LEPTOLIC รอบ 3
 
+## 10 พฤศจิกายน: ผู้ใช้ปรับเพดาน FPR เป็น 14.5%
+
+ใช้ selector เดิมกับ development OOF งบ 14.5% ได้ threshold 9.1868%
+Test FP 58 → 45 และ TP 9 → 8 เทียบงบ 20%; คะแนนและพารามิเตอร์โมเดลเท่าเดิม
+เก็บนโยบาย 20% ไว้ และเพิ่ม model/metrics/verification ของนโยบายใหม่แยกกัน
+ดู [ผลจริงและข้อจำกัด](results/threshold_20261110_fpr145/README_TH.md)
+
 ## 10 พฤศจิกายน: ปรับแนวทาง threshold ตามงบ FPR 20% ที่ผู้ใช้เลือก
 
 เพิ่ม threshold_policy.py เลือก max recall ภายใต้ empirical development OOF FPR ≤20%

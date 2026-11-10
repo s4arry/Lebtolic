@@ -1,0 +1,11 @@
+test_budget_is_count_based_and_ties_are_not_split (test_threshold_policy.ThresholdPolicyTests.test_budget_is_count_based_and_ties_are_not_split) ... ok
+test_invalid_inputs_are_rejected (test_threshold_policy.ThresholdPolicyTests.test_invalid_inputs_are_rejected) ... ok
+test_oof_is_one_person_one_target_and_three_predictions (test_threshold_policy.ThresholdPolicyTests.test_oof_is_one_person_one_target_and_three_predictions) ... ok
+test_selected_threshold_is_optimal_over_all_achievable_groups (test_threshold_policy.ThresholdPolicyTests.test_selected_threshold_is_optimal_over_all_achievable_groups) ... ok
+test_test_labels_cannot_affect_selection_and_model_parameters_are_preserved (test_threshold_policy.ThresholdPolicyTests.test_test_labels_cannot_affect_selection_and_model_parameters_are_preserved) ... ok
+test_zero_budget_may_require_no_alerts (test_threshold_policy.ThresholdPolicyTests.test_zero_budget_may_require_no_alerts) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 1.496s
+
+OK

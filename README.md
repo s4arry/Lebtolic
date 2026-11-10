@@ -1,6 +1,10 @@
 # LEPTOLIC
 
-**ปรับล่าสุด 10 พฤศจิกายน:** [threshold จำกัดคำเตือนผิดจาก development ไม่เกิน 20%](round3/results/threshold_20261110/README_TH.md)
+**เกณฑ์ล่าสุด:** [งบ FPR 14.5%](round3/results/threshold_20261110_fpr145/README_TH.md)
+เลือกจาก development ได้ threshold 9.19%; Test FPR 11.72% (FP 45 คน), Recall 32%
+เทียบงบ 20% ลด FP อีก 13 คน แลกกับการจับเหตุการณ์ลดลง 1 คน
+
+**การทดลองงบ 20% ก่อนหน้า:** [threshold จำกัดคำเตือนผิดจาก development ไม่เกิน 20%](round3/results/threshold_20261110/README_TH.md)
 บน Test เดิม FP ลด 250 → 58 (FPR 15.10%) แลกกับ Recall 92% → 36%
 AUC/Brier เท่าเดิม เป็นการปรับนโยบายแจ้งเตือน โดยมีโมเดล JSON สำหรับใช้เกณฑ์ใหม่นี้
 

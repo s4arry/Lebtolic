@@ -1,5 +1,9 @@
 # LEPTOLIC round 3 — selected approach 2
 
+**Latest policy:** [FPR budget 14.5%](results/threshold_20261110_fpr145/README_TH.md).
+Development-selected threshold 0.091868; historical Test FP 45, recall 32%.
+Use `results/threshold_20261110_fpr145/model.json` for this policy.
+
 **Threshold policy update:** [FPR budget 20%](results/threshold_20261110/README_TH.md), selected from
 development OOF. Historical Test FP 250 -> 58, recall 92% -> 36%; probability metrics unchanged.
 Use `results/threshold_20261110/model.json` for this policy; the original fitted model/results are retained.

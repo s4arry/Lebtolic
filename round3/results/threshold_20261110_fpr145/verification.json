@@ -1,0 +1,10 @@
+{
+  "checks_passed": [
+    "Model parameters identical to 20% budget except threshold/policy",
+    "Exhaustive development check: maximum TP=42 under FP cap=314",
+    "Independent Test confusion matrix TN=339 FP=45 FN=17 TP=8",
+    "Paired Test scores exactly identical to 20% budget",
+    "AUC/Brier/AP unchanged",
+    "Fitted model demo executed"
+  ]
+}

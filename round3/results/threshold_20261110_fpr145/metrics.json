@@ -1,0 +1,137 @@
+{
+  "protocol": {
+    "max_fpr": 0.145,
+    "selection_data": "mean repeated development OOF scores per person",
+    "tie_rule": "maximum TP, minimum FP, highest threshold",
+    "test_scope": "previously exposed historical Test; exploratory policy update",
+    "guarantee": "empirical development constraint, not a population or Test guarantee"
+  },
+  "selection": {
+    "threshold": 0.09186810148551343,
+    "max_fpr": 0.145,
+    "allowed_false_positives": 314,
+    "development_tp": 42,
+    "development_fp": 311,
+    "development_positives": 141,
+    "development_negatives": 2170,
+    "development_recall": 0.2978723404255319,
+    "development_fpr": 0.14331797235023042,
+    "objective": "maximize recall subject to empirical development OOF FPR budget"
+  },
+  "development": {
+    "n": 2311,
+    "events": 141,
+    "roc_auc": 0.6411968493643168,
+    "brier_score": 0.0564716195965829,
+    "log_loss": 0.22203210443017052,
+    "accuracy": 0.8225876244050194,
+    "precision": 0.11898016997167139,
+    "recall": 0.2978723404255319,
+    "balanced_accuracy": 0.5772771840376507,
+    "f1": 0.1700404858299595,
+    "confusion_matrix": {
+      "tn": 1859,
+      "fp": 311,
+      "fn": 99,
+      "tp": 42
+    },
+    "threshold": 0.09186810148551343,
+    "observed_rate": 0.06101254868022501,
+    "mean_predicted": 0.06088170288346931,
+    "specificity": 0.8566820276497696,
+    "recall_95ci_wilson": [
+      0.22856300504216998,
+      0.3779032618395871
+    ],
+    "precision_95ci_wilson": [
+      0.08924005672978416,
+      0.1569237693878328
+    ],
+    "average_precision": 0.10388414746013157,
+    "false_positive_rate": 0.14331797235023042,
+    "false_positive_rate_ci95": [
+      0.12920508207118434,
+      0.15869146911530937
+    ],
+    "alerts": 353
+  },
+  "test_f2": {
+    "n": 409,
+    "events": 25,
+    "roc_auc": 0.7054166666666667,
+    "brier_score": 0.055794904802818256,
+    "log_loss": 0.21668041925552595,
+    "accuracy": 0.38386308068459657,
+    "precision": 0.08424908424908426,
+    "recall": 0.92,
+    "balanced_accuracy": 0.6344791666666667,
+    "f1": 0.15436241610738255,
+    "confusion_matrix": {
+      "tn": 134,
+      "fp": 250,
+      "fn": 2,
+      "tp": 23
+    },
+    "threshold": 0.04165539699069321,
+    "observed_rate": 0.061124694376528114,
+    "mean_predicted": 0.057328047956257254,
+    "specificity": 0.3489583333333333,
+    "recall_95ci_wilson": [
+      0.7503389104960468,
+      0.9777795987151524
+    ],
+    "precision_95ci_wilson": [
+      0.056794077649134855,
+      0.12324203050103807
+    ],
+    "average_precision": 0.13192156156018403,
+    "false_positive_rate": 0.6510416666666666,
+    "false_positive_rate_ci95": [
+      0.6020856104201869,
+      0.6970056738193063
+    ],
+    "alerts": 273
+  },
+  "test_budget": {
+    "n": 409,
+    "events": 25,
+    "roc_auc": 0.7054166666666667,
+    "brier_score": 0.055794904802818256,
+    "log_loss": 0.21668041925552595,
+    "accuracy": 0.8484107579462102,
+    "precision": 0.1509433962264151,
+    "recall": 0.32,
+    "balanced_accuracy": 0.60140625,
+    "f1": 0.20512820512820512,
+    "confusion_matrix": {
+      "tn": 339,
+      "fp": 45,
+      "fn": 17,
+      "tp": 8
+    },
+    "threshold": 0.09186810148551343,
+    "observed_rate": 0.061124694376528114,
+    "mean_predicted": 0.057328047956257254,
+    "specificity": 0.8828125,
+    "recall_95ci_wilson": [
+      0.17205190306907978,
+      0.5158973072689775
+    ],
+    "precision_95ci_wilson": [
+      0.07852417850846262,
+      0.27054249276195336
+    ],
+    "average_precision": 0.13192156156018403,
+    "false_positive_rate": 0.1171875,
+    "false_positive_rate_ci95": [
+      0.0887446211689821,
+      0.15321367567230185
+    ],
+    "alerts": 53
+  },
+  "source_hashes": {
+    "model.json": "58b6ef7310dda250ebf9b4ad689bd5a0d239d3a01a363410a99321bd2ee29bfb",
+    "development_oof.csv": "a74c3f70ea29e643c9716d6cb6c8dfbf6fe01e32f65d4423061474a71d1245a8",
+    "test_predictions.csv": "a105c3583590590c4d8e8437623b1ac6806d1d6db90d739c9cb9c8b865826ae4"
+  }
+}

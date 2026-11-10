@@ -1,0 +1,12 @@
+{
+  "threshold": 0.09186810148551343,
+  "max_fpr": 0.145,
+  "allowed_false_positives": 314,
+  "development_tp": 42,
+  "development_fp": 311,
+  "development_positives": 141,
+  "development_negatives": 2170,
+  "development_recall": 0.2978723404255319,
+  "development_fpr": 0.14331797235023042,
+  "objective": "maximize recall subject to empirical development OOF FPR budget"
+}
