@@ -1,5 +1,15 @@
 # รายละเอียดการแก้ไข LEPTOLIC รอบ 3
 
+## 10 พฤศจิกายน: ปรับแนวทาง threshold ตามงบ FPR 20% ที่ผู้ใช้เลือก
+
+เพิ่ม threshold_policy.py เลือก max recall ภายใต้ empirical development OOF FPR ≤20%
+และ tests 6 ข้อ ตรวจ tied scores/งบ/optimality/OOF coverage/ไม่ใช้ Test เลือกจุดตัด
+ผลจริง threshold 8.4889%, Test FP 250 → 58 แต่ TP 23 → 9 และ Recall 92% → 36%
+ส่งออก model JSON นโยบายใหม่ โดยเก็บ coefficients/preprocessing/คะแนนและระดับเดิม
+CLI แสดง experimental_alert เมื่อมี policy และเพิ่มรายงานพร้อมหลักฐาน
+ดู [ผลและข้อแลกเปลี่ยนทั้งหมด](results/threshold_20261110/README_TH.md)
+การปรับนี้ไม่ทำให้ AUC/Brier ดีขึ้น และไม่ใช่การทดสอบใหม่ที่ไม่เคยเปิดเผย
+
 อัปเดตวันที่ 5 พฤศจิกายน 2026 บน branch `dev-by-gunner`
 
 **อัปเดตหลังรับ ZIP:** รัน NHEFS จริงและ notebook Run all สำเร็จแล้ว

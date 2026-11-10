@@ -1,0 +1,10 @@
+{
+  "checks_passed": [
+    "Only threshold and threshold_policy differ from source model",
+    "Independent Test confusion matrix matches [TN=326, FP=58, FN=16, TP=9]",
+    "AUC and Brier exactly unchanged",
+    "CLI/API demo uses new threshold and returns false experimental_alert"
+  ],
+  "test_false_positive_rate": 0.15104166666666666,
+  "development_budget": 0.2
+}

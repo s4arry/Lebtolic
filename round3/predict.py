@@ -50,6 +50,9 @@ def predict_file(path, values, previously_diagnosed=False):
         result['meaning'] = 'ระดับสัมพัทธ์ตามจุดแบ่งคะแนน development OOF ของ NHEFS'
     result['features_used'] = state['features']
     result['decision_threshold'] = state['threshold'] if 'threshold' in state else None
+    if 'threshold_policy' in state:
+        result['threshold_policy'] = state['threshold_policy']['objective']
+        result['experimental_alert'] = result['experimental_probability_8y'] >= state['threshold']
     return result
 
 

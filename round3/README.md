@@ -1,5 +1,9 @@
 # LEPTOLIC round 3 — selected approach 2
 
+**Threshold policy update:** [FPR budget 20%](results/threshold_20261110/README_TH.md), selected from
+development OOF. Historical Test FP 250 -> 58, recall 92% -> 36%; probability metrics unchanged.
+Use `results/threshold_20261110/model.json` for this policy; the original fitted model/results are retained.
+
 **Real-data run complete:** [Thai report, plots, model and evidence](results/nhefs_20261105/README_TH.md).
 Legacy AUC 0.6761 → new 0.7054; Brier 0.05653 → 0.05579, but the primary paired
 Brier CI includes zero. Do not claim overall superiority or Thai validation.
