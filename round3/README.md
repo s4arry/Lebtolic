@@ -1,5 +1,8 @@
 # LEPTOLIC round 3 — selected approach 2
 
+**Exploratory recall comparison:** [several alert levels and a fixed-budget model study](results/recall_20261110/README_TH.md).
+No replacement policy is adopted automatically. The existing 14.5% policy remains the current choice.
+
 **Latest policy:** [FPR budget 14.5%](results/threshold_20261110_fpr145/README_TH.md).
 Development-selected threshold 0.091868; historical Test FP 45, recall 32%.
 Use `results/threshold_20261110_fpr145/model.json` for this policy.

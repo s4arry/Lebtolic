@@ -1,0 +1,84 @@
+{
+  "selected": {
+    "features": 4,
+    "degree": 1,
+    "C": 1.0,
+    "mean_inner_partial_auc": 0.5494455618958999,
+    "family": "logistic",
+    "calibration": "none"
+  },
+  "features": [
+    "age_years",
+    "sex_female",
+    "baseline_sbp",
+    "baseline_dbp"
+  ],
+  "training_range": {
+    "age_years": [
+      32.0,
+      85.0
+    ],
+    "sex_female": [
+      0.0,
+      1.0
+    ],
+    "baseline_sbp": [
+      80.0,
+      129.0
+    ],
+    "baseline_dbp": [
+      44.0,
+      79.0
+    ]
+  },
+  "imputer_median": [
+    45.0,
+    1.0,
+    113.0,
+    71.0
+  ],
+  "scaler_mean": [
+    47.24058848983124,
+    0.7196019039376893,
+    112.39809606231069,
+    70.25270445694504
+  ],
+  "scaler_scale": [
+    10.647700791740654,
+    0.4491937263441525,
+    9.315187498944457,
+    5.9728369924409375
+  ],
+  "coefficients": [
+    [
+      -0.24898672946055342,
+      0.16772580684110114,
+      0.48704049039910524,
+      0.27109480830661536
+    ]
+  ],
+  "intercept": [
+    -2.8995329263477654
+  ],
+  "study_calibration": {
+    "method": "none"
+  },
+  "threshold": 0.0961560579641432,
+  "threshold_policy": {
+    "threshold": 0.0961560579641432,
+    "max_fpr": 0.145,
+    "allowed_false_positives": 314,
+    "development_tp": 46,
+    "development_fp": 309,
+    "development_positives": 141,
+    "development_negatives": 2170,
+    "development_recall": 0.3262411347517731,
+    "development_fpr": 0.1423963133640553,
+    "objective": "maximize recall subject to empirical development OOF FPR budget"
+  },
+  "level_cuts": [
+    0.040580180511389945,
+    0.07080901195324571
+  ],
+  "limitations": "คะแนนทดลองของกลุ่ม NHEFS สหรัฐฯ ในอดีต สำหรับการรายงานวินิจฉัยใน 8 ปี ยังไม่ยืนยันกับคนไทย ไม่ใช่การวินิจฉัยหรือคำแนะนำการรักษา ระดับ 1 ไม่ได้แปลว่าไม่มีโอกาสเกิดเหตุการณ์"
+}

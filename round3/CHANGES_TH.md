@@ -1,5 +1,14 @@
 # รายละเอียดการแก้ไข LEPTOLIC รอบ 3
 
+## 10 พฤศจิกายน: หาแนวทางจับเหตุการณ์เพิ่มและเสนอหลายระดับก่อนเลือก
+
+เพิ่ม recall_study.py ทดลอง 9 linear/quadratic Logistic configurations ด้วย nested CV
+เลือก partial ROC-AUC ในช่วง FPR ต่ำ และเลือก threshold จาก training OOF ภายใต้งบ 14.5%
+เพิ่ม polynomial JSON inference พร้อม tests เทียบ scikit-learn
+ผล candidate ยังจับ Test ได้ 8/25 เท่าเดิม แม้ FP ลด 45 → 42; ไม่แทนโมเดลหลัก
+เพิ่มตารางและกราฟงบ 14.5/20/30/40% และ F2 ให้ผู้ใช้เลือกโดยไม่เปลี่ยน default
+ดู [ผลและข้อจำกัดฉบับเต็ม](results/recall_20261110/README_TH.md)
+
 ## 10 พฤศจิกายน: ผู้ใช้ปรับเพดาน FPR เป็น 14.5%
 
 ใช้ selector เดิมกับ development OOF งบ 14.5% ได้ threshold 9.1868%

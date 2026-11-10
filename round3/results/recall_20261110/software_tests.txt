@@ -1,0 +1,32 @@
+test_all_exported_candidate_types_match_sklearn (test_cv_study.StudyTests.test_all_exported_candidate_types_match_sklearn) ... ok
+test_conservative_death_guard (test_cv_study.StudyTests.test_conservative_death_guard) ... ok
+test_empty_development_level_is_rejected (test_cv_study.StudyTests.test_empty_development_level_is_rejected) ... ok
+test_entirely_missing_feature_is_rejected (test_cv_study.StudyTests.test_entirely_missing_feature_is_rejected) ... ok
+test_nested_study_test_labels_do_not_select_model_threshold_or_bands (test_cv_study.StudyTests.test_nested_study_test_labels_do_not_select_model_threshold_or_bands) ... ok
+test_paired_bootstrap_identical_models_cannot_prove_improvement (test_cv_study.StudyTests.test_paired_bootstrap_identical_models_cannot_prove_improvement) ... ok
+test_ambiguous_duplicate_basename_is_rejected (test_data_archive.ArchiveTests.test_ambiguous_duplicate_basename_is_rejected) ... ok
+test_html_instead_of_data_is_rejected (test_data_archive.ArchiveTests.test_html_instead_of_data_is_rejected) ... ok
+test_missing_required_file_leaves_no_partial_raw (test_data_archive.ArchiveTests.test_missing_required_file_leaves_no_partial_raw) ... ok
+test_unexpected_data_width_is_rejected (test_data_archive.ArchiveTests.test_unexpected_data_width_is_rejected) ... ok
+test_valid_format_and_manifest_without_network (test_data_archive.ArchiveTests.test_valid_format_and_manifest_without_network) ... ok
+test_quadratic_and_linear_exports_match_sklearn (test_recall_study.RecallStudyTests.test_quadratic_and_linear_exports_match_sklearn) ... ok
+test_search_policy_is_fitted_using_its_oof_scores (test_recall_study.RecallStudyTests.test_search_policy_is_fitted_using_its_oof_scores) ... ok
+test_candidates_do_not_use_test_or_calibration (test_round3.Round3Tests.test_candidates_do_not_use_test_or_calibration) ... ok
+test_no_predicted_positive_is_undefined_precision (test_round3.Round3Tests.test_no_predicted_positive_is_undefined_precision) ... ok
+test_pipeline_export_reload_on_invented_fixture (test_round3.Round3Tests.test_pipeline_export_reload_on_invented_fixture) ... ok
+test_portable_logistic (test_round3.Round3Tests.test_portable_logistic) ... ok
+test_portable_tree (test_round3.Round3Tests.test_portable_tree) ... ok
+test_threshold_uses_demo_f2_objective (test_round3.Round3Tests.test_threshold_uses_demo_f2_objective) ... ok
+test_tied_levels_and_empty_band (test_round3.Round3Tests.test_tied_levels_and_empty_band) ... ok
+test_wilson_zero_events_is_not_zero_uncertainty (test_round3.Round3Tests.test_wilson_zero_events_is_not_zero_uncertainty) ... ok
+test_budget_is_count_based_and_ties_are_not_split (test_threshold_policy.ThresholdPolicyTests.test_budget_is_count_based_and_ties_are_not_split) ... ok
+test_invalid_inputs_are_rejected (test_threshold_policy.ThresholdPolicyTests.test_invalid_inputs_are_rejected) ... ok
+test_oof_is_one_person_one_target_and_three_predictions (test_threshold_policy.ThresholdPolicyTests.test_oof_is_one_person_one_target_and_three_predictions) ... ok
+test_selected_threshold_is_optimal_over_all_achievable_groups (test_threshold_policy.ThresholdPolicyTests.test_selected_threshold_is_optimal_over_all_achievable_groups) ... ok
+test_test_labels_cannot_affect_selection_and_model_parameters_are_preserved (test_threshold_policy.ThresholdPolicyTests.test_test_labels_cannot_affect_selection_and_model_parameters_are_preserved) ... ok
+test_zero_budget_may_require_no_alerts (test_threshold_policy.ThresholdPolicyTests.test_zero_budget_may_require_no_alerts) ... ok
+
+----------------------------------------------------------------------
+Ran 27 tests in 4.655s
+
+OK

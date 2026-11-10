@@ -1,0 +1,62 @@
+[
+  {
+    "budget": 0.145,
+    "selection": {
+      "threshold": 0.09186810148551343,
+      "max_fpr": 0.145,
+      "allowed_false_positives": 314,
+      "development_tp": 42,
+      "development_fp": 311,
+      "development_positives": 141,
+      "development_negatives": 2170,
+      "development_recall": 0.2978723404255319,
+      "development_fpr": 0.14331797235023042,
+      "objective": "maximize recall subject to empirical development OOF FPR budget"
+    }
+  },
+  {
+    "budget": 0.2,
+    "selection": {
+      "threshold": 0.08488862608237983,
+      "max_fpr": 0.2,
+      "allowed_false_positives": 434,
+      "development_tp": 52,
+      "development_fp": 425,
+      "development_positives": 141,
+      "development_negatives": 2170,
+      "development_recall": 0.36879432624113473,
+      "development_fpr": 0.195852534562212,
+      "objective": "maximize recall subject to empirical development OOF FPR budget"
+    }
+  },
+  {
+    "budget": 0.3,
+    "selection": {
+      "threshold": 0.07264236088767372,
+      "max_fpr": 0.3,
+      "allowed_false_positives": 651,
+      "development_tp": 66,
+      "development_fp": 637,
+      "development_positives": 141,
+      "development_negatives": 2170,
+      "development_recall": 0.46808510638297873,
+      "development_fpr": 0.29354838709677417,
+      "objective": "maximize recall subject to empirical development OOF FPR budget"
+    }
+  },
+  {
+    "budget": 0.4,
+    "selection": {
+      "threshold": 0.0656573904412984,
+      "max_fpr": 0.4,
+      "allowed_false_positives": 868,
+      "development_tp": 81,
+      "development_fp": 825,
+      "development_positives": 141,
+      "development_negatives": 2170,
+      "development_recall": 0.574468085106383,
+      "development_fpr": 0.38018433179723504,
+      "objective": "maximize recall subject to empirical development OOF FPR budget"
+    }
+  }
+]

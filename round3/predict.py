@@ -17,6 +17,10 @@ class PortableModel:
         x = np.asarray(rows, float)
         x = np.where(np.isnan(x), s['imputer_median'], x)
         x = (x-s['scaler_mean'])/s['scaler_scale']
+        if 'polynomial_powers' in s:
+            powers = np.asarray(s['polynomial_powers'], int)
+            x = np.prod(x[:, None, :] ** powers[None, :, :], axis=2)
+            x = (x-s['polynomial_mean'])/s['polynomial_scale']
         if s['selected']['family'] == 'logistic':
             z = x @ np.array(s['coefficients'])[0] + s['intercept'][0]
             p = np.exp(-np.logaddexp(0., -z))
