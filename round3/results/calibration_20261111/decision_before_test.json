@@ -1,0 +1,122 @@
+{
+  "final": {
+    "chosen": "none",
+    "best_mean_method": "sigmoid",
+    "one_se_limit": 0.05575688142939966,
+    "candidates": {
+      "none": {
+        "mean_brier": 0.05550687757576398,
+        "sd": 0.0007294904341178838,
+        "fold_briers": [
+          0.056108413256465706,
+          0.054695450933372525,
+          0.055716768537453706
+        ]
+      },
+      "intercept": {
+        "mean_brier": 0.05550256165777617,
+        "sd": 0.000720469400770551,
+        "fold_briers": [
+          0.05608241033367286,
+          0.054696006124251795,
+          0.05572926851540386
+        ]
+      },
+      "sigmoid": {
+        "mean_brier": 0.05539628832061352,
+        "sd": 0.0006245655852768108,
+        "fold_briers": [
+          0.05587309680014706,
+          0.054689298522281556,
+          0.05562646963941193
+        ]
+      }
+    }
+  },
+  "thresholds": {
+    "none": {
+      "f2": {
+        "threshold": 0.06078679160536861,
+        "tune_f2": 0.35765379113018597,
+        "objective": "max_F2_on_development_OOF_only"
+      },
+      "fpr145": {
+        "threshold": 0.09803399686084495,
+        "max_fpr": 0.145,
+        "allowed_false_positives": 314,
+        "development_tp": 59,
+        "development_fp": 282,
+        "development_positives": 141,
+        "development_negatives": 2170,
+        "development_recall": 0.41843971631205673,
+        "development_fpr": 0.12995391705069123,
+        "objective": "maximize recall subject to empirical development OOF FPR budget"
+      }
+    },
+    "intercept": {
+      "f2": {
+        "threshold": 0.059453971607419435,
+        "tune_f2": 0.35511363636363635,
+        "objective": "max_F2_on_development_OOF_only"
+      },
+      "fpr145": {
+        "threshold": 0.09669328873086053,
+        "max_fpr": 0.145,
+        "allowed_false_positives": 314,
+        "development_tp": 59,
+        "development_fp": 283,
+        "development_positives": 141,
+        "development_negatives": 2170,
+        "development_recall": 0.41843971631205673,
+        "development_fpr": 0.1304147465437788,
+        "objective": "maximize recall subject to empirical development OOF FPR budget"
+      }
+    },
+    "sigmoid": {
+      "f2": {
+        "threshold": 0.06136860475076006,
+        "tune_f2": 0.35816618911174786,
+        "objective": "max_F2_on_development_OOF_only"
+      },
+      "fpr145": {
+        "threshold": 0.09224669505194094,
+        "max_fpr": 0.145,
+        "allowed_false_positives": 314,
+        "development_tp": 60,
+        "development_fp": 309,
+        "development_positives": 141,
+        "development_negatives": 2170,
+        "development_recall": 0.425531914893617,
+        "development_fpr": 0.1423963133640553,
+        "objective": "maximize recall subject to empirical development OOF FPR budget"
+      }
+    },
+    "selected": {
+      "f2": {
+        "threshold": 0.06078679160536861,
+        "tune_f2": 0.35765379113018597,
+        "objective": "max_F2_on_development_OOF_only"
+      },
+      "fpr145": {
+        "threshold": 0.09803399686084495,
+        "max_fpr": 0.145,
+        "allowed_false_positives": 314,
+        "development_tp": 59,
+        "development_fp": 282,
+        "development_positives": 141,
+        "development_negatives": 2170,
+        "development_recall": 0.41843971631205673,
+        "development_fpr": 0.12995391705069123,
+        "objective": "maximize recall subject to empirical development OOF FPR budget"
+      }
+    }
+  },
+  "screening": {
+    "final_calibrated": false,
+    "brier_lower_every_repeat": false,
+    "mean_budget_recall_not_lower": true,
+    "mean_budget_fpr_not_higher": true
+  },
+  "calibration_supported": false,
+  "test_used_for_selection": false
+}

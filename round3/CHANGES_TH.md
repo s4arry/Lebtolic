@@ -1,5 +1,14 @@
 # รายละเอียดการแก้ไข LEPTOLIC รอบ 3
 
+## 11 พฤศจิกายน: ทดลอง calibration ภายใน training folds
+
+เพิ่ม calibration_study.py เปรียบเทียบ none/intercept/sigmoid ในรุ่น weight+smoking
+ใช้ inner Brier + one-SE เลือกวิธี พร้อม calibration OOF 3-fold ซ้อนภายใน inner training
+และประเมิน outer 5×3 ทั้ง fixed candidates กับ selected workflow
+ผลเลือก none ทุก outer fold และ final; sigmoid ช่วย slope แต่ outer Brier/recall ไม่ดีขึ้น
+ส่งออก final inner OOF, parameters, metrics, bootstrap CI และกราฟ; software tests 39 ข้อผ่าน
+[ผลจริงและเหตุที่ threshold ต่างจากรอบก่อน](results/calibration_20261111/README_TH.md)
+
 ## 11 พฤศจิกายน: balancing พร้อม nested thresholds และแผนสำรอง
 
 เพิ่ม `balancing_study.py` เปรียบเทียบ Logistic C=.1 แบบไม่ balancing, class weights,

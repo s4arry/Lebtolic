@@ -1,5 +1,14 @@
 # LEPTOLIC round 3 — selected approach 2
 
+**Calibration follow-up completed:** [real results](results/calibration_20261111/README_TH.md)
+and [predeclared protocol](CALIBRATION_PROTOCOL_TH.md).
+Compared none/intercept/sigmoid for the weight+smoking candidate, with calibration
+cross-fitting nested inside inner model selection and outer evaluation. The one-SE
+rule selected none in all 15 outer folds and final development. Sigmoid improved
+slope but not outer Brier/recall consistently. No shipped model/policy was replaced.
+Run `python -m round3.calibration_study --source /path/to/nhefs_source --output round3_work/calibration_new`.
+Use `requirements-balancing.txt`; research exports use explicit encoded vectors.
+
 **11 November: balancing and fallback completed.**
 [Real-data report](results/balancing_20261111/README_TH.md),
 [predeclared protocol](BALANCING_PROTOCOL_TH.md), and

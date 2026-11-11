@@ -1,0 +1,408 @@
+{
+  "none": {
+    "features": [
+      "age_years",
+      "sex_female",
+      "baseline_sbp",
+      "baseline_dbp",
+      "weight_lb",
+      "weight_missing",
+      "current_smoker",
+      "former_smoker",
+      "smoking_unknown"
+    ],
+    "selected": {
+      "family": "logistic",
+      "calibration": "none",
+      "C": 0.1,
+      "balancing": "none"
+    },
+    "imputer_median": [
+      45.0,
+      1.0,
+      113.0,
+      71.0,
+      147.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "scaler_mean": [
+      47.24058848983124,
+      0.7196019039376893,
+      112.39809606231069,
+      70.25270445694504,
+      151.56685417568153,
+      0.006923409779316313,
+      0.33189095629597576,
+      0.23712678494158373,
+      0.0
+    ],
+    "scaler_scale": [
+      10.647700791740654,
+      0.4491937263441525,
+      9.315187498944457,
+      5.9728369924409375,
+      30.073726089035667,
+      0.08291849116056255,
+      0.470892078320411,
+      0.4253206705591146,
+      1.0
+    ],
+    "coefficients": [
+      [
+        -0.1538167014369601,
+        0.39616050571846595,
+        0.38797245853519075,
+        0.2200027052104014,
+        0.5491878855086242,
+        0.014627481029803614,
+        0.27097775892413717,
+        0.054470138429590004,
+        0.0
+      ]
+    ],
+    "intercept": [
+      -3.00371670740762
+    ],
+    "study_calibration": {
+      "method": "none"
+    },
+    "threshold_policies": {
+      "f2": {
+        "threshold": 0.06078679160536861,
+        "tune_f2": 0.35765379113018597,
+        "objective": "max_F2_on_development_OOF_only"
+      },
+      "fpr145": {
+        "threshold": 0.09803399686084495,
+        "max_fpr": 0.145,
+        "allowed_false_positives": 314,
+        "development_tp": 59,
+        "development_fp": 282,
+        "development_positives": 141,
+        "development_negatives": 2170,
+        "development_recall": 0.41843971631205673,
+        "development_fpr": 0.12995391705069123,
+        "objective": "maximize recall subject to empirical development OOF FPR budget"
+      }
+    },
+    "original_class_counts": [
+      2170,
+      141
+    ],
+    "fitted_class_counts": [
+      2170,
+      141
+    ],
+    "usage": "Research replay with PortableModel and explicitly encoded feature vectors; not the legacy predict_file interface",
+    "status": "exploratory; does not replace existing model/policy"
+  },
+  "intercept": {
+    "features": [
+      "age_years",
+      "sex_female",
+      "baseline_sbp",
+      "baseline_dbp",
+      "weight_lb",
+      "weight_missing",
+      "current_smoker",
+      "former_smoker",
+      "smoking_unknown"
+    ],
+    "selected": {
+      "family": "logistic",
+      "calibration": "intercept",
+      "C": 0.1,
+      "balancing": "none"
+    },
+    "imputer_median": [
+      45.0,
+      1.0,
+      113.0,
+      71.0,
+      147.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "scaler_mean": [
+      47.24058848983124,
+      0.7196019039376893,
+      112.39809606231069,
+      70.25270445694504,
+      151.56685417568153,
+      0.006923409779316313,
+      0.33189095629597576,
+      0.23712678494158373,
+      0.0
+    ],
+    "scaler_scale": [
+      10.647700791740654,
+      0.4491937263441525,
+      9.315187498944457,
+      5.9728369924409375,
+      30.073726089035667,
+      0.08291849116056255,
+      0.470892078320411,
+      0.4253206705591146,
+      1.0
+    ],
+    "coefficients": [
+      [
+        -0.1538167014369601,
+        0.39616050571846595,
+        0.38797245853519075,
+        0.2200027052104014,
+        0.5491878855086242,
+        0.014627481029803614,
+        0.27097775892413717,
+        0.054470138429590004,
+        0.0
+      ]
+    ],
+    "intercept": [
+      -3.00371670740762
+    ],
+    "study_calibration": {
+      "method": "sigmoid",
+      "a": -1.0,
+      "b": -2.8651651014653306e-05,
+      "input": "margin"
+    },
+    "threshold_policies": {
+      "f2": {
+        "threshold": 0.059453971607419435,
+        "tune_f2": 0.35511363636363635,
+        "objective": "max_F2_on_development_OOF_only"
+      },
+      "fpr145": {
+        "threshold": 0.09669328873086053,
+        "max_fpr": 0.145,
+        "allowed_false_positives": 314,
+        "development_tp": 59,
+        "development_fp": 283,
+        "development_positives": 141,
+        "development_negatives": 2170,
+        "development_recall": 0.41843971631205673,
+        "development_fpr": 0.1304147465437788,
+        "objective": "maximize recall subject to empirical development OOF FPR budget"
+      }
+    },
+    "original_class_counts": [
+      2170,
+      141
+    ],
+    "fitted_class_counts": [
+      2170,
+      141
+    ],
+    "usage": "Research replay with PortableModel and explicitly encoded feature vectors; not the legacy predict_file interface",
+    "status": "exploratory; does not replace existing model/policy"
+  },
+  "sigmoid": {
+    "features": [
+      "age_years",
+      "sex_female",
+      "baseline_sbp",
+      "baseline_dbp",
+      "weight_lb",
+      "weight_missing",
+      "current_smoker",
+      "former_smoker",
+      "smoking_unknown"
+    ],
+    "selected": {
+      "family": "logistic",
+      "calibration": "sigmoid",
+      "C": 0.1,
+      "balancing": "none"
+    },
+    "imputer_median": [
+      45.0,
+      1.0,
+      113.0,
+      71.0,
+      147.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "scaler_mean": [
+      47.24058848983124,
+      0.7196019039376893,
+      112.39809606231069,
+      70.25270445694504,
+      151.56685417568153,
+      0.006923409779316313,
+      0.33189095629597576,
+      0.23712678494158373,
+      0.0
+    ],
+    "scaler_scale": [
+      10.647700791740654,
+      0.4491937263441525,
+      9.315187498944457,
+      5.9728369924409375,
+      30.073726089035667,
+      0.08291849116056255,
+      0.470892078320411,
+      0.4253206705591146,
+      1.0
+    ],
+    "coefficients": [
+      [
+        -0.1538167014369601,
+        0.39616050571846595,
+        0.38797245853519075,
+        0.2200027052104014,
+        0.5491878855086242,
+        0.014627481029803614,
+        0.27097775892413717,
+        0.054470138429590004,
+        0.0
+      ]
+    ],
+    "intercept": [
+      -3.00371670740762
+    ],
+    "study_calibration": {
+      "method": "sigmoid",
+      "a": -0.9530644884482196,
+      "b": 0.11721296391891808,
+      "input": "margin"
+    },
+    "threshold_policies": {
+      "f2": {
+        "threshold": 0.06136860475076006,
+        "tune_f2": 0.35816618911174786,
+        "objective": "max_F2_on_development_OOF_only"
+      },
+      "fpr145": {
+        "threshold": 0.09224669505194094,
+        "max_fpr": 0.145,
+        "allowed_false_positives": 314,
+        "development_tp": 60,
+        "development_fp": 309,
+        "development_positives": 141,
+        "development_negatives": 2170,
+        "development_recall": 0.425531914893617,
+        "development_fpr": 0.1423963133640553,
+        "objective": "maximize recall subject to empirical development OOF FPR budget"
+      }
+    },
+    "original_class_counts": [
+      2170,
+      141
+    ],
+    "fitted_class_counts": [
+      2170,
+      141
+    ],
+    "usage": "Research replay with PortableModel and explicitly encoded feature vectors; not the legacy predict_file interface",
+    "status": "exploratory; does not replace existing model/policy"
+  },
+  "selected": {
+    "features": [
+      "age_years",
+      "sex_female",
+      "baseline_sbp",
+      "baseline_dbp",
+      "weight_lb",
+      "weight_missing",
+      "current_smoker",
+      "former_smoker",
+      "smoking_unknown"
+    ],
+    "selected": {
+      "family": "logistic",
+      "calibration": "none",
+      "C": 0.1,
+      "balancing": "none"
+    },
+    "imputer_median": [
+      45.0,
+      1.0,
+      113.0,
+      71.0,
+      147.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "scaler_mean": [
+      47.24058848983124,
+      0.7196019039376893,
+      112.39809606231069,
+      70.25270445694504,
+      151.56685417568153,
+      0.006923409779316313,
+      0.33189095629597576,
+      0.23712678494158373,
+      0.0
+    ],
+    "scaler_scale": [
+      10.647700791740654,
+      0.4491937263441525,
+      9.315187498944457,
+      5.9728369924409375,
+      30.073726089035667,
+      0.08291849116056255,
+      0.470892078320411,
+      0.4253206705591146,
+      1.0
+    ],
+    "coefficients": [
+      [
+        -0.1538167014369601,
+        0.39616050571846595,
+        0.38797245853519075,
+        0.2200027052104014,
+        0.5491878855086242,
+        0.014627481029803614,
+        0.27097775892413717,
+        0.054470138429590004,
+        0.0
+      ]
+    ],
+    "intercept": [
+      -3.00371670740762
+    ],
+    "study_calibration": {
+      "method": "none"
+    },
+    "threshold_policies": {
+      "f2": {
+        "threshold": 0.06078679160536861,
+        "tune_f2": 0.35765379113018597,
+        "objective": "max_F2_on_development_OOF_only"
+      },
+      "fpr145": {
+        "threshold": 0.09803399686084495,
+        "max_fpr": 0.145,
+        "allowed_false_positives": 314,
+        "development_tp": 59,
+        "development_fp": 282,
+        "development_positives": 141,
+        "development_negatives": 2170,
+        "development_recall": 0.41843971631205673,
+        "development_fpr": 0.12995391705069123,
+        "objective": "maximize recall subject to empirical development OOF FPR budget"
+      }
+    },
+    "original_class_counts": [
+      2170,
+      141
+    ],
+    "fitted_class_counts": [
+      2170,
+      141
+    ],
+    "usage": "Research replay with PortableModel and explicitly encoded feature vectors; not the legacy predict_file interface",
+    "status": "exploratory; does not replace existing model/policy"
+  }
+}

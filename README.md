@@ -1,5 +1,10 @@
 # LEPTOLIC
 
+**Calibration follow-up รันจริงแล้ว:** [ผลการปรับคะแนนรุ่นน้ำหนัก + สูบบุหรี่](round3/results/calibration_20261111/README_TH.md)
+ทดลอง none/intercept/sigmoid โดยเลือก calibration และ threshold ภายใน nested CV
+Sigmoid ทำให้ calibration slope ใกล้ 1 แต่ outer Brier/recall ไม่ดีขึ้นอย่างสม่ำเสมอ
+กติกา one-SE เลือกไม่ calibrate ทั้ง 15 outer folds และ final development; ยังไม่มีเหตุผลให้เปลี่ยนรุ่นทดลอง
+
 **ล่าสุด 11 พ.ย. — balancing และแผนสำรองรันจริงแล้ว:**
 [รายงานผล พร้อม uncertainty และ codebook](round3/results/balancing_20261111/README_TH.md)
 Balancing ไม่ช่วยตามเกณฑ์ development จึงทดลองน้ำหนักและประวัติสูบบุหรี่ต่อ

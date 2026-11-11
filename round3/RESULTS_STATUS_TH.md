@@ -1,5 +1,14 @@
 # สถานะผลแนวทาง 2
 
+## Calibration follow-up ล่าสุด — 11 พฤศจิกายน 2026
+
+[รายงาน calibration](results/calibration_20261111/README_TH.md): ทดลองครบ 3 วิธีบนรุ่น weight+smoking
+กติกาเลือก one-SE จาก inner Brier เลือก none ทั้ง 15 outer folds และ final development
+Mean outer-repeat Brier: none 0.055488, intercept 0.055491, sigmoid 0.055532
+Sigmoid ช่วย slope ใกล้ 1 แต่ยังไม่เพิ่มความแม่นโดยรวมอย่างสม่ำเสมอ
+Final threshold มาจาก inner OOF จึงต่างจากรอบก่อน; ไม่มีการแทนนโยบายเดิม
+Software tests 39 ข้อผ่าน; ตรวจ metrics จาก predictions และรันซ้ำได้ผลตรงกัน
+
 ## 11 พฤศจิกายน 2026: balancing และแผนสำรองเสร็จแล้ว
 
 [อ่านรายงานล่าสุด](results/balancing_20261111/README_TH.md)
