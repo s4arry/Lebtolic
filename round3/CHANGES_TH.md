@@ -1,5 +1,18 @@
 # รายละเอียดการแก้ไข LEPTOLIC รอบ 3
 
+## 11 พฤศจิกายน: balancing พร้อม nested thresholds และแผนสำรอง
+
+เพิ่ม `balancing_study.py` เปรียบเทียบ Logistic C=.1 แบบไม่ balancing, class weights,
+และสุ่มเพิ่ม positives เฉพาะ training fold โดย fit imputer/scaler ก่อน resampling
+เลือก threshold F2/FPR14.5% ใน inner OOF ของทุก outer training; validation/test คง prevalence เดิม
+พบ balancing ไม่ผ่านเกณฑ์ จึงรันแผนสำรองจริง: missed-event/missingness audit,
+ตรวจ CDC codebook แล้วเพิ่ม baseline weight/smoking บน cohort/splits เดิม
+รุ่นรวมผ่าน development screening และถูก freeze เป็น candidate ก่อน Test แต่ยังไม่แทนโมเดลหลัก
+เพิ่ม fitted parameter exports, uncertainty, calibration, anonymous predictions, provenance,
+กราฟ และ verification; software tests เพิ่มจาก 27 เป็น 35 ข้อและผ่านทั้งหมด
+[ผลจริง](results/balancing_20261111/README_TH.md) · [Protocol](BALANCING_PROTOCOL_TH.md) ·
+[Codebook](CODEBOOK_BALANCING_TH.md)
+
 ## 10 พฤศจิกายน: หาแนวทางจับเหตุการณ์เพิ่มและเสนอหลายระดับก่อนเลือก
 
 เพิ่ม recall_study.py ทดลอง 9 linear/quadratic Logistic configurations ด้วย nested CV

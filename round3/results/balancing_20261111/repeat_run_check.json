@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "exact_file_matches": {
+    "decision_before_test.json": true,
+    "development_oof.csv": true,
+    "test_scores.csv": true,
+    "test_metrics.csv": true,
+    "repeat_metrics.csv": true,
+    "test_paired_difference_ci.csv": true
+  },
+  "note": "Initial completed run vs rerun after adding portable parameter export; scientific predictions/decisions unchanged"
+}

@@ -1,0 +1,17 @@
+{
+  "baseline_measured_bp_above_project_cutoff": 2930,
+  "baseline_prior_diagnosis_or_unknown": 4748,
+  "explicit_no_with_complete_8y_followup": 2506,
+  "baseline_age_sex_or_bp_missing": 1168,
+  "prior_or_same_year_diagnosis": 69,
+  "diagnosis_year_conflicts_with_later_explicit_no": 20,
+  "no_completed_surviving_final_interview": 462,
+  "borderline_or_discrepant_report": 37,
+  "reported_diagnosis_within_8y": 166,
+  "first_reported_diagnosis_after_8y": 48,
+  "positive_history_without_reliable_year": 32,
+  "diagnosis_year_overlaps_horizon": 26,
+  "final_target_unknown_or_skipped": 6,
+  "conflicting_first_diagnosis_years": 1,
+  "contradictory_later_no_after_yes": 1
+}

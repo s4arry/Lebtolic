@@ -1,5 +1,28 @@
 # LEPTOLIC round 3 — selected approach 2
 
+**11 November: balancing and fallback completed.**
+[Real-data report](results/balancing_20261111/README_TH.md),
+[predeclared protocol](BALANCING_PROTOCOL_TH.md), and
+[verified baseline codebook fields](CODEBOOK_BALANCING_TH.md).
+Training-only weighting/oversampling did not pass the development criterion.
+The fallback added baseline measured weight and smoking history; the combined
+candidate improved development ranking and budget recall but remains exploratory.
+The existing shipped model and 14.5% policy remain unchanged. Threshold selection
+is now nested inside each outer training fold for both F2 and the FPR budget.
+
+Reproduce this study with Python 3.12 and `requirements-balancing.txt` (the exact
+numerical versions used in this run, separate from historical requirements):
+
+```bash
+python -m pip install -r round3/requirements-balancing.txt
+python -m round3.balancing_study --source /path/to/nhefs_source --output round3_work/balancing_new_run
+```
+
+`source/raw/` accepts the eight original CDC files extracted from the prior ZIP;
+missing files are downloaded from CDC. Their hashes must match the historical
+archive. Test never selects a model or threshold. Research parameter exports use
+explicit encoded feature vectors; the legacy `round3.predict` input schema is unchanged.
+
 **Exploratory recall comparison:** [several alert levels and a fixed-budget model study](results/recall_20261110/README_TH.md).
 No replacement policy is adopted automatically. The existing 14.5% policy remains the current choice.
 

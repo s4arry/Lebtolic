@@ -1,5 +1,11 @@
 # แนวทาง 2: protocol ก่อนรันข้อมูลจริง
 
+**ส่วนต่อยอด 11 พ.ย.:** [Balancing protocol](BALANCING_PROTOCOL_TH.md) และ
+[ผลจริง](results/balancing_20261111/README_TH.md) เพิ่มการเลือก **threshold** ภายในทุก
+outer training fold สำหรับ F2/FPR14.5% โดย fix Logistic C=.1 และคง cohort/splits เดิม
+เอกสารด้านล่างเป็น protocol ของรอบก่อน ซึ่งเลือก F2 หลังรวม outer OOF;
+ไม่ควรใช้ผลรอบก่อนอ้างว่า threshold เคยผ่าน nested validation แล้ว
+
 สถานะล่าสุด: รันกับ ZIP NHEFS สำเร็จแล้ว ดู [ผลจริงและข้อจำกัด](results/nhefs_20261105/README_TH.md)
 เกณฑ์การเลือกโมเดลและตัดสินผลด้านล่างกำหนดก่อนเห็นผล และไม่เปลี่ยนหลัง primary CI คร่อมศูนย์
 รับ ZIP ข้อมูลจาก Colab ได้แล้วโดยใช้ `--data-zip`; ดู [วิธีรัน](README.md)

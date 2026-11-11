@@ -1,0 +1,20 @@
+{
+  "checks": {
+    "balanced": {
+      "brier_lower_every_repeat": false,
+      "f2_higher_every_repeat": false,
+      "budget_recall_higher_every_repeat": false,
+      "mean_budget_fpr_not_higher": true,
+      "eligible": false
+    },
+    "oversample": {
+      "brier_lower_every_repeat": false,
+      "f2_higher_every_repeat": false,
+      "budget_recall_higher_every_repeat": false,
+      "mean_budget_fpr_not_higher": true,
+      "eligible": false
+    }
+  },
+  "chosen": "none",
+  "note": "Development screening rule, not significance or external-validation evidence"
+}

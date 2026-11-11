@@ -1,4 +1,19 @@
-# สถานะผลแนวทาง 2 — อัปเดตหลังรับ ZIP
+# สถานะผลแนวทาง 2
+
+## 11 พฤศจิกายน 2026: balancing และแผนสำรองเสร็จแล้ว
+
+[อ่านรายงานล่าสุด](results/balancing_20261111/README_TH.md)
+เครื่องใหม่ดาวน์โหลด CDC ได้ครบ 8 ไฟล์และ hashes ตรง ZIP เดิม; cohort/split เดิมครบ
+ทดลอง none, balanced, oversampling บน 5×3 outer folds และเลือก threshold ใน inner 3-fold
+ทั้ง F2/FPR 14.5%; balancing ไม่ผ่าน development criterion จึงรันแผนสำรองตามที่อนุมัติไว้
+ตรวจ codebook แล้วเพิ่ม measured weight/smoking; เลือกรุ่นรวมจาก development ก่อน Test
+Development ROC-AUC เฉลี่ย 0.6463 → 0.7294 และ budget recall 29.6% → 44.0%
+แต่ Test เดิมไม่ยืนยันว่าดีกว่าทุกด้าน (Brier 0.05579 → 0.05701; paired CI คร่อมศูนย์)
+ยังคงโมเดลหลักเดิม; รุ่นเพิ่มฟีเจอร์เป็น research candidate ที่ต้องประเมินบนข้อมูลใหม่
+Software tests 35 ข้อผ่าน, refit baseline scores ตรงเดิม, export ทุก variant ตรง sklearn
+ตรวจค่าทุก fold/repeat/Test ซ้ำจาก predictions และรันซ้ำได้ผล/decision ตรงกัน
+
+## ประวัติผลหลังรับ ZIP — 5 พฤศจิกายน 2026
 
 **รันข้อมูลจริงสำเร็จแล้ว แต่ยังไม่ผ่านเกณฑ์หลักที่จะพิสูจน์ว่า Brier ดีขึ้น**
 
