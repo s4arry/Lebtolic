@@ -1,5 +1,12 @@
 # LEPTOLIC round 3 — selected approach 2
 
+**Nonlinear follow-up completed:** [results](results/nonlinear_20261111/README_TH.md)
+and [protocol](NONLINEAR_PROTOCOL_TH.md). Six linear/quadratic Logistic candidates
+were compared with nested shape/C and threshold selection. Quadratic terms did
+not improve development AUC/Brier overall and observed outer FPR increased.
+The existing weight+smoking research comparator and shipped policy are retained.
+Run `python -m round3.nonlinear_study --source /path/to/nhefs_source --output round3_work/nonlinear_new`.
+
 **Calibration follow-up completed:** [real results](results/calibration_20261111/README_TH.md)
 and [predeclared protocol](CALIBRATION_PROTOCOL_TH.md).
 Compared none/intercept/sigmoid for the weight+smoking candidate, with calibration

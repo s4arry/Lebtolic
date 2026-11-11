@@ -1,5 +1,14 @@
 # รายละเอียดการแก้ไข LEPTOLIC รอบ 3
 
+## 11 พฤศจิกายน: nonlinear Logistic บนรุ่นน้ำหนัก + สูบบุหรี่
+
+เพิ่มเฉพาะ squares ของ standardized age/SBP/DBP/weight; 9 encoded features → 13 terms
+เปรียบเทียบ linear/quadratic × C=.01/.1/1 ด้วย inner Brier + one-SE และ nested thresholds
+บน outer 5×3 เดิม ส่งออก parameters ที่ replay ผ่าน PortableModel ได้ พร้อมกราฟ/metrics/CI
+ผลยังไม่ผ่าน development screening จึงไม่แทนรุ่นเดิม แม้ quadratic มี Test บางค่าดีขึ้น
+Software tests 43 ข้อผ่าน; ตรวจทุก outer/repeat/Test metric จาก predictions และ baseline ตรงรอบก่อน
+[รายงาน](results/nonlinear_20261111/README_TH.md)
+
 ## 11 พฤศจิกายน: ทดลอง calibration ภายใน training folds
 
 เพิ่ม calibration_study.py เปรียบเทียบ none/intercept/sigmoid ในรุ่น weight+smoking

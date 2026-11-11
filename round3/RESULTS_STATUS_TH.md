@@ -1,5 +1,13 @@
 # สถานะผลแนวทาง 2
 
+## Nonlinear follow-up ล่าสุด — 11 พฤศจิกายน 2026
+
+[ผล nonlinear Logistic](results/nonlinear_20261111/README_TH.md): รันครบ 6 candidates
+Mean development ROC-AUC: รุ่นเดิม 0.72943; tuned quadratic 0.72045
+Brier: 0.055488 → 0.055803; budget-policy recall 43.97% → 46.10% แต่ FPR 13.84% → 16.04%
+Final one-SE selection เลือก linear C=.01 แต่ selected workflow ไม่ผ่าน improvement screening
+จึงยังคงรุ่นเดิม ไม่ใช้ Test ย้อนกลับไปเลือก quadratic; software tests 43 ข้อผ่าน
+
 ## Calibration follow-up ล่าสุด — 11 พฤศจิกายน 2026
 
 [รายงาน calibration](results/calibration_20261111/README_TH.md): ทดลองครบ 3 วิธีบนรุ่น weight+smoking

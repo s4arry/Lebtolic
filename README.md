@@ -1,5 +1,11 @@
 # LEPTOLIC
 
+**ล่าสุด: ทดลอง nonlinear Logistic ต่อรุ่นน้ำหนัก + สูบบุหรี่แล้ว**
+[ผลจริงและข้อแลกเปลี่ยน](round3/results/nonlinear_20261111/README_TH.md)
+เพิ่มพจน์กำลังสองของอายุ/SBP/DBP/น้ำหนักและเลือก regularization ภายใน nested CV
+ยังไม่ผ่านเกณฑ์ปรับปรุงบน development: quadratic AUC 0.7205 เทียบรุ่นเดิม 0.7294
+และ FPR เพิ่ม จึงเก็บรุ่นเดิมไว้; ไม่เลือกใหม่จากผล Test ที่ดูดีขึ้นบางค่า
+
 **Calibration follow-up รันจริงแล้ว:** [ผลการปรับคะแนนรุ่นน้ำหนัก + สูบบุหรี่](round3/results/calibration_20261111/README_TH.md)
 ทดลอง none/intercept/sigmoid โดยเลือก calibration และ threshold ภายใน nested CV
 Sigmoid ทำให้ calibration slope ใกล้ 1 แต่ outer Brier/recall ไม่ดีขึ้นอย่างสม่ำเสมอ

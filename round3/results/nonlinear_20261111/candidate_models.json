@@ -1,0 +1,593 @@
+{
+  "none": {
+    "features": [
+      "age_years",
+      "sex_female",
+      "baseline_sbp",
+      "baseline_dbp",
+      "weight_lb",
+      "weight_missing",
+      "current_smoker",
+      "former_smoker",
+      "smoking_unknown"
+    ],
+    "selected": {
+      "family": "logistic",
+      "shape": "linear",
+      "C": 0.1,
+      "calibration": "none"
+    },
+    "imputer_median": [
+      45.0,
+      1.0,
+      113.0,
+      71.0,
+      147.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "scaler_mean": [
+      47.24058848983124,
+      0.7196019039376893,
+      112.39809606231069,
+      70.25270445694504,
+      151.56685417568153,
+      0.006923409779316313,
+      0.33189095629597576,
+      0.23712678494158373,
+      0.0
+    ],
+    "scaler_scale": [
+      10.647700791740654,
+      0.4491937263441525,
+      9.315187498944457,
+      5.9728369924409375,
+      30.073726089035667,
+      0.08291849116056255,
+      0.470892078320411,
+      0.4253206705591146,
+      1.0
+    ],
+    "coefficients": [
+      [
+        -0.1538167014369601,
+        0.39616050571846595,
+        0.38797245853519075,
+        0.2200027052104014,
+        0.5491878855086242,
+        0.014627481029803614,
+        0.27097775892413717,
+        0.054470138429590004,
+        0.0
+      ]
+    ],
+    "intercept": [
+      -3.00371670740762
+    ],
+    "study_calibration": {
+      "method": "none"
+    },
+    "status": "research candidate; no automatic replacement",
+    "term_names": [
+      "age_years",
+      "sex_female",
+      "baseline_sbp",
+      "baseline_dbp",
+      "weight_lb",
+      "weight_missing",
+      "current_smoker",
+      "former_smoker",
+      "smoking_unknown"
+    ],
+    "threshold_policies": {
+      "f2": {
+        "threshold": 0.06078679160536861,
+        "tune_f2": 0.35765379113018597,
+        "objective": "max_F2_on_development_OOF_only"
+      },
+      "fpr145": {
+        "threshold": 0.09803399686084495,
+        "max_fpr": 0.145,
+        "allowed_false_positives": 314,
+        "development_tp": 59,
+        "development_fp": 282,
+        "development_positives": 141,
+        "development_negatives": 2170,
+        "development_recall": 0.41843971631205673,
+        "development_fpr": 0.12995391705069123,
+        "objective": "maximize recall subject to empirical development OOF FPR budget"
+      }
+    }
+  },
+  "linear": {
+    "features": [
+      "age_years",
+      "sex_female",
+      "baseline_sbp",
+      "baseline_dbp",
+      "weight_lb",
+      "weight_missing",
+      "current_smoker",
+      "former_smoker",
+      "smoking_unknown"
+    ],
+    "selected": {
+      "family": "logistic",
+      "shape": "linear",
+      "C": 0.01,
+      "calibration": "none"
+    },
+    "imputer_median": [
+      45.0,
+      1.0,
+      113.0,
+      71.0,
+      147.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "scaler_mean": [
+      47.24058848983124,
+      0.7196019039376893,
+      112.39809606231069,
+      70.25270445694504,
+      151.56685417568153,
+      0.006923409779316313,
+      0.33189095629597576,
+      0.23712678494158373,
+      0.0
+    ],
+    "scaler_scale": [
+      10.647700791740654,
+      0.4491937263441525,
+      9.315187498944457,
+      5.9728369924409375,
+      30.073726089035667,
+      0.08291849116056255,
+      0.470892078320411,
+      0.4253206705591146,
+      1.0
+    ],
+    "coefficients": [
+      [
+        -0.08218235369567164,
+        0.15995810777941688,
+        0.21860007766275094,
+        0.16157809140198479,
+        0.328786307425496,
+        0.00622176182582955,
+        0.14136184051354758,
+        -0.0082458598772312,
+        0.0
+      ]
+    ],
+    "intercept": [
+      -2.8340378772280905
+    ],
+    "study_calibration": {
+      "method": "none"
+    },
+    "status": "research candidate; no automatic replacement",
+    "term_names": [
+      "age_years",
+      "sex_female",
+      "baseline_sbp",
+      "baseline_dbp",
+      "weight_lb",
+      "weight_missing",
+      "current_smoker",
+      "former_smoker",
+      "smoking_unknown"
+    ],
+    "threshold_policies": {
+      "f2": {
+        "threshold": 0.06500958711806257,
+        "tune_f2": 0.34519572953736655,
+        "objective": "max_F2_on_development_OOF_only"
+      },
+      "fpr145": {
+        "threshold": 0.08184208527939947,
+        "max_fpr": 0.145,
+        "allowed_false_positives": 314,
+        "development_tp": 57,
+        "development_fp": 314,
+        "development_positives": 141,
+        "development_negatives": 2170,
+        "development_recall": 0.40425531914893614,
+        "development_fpr": 0.1447004608294931,
+        "objective": "maximize recall subject to empirical development OOF FPR budget"
+      }
+    }
+  },
+  "quadratic": {
+    "features": [
+      "age_years",
+      "sex_female",
+      "baseline_sbp",
+      "baseline_dbp",
+      "weight_lb",
+      "weight_missing",
+      "current_smoker",
+      "former_smoker",
+      "smoking_unknown"
+    ],
+    "selected": {
+      "family": "logistic",
+      "shape": "quadratic",
+      "C": 0.1,
+      "calibration": "none"
+    },
+    "imputer_median": [
+      45.0,
+      1.0,
+      113.0,
+      71.0,
+      147.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "scaler_mean": [
+      47.24058848983124,
+      0.7196019039376893,
+      112.39809606231069,
+      70.25270445694504,
+      151.56685417568153,
+      0.006923409779316313,
+      0.33189095629597576,
+      0.23712678494158373,
+      0.0
+    ],
+    "scaler_scale": [
+      10.647700791740654,
+      0.4491937263441525,
+      9.315187498944457,
+      5.9728369924409375,
+      30.073726089035667,
+      0.08291849116056255,
+      0.470892078320411,
+      0.4253206705591146,
+      1.0
+    ],
+    "coefficients": [
+      [
+        -0.19601938925600346,
+        0.4126393396395541,
+        0.40681128762552865,
+        0.21712178958124964,
+        0.624511436362662,
+        0.010967220923664523,
+        0.2766232207673245,
+        0.060338694051193194,
+        0.0,
+        0.0950046042898515,
+        -0.08128806427856164,
+        -0.011765698698920253,
+        -0.07172052717889765
+      ]
+    ],
+    "intercept": [
+      -3.023409787347205
+    ],
+    "study_calibration": {
+      "method": "none"
+    },
+    "status": "research candidate; no automatic replacement",
+    "term_names": [
+      "age_years",
+      "sex_female",
+      "baseline_sbp",
+      "baseline_dbp",
+      "weight_lb",
+      "weight_missing",
+      "current_smoker",
+      "former_smoker",
+      "smoking_unknown",
+      "age_years_squared_standardized",
+      "baseline_sbp_squared_standardized",
+      "baseline_dbp_squared_standardized",
+      "weight_lb_squared_standardized"
+    ],
+    "polynomial_powers": [
+      [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0
+      ]
+    ],
+    "polynomial_mean": [
+      2.065754654213835e-16,
+      -2.4426828173989922e-15,
+      2.90070386096352e-16,
+      9.176274337241504e-16,
+      -1.4157625502251563e-16,
+      1.0534147716342761e-16,
+      1.249060953710691e-18,
+      3.258607865007545e-16,
+      0.0,
+      0.9999999999999967,
+      0.9999999999999969,
+      0.9999999999999909,
+      1.000000000000001
+    ],
+    "polynomial_scale": [
+      0.9999999999999983,
+      1.0000000000000098,
+      0.9999999999999984,
+      0.9999999999999957,
+      1.0000000000000004,
+      0.9999999999999776,
+      1.0000000000000133,
+      0.9999999999999749,
+      1.0,
+      1.653031620749258,
+      1.267132988810992,
+      1.610957662789139,
+      1.6589059074437642
+    ],
+    "threshold_policies": {
+      "f2": {
+        "threshold": 0.0609665617981249,
+        "tune_f2": 0.35511363636363635,
+        "objective": "max_F2_on_development_OOF_only"
+      },
+      "fpr145": {
+        "threshold": 0.09767051451407899,
+        "max_fpr": 0.145,
+        "allowed_false_positives": 314,
+        "development_tp": 58,
+        "development_fp": 313,
+        "development_positives": 141,
+        "development_negatives": 2170,
+        "development_recall": 0.41134751773049644,
+        "development_fpr": 0.14423963133640552,
+        "objective": "maximize recall subject to empirical development OOF FPR budget"
+      }
+    }
+  },
+  "selected": {
+    "features": [
+      "age_years",
+      "sex_female",
+      "baseline_sbp",
+      "baseline_dbp",
+      "weight_lb",
+      "weight_missing",
+      "current_smoker",
+      "former_smoker",
+      "smoking_unknown"
+    ],
+    "selected": {
+      "family": "logistic",
+      "shape": "linear",
+      "C": 0.01,
+      "calibration": "none"
+    },
+    "imputer_median": [
+      45.0,
+      1.0,
+      113.0,
+      71.0,
+      147.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "scaler_mean": [
+      47.24058848983124,
+      0.7196019039376893,
+      112.39809606231069,
+      70.25270445694504,
+      151.56685417568153,
+      0.006923409779316313,
+      0.33189095629597576,
+      0.23712678494158373,
+      0.0
+    ],
+    "scaler_scale": [
+      10.647700791740654,
+      0.4491937263441525,
+      9.315187498944457,
+      5.9728369924409375,
+      30.073726089035667,
+      0.08291849116056255,
+      0.470892078320411,
+      0.4253206705591146,
+      1.0
+    ],
+    "coefficients": [
+      [
+        -0.08218235369567164,
+        0.15995810777941688,
+        0.21860007766275094,
+        0.16157809140198479,
+        0.328786307425496,
+        0.00622176182582955,
+        0.14136184051354758,
+        -0.0082458598772312,
+        0.0
+      ]
+    ],
+    "intercept": [
+      -2.8340378772280905
+    ],
+    "study_calibration": {
+      "method": "none"
+    },
+    "status": "research candidate; no automatic replacement",
+    "term_names": [
+      "age_years",
+      "sex_female",
+      "baseline_sbp",
+      "baseline_dbp",
+      "weight_lb",
+      "weight_missing",
+      "current_smoker",
+      "former_smoker",
+      "smoking_unknown"
+    ],
+    "threshold_policies": {
+      "f2": {
+        "threshold": 0.06500958711806257,
+        "tune_f2": 0.34519572953736655,
+        "objective": "max_F2_on_development_OOF_only"
+      },
+      "fpr145": {
+        "threshold": 0.08184208527939947,
+        "max_fpr": 0.145,
+        "allowed_false_positives": 314,
+        "development_tp": 57,
+        "development_fp": 314,
+        "development_positives": 141,
+        "development_negatives": 2170,
+        "development_recall": 0.40425531914893614,
+        "development_fpr": 0.1447004608294931,
+        "objective": "maximize recall subject to empirical development OOF FPR budget"
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "python": "3.12.14",
+  "numpy": "2.3.5",
+  "sklearn": "1.8.0",
+  "code_sha256": "5b567622ef2b8de4d3202c93f33ce883fc33a520f462cb23024e68ef0db68e1f",
+  "source_commit": "befec00faa9d341b983c984adc087ce0cf4585a8",
+  "baseline_test_max_error": 0.0,
+  "decision_sha256": "45d33ade5c02a4aef13e26460ec058778c985a6369f40f086606b552269b591d",
+  "final_config": "linear:0.01",
+  "improvement_supported": false,
+  "main_model_replaced": false
+}
