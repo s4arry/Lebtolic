@@ -1,0 +1,9 @@
+{
+  "main_commit": "6ce4577dc3fa40ea1d3fe1e4e726119089c378ba",
+  "candidate_commit": "befec00faa9d341b983c984adc087ce0cf4585a8",
+  "purpose": "Compare fixed workflows, not select a model from exposed Test",
+  "extra_threshold_policy": "3-fold development OOF seed42, F2 and FPR145; preserve main default .5",
+  "candidate": "weight_smoking none from calibration_20261111",
+  "test_scope": "historical, already exposed",
+  "acceptance": "Do not claim overall superiority if ranking and probability metrics disagree or paired intervals include zero"
+}

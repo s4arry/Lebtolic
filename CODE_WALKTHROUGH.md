@@ -1,5 +1,7 @@
 # LEPTOLIC — Code Walkthrough
 
+> เอกสารประวัติ: อธิบาย notebook baseline เดิม 5 features ไม่ใช่รุ่นอ้างอิงปัจจุบัน ดู [model/README.md](model/README.md)
+
 คู่มืออ่านโค้ดใน `LEPTOLIC_NHEFS_Future_Prediction.ipynb` แบบไล่จากต้นจนจบ  
 เป้าหมายคือให้เข้าใจว่าแต่ละส่วนรับข้อมูลอะไร ทำอะไร ส่งผลลัพธ์อะไร และเกี่ยวข้องกับการสร้างโมเดลตรงไหน
 

@@ -1,161 +1,39 @@
-# LEPTOLIC round 3 — selected approach 2
+# โค้ดและผลการทดลอง LEPTOLIC
 
-**Nonlinear follow-up completed:** [results](results/nonlinear_20261111/README_TH.md)
-and [protocol](NONLINEAR_PROTOCOL_TH.md). Six linear/quadratic Logistic candidates
-were compared with nested shape/C and threshold selection. Quadratic terms did
-not improve development AUC/Brier overall and observed outer FPR increased.
-The existing weight+smoking research comparator and shipped policy are retained.
-Run `python -m round3.nonlinear_study --source /path/to/nhefs_source --output round3_work/nonlinear_new`.
+**รุ่นอ้างอิงของ branch:** [weight+smoking จาก befec00](../model/README.md)
+Logistic C=.1, ไม่ calibrate, primary threshold 0.09803399686084495
+ผล comparison กับ main ยังไม่ยืนยันว่าเหนือกว่าทุกด้าน
 
-**Calibration follow-up completed:** [real results](results/calibration_20261111/README_TH.md)
-and [predeclared protocol](CALIBRATION_PROTOCOL_TH.md).
-Compared none/intercept/sigmoid for the weight+smoking candidate, with calibration
-cross-fitting nested inside inner model selection and outer evaluation. The one-SE
-rule selected none in all 15 outer folds and final development. Sigmoid improved
-slope but not outer Brier/recall consistently. No shipped model/policy was replaced.
-Run `python -m round3.calibration_study --source /path/to/nhefs_source --output round3_work/calibration_new`.
-Use `requirements-balancing.txt`; research exports use explicit encoded vectors.
+## คำสั่งที่เกี่ยวกับรุ่นอ้างอิง
 
-**11 November: balancing and fallback completed.**
-[Real-data report](results/balancing_20261111/README_TH.md),
-[predeclared protocol](BALANCING_PROTOCOL_TH.md), and
-[verified baseline codebook fields](CODEBOOK_BALANCING_TH.md).
-Training-only weighting/oversampling did not pass the development criterion.
-The fallback added baseline measured weight and smoking history; the combined
-candidate improved development ranking and budget recall but remains exploratory.
-The existing shipped model and 14.5% policy remain unchanged. Threshold selection
-is now nested inside each outer training fold for both F2 and the FPR budget.
-
-Reproduce this study with Python 3.12 and `requirements-balancing.txt` (the exact
-numerical versions used in this run, separate from historical requirements):
+ใช้ Python 3.12 และ numerical environment ที่บันทึกไว้:
 
 ```bash
-python -m pip install -r round3/requirements-balancing.txt
-python -m round3.balancing_study --source /path/to/nhefs_source --output round3_work/balancing_new_run
+python -m pip install -r requirements.txt
+python -m round3.calibration_study --source /path/to/nhefs_source --output round3_work/calibration_new
+python -m round3.compare_main --source /path/to/nhefs_source --output round3_work/main_comparison_new
 ```
 
-`source/raw/` accepts the eight original CDC files extracted from the prior ZIP;
-missing files are downloaded from CDC. Their hashes must match the historical
-archive. Test never selects a model or threshold. Research parameter exports use
-explicit encoded feature vectors; the legacy `round3.predict` input schema is unchanged.
+รันจาก repository root; `source/raw/` มี 8 ไฟล์ข้อมูล/labels เดิม หรือสคริปต์ดาวน์โหลดจาก CDC
+ต้องตรวจ hashes ตรง historical archive จึงรันต่อ ใช้ output directory ใหม่เสมอ
+`compare_main` ต้องมี git object ของ main commit ที่ pin ในสคริปต์ (`git fetch origin main`)
 
-**Exploratory recall comparison:** [several alert levels and a fixed-budget model study](results/recall_20261110/README_TH.md).
-No replacement policy is adopted automatically. The existing 14.5% policy remains the current choice.
+- [ผล calibration และข้อจำกัด](results/calibration_20261111/README_TH.md)
+- [ผลเปรียบเทียบ main ที่รันจริง](results/main_comparison_20261111/README_TH.md)
+- [วิธีโหลด model.json และ encoded inputs](../model/README.md)
+- [สารบัญการทดลองอื่น](../EXPERIMENTS.md)
 
-**Latest policy:** [FPR budget 14.5%](results/threshold_20261110_fpr145/README_TH.md).
-Development-selected threshold 0.091868; historical Test FP 45, recall 32%.
-Use `results/threshold_20261110_fpr145/model.json` for this policy.
-
-**Threshold policy update:** [FPR budget 20%](results/threshold_20261110/README_TH.md), selected from
-development OOF. Historical Test FP 250 -> 58, recall 92% -> 36%; probability metrics unchanged.
-Use `results/threshold_20261110/model.json` for this policy; the original fitted model/results are retained.
-
-**Real-data run complete:** [Thai report, plots, model and evidence](results/nhefs_20261105/README_TH.md).
-Legacy AUC 0.6761 → new 0.7054; Brier 0.05653 → 0.05579, but the primary paired
-Brier CI includes zero. Do not claim overall superiority or Thai validation.
-Notebook Run all and CLI results match exactly. The historical HTTP 403 attempt
-remains recorded; the supplied ZIP resolved data access for this experiment.
-
-Read [the repeated nested-CV protocol](CV_PROTOCOL_TH.md) before new comparisons.
-[The original Thai review](REVIEW_TH.md) describes saved notebook outputs, not
-newly reproduced metrics. [Current status](RESULTS_STATUS_TH.md) records what has
-been tested and what is still blocked.
-
-## Setup
-
-From the checkout root, with Python 3.12:
+## Software checks และกราฟ
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate
-python -m pip install -r round3/requirements.txt
 python -m unittest discover -s tests -v
+# matplotlib เป็น dependency เพิ่มเฉพาะการวาดกราฟ
+python -m round3.report_calibration --results round3/results/calibration_20261111
 ```
 
-The cloud instance already has `/workspace/lebtolic-env/bin/python` with dependencies.
-Jupyter additionally needs ipykernel/nbformat and a notebook frontend. Open
-`LEPTOLIC_Round3_Review.ipynb` from the checkout root in that environment.
-For Colab, first put the full `dev-by-gunner` checkout in the runtime and use it as
-the working directory; opening the notebook alone does not provide its modules.
+Tests เป็น software fixtures ไม่ใช่หลักฐานว่าโมเดลใช้กับคนไทยหรือผู้ป่วยได้
+`requirements.txt` ภายในโฟลเดอร์ round3 เป็น environment ประวัติ; รุ่นอ้างอิงใช้
+`requirements.txt` ที่ repository root ซึ่งอ้างถึง `requirements-balancing.txt`
 
-## Real-data input
-
-If the CDC host is accessible:
-
-```bash
-python -m round3.cv_study --work-dir round3_work/nested_run_01
-```
-
-If you downloaded `NHEFS_data_and_layouts.zip` in Colab:
-
-```bash
-python -m round3.cv_study --data-zip /path/to/NHEFS_data_and_layouts.zip --work-dir round3_work/nested_run_01
-```
-
-The ZIP must contain `N82int.txt`, `N86int.txt`, `N87int.txt`, `N92int.txt` and
-the four corresponding `intvYY.inputs.labels.txt` files. Files can be in the ZIP
-root or an enclosing folder. Required filenames must be unique.
-The importer checks required files, rejects HTML/empty files, parses layouts and
-all wave records, and records hashes before installing inputs in the run's `raw/`.
-It never extracts arbitrary ZIP paths. File-format validation is not independent
-authentication of CDC origin. `input_archive_manifest.json` records this distinction.
-No CDC requests are needed when all inputs are supplied in the ZIP.
-
-Each attempt needs a new work directory. `protocol.json` and `study_status.json`
-are kept even on failure; intermediate files do not establish completed training.
-
-## Output and interpretation
-
-Check `study_status.json` before interpreting any artifacts. A complete run writes:
-
-- `metrics.json` and `report_TH.md`: comparisons and uncertainty.
-- `data_audit.json`, `additional_exclusions.csv`, `split_manifest.csv`: provenance,
-  joins, target changes and preserved split membership.
-- `test_predictions.csv` and `development_oof.csv`: paired predictions.
-- `model.json`: portable final parameters, not executable pickle.
-
-Original target audits remain under the work directory's `outputs/`.
-The primary criterion is a strictly positive lower 95% paired-bootstrap bound for
-legacy-minus-new Test Brier. A positive result is not guaranteed. Test was already
-exposed; this is not external validation or proof of use in Thai people.
-Both models use identical guarded cohort/Test IDs. Saved scores from a different
-cohort cannot serve as the direct comparator if additional exclusions change it.
-
-The conservative death-year guard still needs official codebook confirmation.
-Preprocessing, calibration and selection stay inside development training folds.
-Thresholds/bands use development out-of-fold predictions. Unsupported three-level
-splits return a null level and warning. Nonempty bands alone do not validate categories.
-
-## Try a trained model
-
-After a successful run, create `input.json`, for example:
-
-```json
-{"age_years": 50, "sex_female": 0, "baseline_sbp": 120,
- "baseline_dbp": 75, "sleep_hours": 7}
-```
-
-```bash
-python -m round3.predict --model round3_work/nested_run_01/model.json --input input.json
-```
-
-Sample values may be rejected outside actual training ranges. Missing sleep can
-be imputed in a five-feature model. Four-feature models ignore sleep. Prior diagnosis
-is outside the cohort; `--previously-diagnosed` rejects that use.
-
-The single-Tune experiment is retained as `python -m round3.workflow`; it is not
-the selected protocol for new round 3 comparisons. All tests use explicitly invented
-fixtures for software behavior only. Their metrics are never reported as NHEFS results.
-
-Try the committed fitted model with a hypothetical input:
-
-```bash
-python -m round3.predict --model round3/results/nhefs_20261105/model.json --input round3/results/nhefs_20261105/demo_input.json
-```
-
-To regenerate the published plots from the committed paired scores:
-
-```bash
-python -m pip install -r round3/requirements-plots.txt
-python -m round3.render_results --results round3/results/nhefs_20261105
-```
+`round3.predict` / notebook demo เดิมรองรับ schema รุ่นก่อน ห้ามส่ง current model 9 columns
+ผ่าน legacy input form ให้ใช้ PortableModel ตามคู่มือรุ่นอ้างอิง

@@ -1,300 +1,65 @@
-# LEPTOLIC
+# LEPTOLIC — INT182
 
-**ล่าสุด: ทดลอง nonlinear Logistic ต่อรุ่นน้ำหนัก + สูบบุหรี่แล้ว**
-[ผลจริงและข้อแลกเปลี่ยน](round3/results/nonlinear_20261111/README_TH.md)
-เพิ่มพจน์กำลังสองของอายุ/SBP/DBP/น้ำหนักและเลือก regularization ภายใน nested CV
-ยังไม่ผ่านเกณฑ์ปรับปรุงบน development: quadratic AUC 0.7205 เทียบรุ่นเดิม 0.7294
-และ FPR เพิ่ม จึงเก็บรุ่นเดิมไว้; ไม่เลือกใหม่จากผล Test ที่ดูดีขึ้นบางค่า
+ต้นแบบวิจัยเพื่อทำนาย **การรายงานว่าได้รับการวินิจฉัยความดันสูงครั้งแรกภายใน 8 ปี**
+จาก NHEFS สหรัฐฯ ในอดีต ยังไม่มี external หรือ Thai validation
 
-**Calibration follow-up รันจริงแล้ว:** [ผลการปรับคะแนนรุ่นน้ำหนัก + สูบบุหรี่](round3/results/calibration_20261111/README_TH.md)
-ทดลอง none/intercept/sigmoid โดยเลือก calibration และ threshold ภายใน nested CV
-Sigmoid ทำให้ calibration slope ใกล้ 1 แต่ outer Brier/recall ไม่ดีขึ้นอย่างสม่ำเสมอ
-กติกา one-SE เลือกไม่ calibrate ทั้ง 15 outer folds และ final development; ยังไม่มีเหตุผลให้เปลี่ยนรุ่นทดลอง
+## รุ่นอ้างอิงของ branch นี้
 
-**ล่าสุด 11 พ.ย. — balancing และแผนสำรองรันจริงแล้ว:**
-[รายงานผล พร้อม uncertainty และ codebook](round3/results/balancing_20261111/README_TH.md)
-Balancing ไม่ช่วยตามเกณฑ์ development จึงทดลองน้ำหนักและประวัติสูบบุหรี่ต่อ
-รุ่นรวมเป็น candidate ที่เลือกจาก development: nested-budget recall เฉลี่ย 29.6% → 44.0%
-แต่ยังไม่ยืนยันว่าดีกว่าทุกด้าน; คงโมเดลหลัก/นโยบายเดิม และเก็บรุ่นใหม่เป็นงานทดลอง
-ผลรอบนี้เลือก F2 และ FPR thresholds ภายในทุก outer training fold แล้ว
+ยึดรุ่นที่ผู้ใช้เลือกจาก **commit `befec00`**: Logistic Regression C=.1,
+ไม่มี balancing และไม่เพิ่ม calibration ใช้อายุ เพศ SBP DBP น้ำหนัก และประวัติสูบบุหรี่
+(6 ตัวแปรตั้งต้น → 9 encoded columns) ใช้ primary policy **FPR 14.5%**
+ที่เลือก threshold จาก development inner OOF = **0.09803399686084495**
 
-**แนวทางเพิ่มการจับเหตุการณ์:** [เปรียบเทียบหลายระดับและทดลองโมเดล](round3/results/recall_20261110/README_TH.md)
-งบ 30%/40% จับได้ 13/16 จาก 25 เหตุการณ์ แลก FP 97/121 คน
-โมเดลทดลองที่งบ 14.5% ยังจับได้ 8 คนเท่าเดิม จึงยังเก็บนโยบายเดิมรอผู้ใช้เลือก
+**[ข้อมูลโมเดลและวิธีใช้](model/README.md)** · **[พารามิเตอร์รุ่นอ้างอิง](model/model.json)** ·
+**[ผลเทียบ main จริง](round3/results/main_comparison_20261111/README_TH.md)**
 
-**เกณฑ์ล่าสุด:** [งบ FPR 14.5%](round3/results/threshold_20261110_fpr145/README_TH.md)
-เลือกจาก development ได้ threshold 9.19%; Test FPR 11.72% (FP 45 คน), Recall 32%
-เทียบงบ 20% ลด FP อีก 13 คน แลกกับการจับเหตุการณ์ลดลง 1 คน
+| Metric | Development CV (mean 3 repeats) | Test เดิม |
+|---|---:|---:|
+| ROC-AUC | 0.7294 | 0.7034 |
+| Recall ณ FPR-policy | 43.97% | 40.00% |
+| Precision ณ FPR-policy | 17.11% | 16.95% |
+| F2 ณ FPR-policy | 0.3346 | 0.3145 |
+| FPR ที่พบจริง | 13.84% | 12.76% |
+| Brier ↓ | 0.05549 | 0.05701 |
 
-**การทดลองงบ 20% ก่อนหน้า:** [threshold จำกัดคำเตือนผิดจาก development ไม่เกิน 20%](round3/results/threshold_20261110/README_TH.md)
-บน Test เดิม FP ลด 250 → 58 (FPR 15.10%) แลกกับ Recall 92% → 36%
-AUC/Brier เท่าเดิม เป็นการปรับนโยบายแจ้งเตือน โดยมีโมเดล JSON สำหรับใช้เกณฑ์ใหม่นี้
+Cohort **2720 คน / 166 events**; development **2311/141**; Test **409/25**
+Test TP **10**, FP **49**, FN **15**, TN **335**; accuracy **84.35%**
+Accuracy สูงไม่แปลว่าจับเหตุการณ์ได้ดี เพราะเหตุการณ์มีเพียงประมาณ 6.1%
 
-**สรุปงานรอบ 3:** อ่าน [รายละเอียดสิ่งที่แก้ไขและผลการตรวจสอบ](round3/CHANGES_TH.md)
-สำหรับการเปลี่ยนแปลงโค้ด วิธีประเมินโมเดล และสิ่งที่ยังไม่เสร็จ
-**รัน ZIP NHEFS จริงสำเร็จแล้ว:** [รายงานผลจริง กราฟ และโมเดล](round3/results/nhefs_20261105/README_TH.md)
-Test AUC 0.6761 → 0.7054 และ Brier 0.05653 → 0.05579
-แต่ paired Brier 95% CI คร่อมศูนย์ จึงยังไม่ผ่านเกณฑ์หลักที่จะยืนยันว่าดีขึ้น
-Software tests 19 ข้อผ่าน และ notebook Run all ให้ผลตรง CLI
+## ข้อสรุปจากการเทียบ main
 
-Round 3 development (NHEFS, same eight-year reported-diagnosis target):
-the selected approach is now [repeated nested cross-validation](round3/CV_PROTOCOL_TH.md).
-start with the [Thai evidence review and plan](round3/REVIEW_TH.md),
-then [the round 3 notebook](LEPTOLIC_Round3_Review.ipynb) or
-[CLI instructions](round3/README.md).
-The workflow completed on the supplied NHEFS ZIP; the [real-data report](round3/results/nhefs_20261105/README_TH.md)
-includes reproducibility evidence and trade-offs. The primary improvement criterion
-was not met; higher recall comes with substantially more false alerts.
-The original notebook and its saved outputs are preserved for comparison.
-The sections below describe that original five-feature notebook. The selected
-round 3 model uses four features and no added calibration; its setup and results
-are documented in the round 3 links above.
+Notebook จริงบน main (`6ce4577`) เป็นรุ่น 5 features + Platt: Test AUC **0.6761**,
+Brier **0.05653** เทียบรุ่นอ้างอิง AUC **0.7034**, Brier **0.05701**
+AUC สูงขึ้น แต่ Brier แย่ลงเล็กน้อย และ paired uncertainty ยังไม่ยืนยัน superiority
+ที่ threshold .5 ทั้งสองไม่ flag ใคร; การเพิ่ม recall เมื่อเปลี่ยน threshold
+จึงไม่ควรตีความว่าเป็นผลจากความสามารถโมเดลทั้งหมด
 
-**An Experimental 8-Year Future Hypertension Prediction Model Using NHEFS Data**
+รุ่นนี้เป็น **รุ่นอ้างอิงที่ผู้ใช้เลือกสำหรับงานวิจัย** ไม่ใช่โมเดลที่พิสูจน์แล้วว่าดีกว่าทุกด้าน
+ไม่ได้ merge หรือแทน main และยังไม่พร้อมใช้คัดกรองจริง/ประเมินความเสี่ยงส่วนบุคคล
+Test เคยเปิดดูหลายครั้งแล้ว ผลทั้งหมดเป็น exploratory internal evaluation
 
-LEPTOLIC is a machine learning research prototype that estimates the probability of a participant receiving their first reported physician diagnosis of hypertension within eight years, based on historical baseline health data.
+## เริ่มใช้งาน / ทำซ้ำ
 
-The project uses data from the **National Health and Nutrition Examination Survey Epidemiologic Follow-up Study (NHEFS)** provided by the U.S. National Center for Health Statistics (NCHS), part of the CDC.
-
-The entire workflow is implemented in a Jupyter Notebook and is designed to run in **Google Colab using CPU**, without requiring paid APIs or external machine learning services.
-
-## Project Overview
-
-Unlike a model that identifies whether someone currently has hypertension, LEPTOLIC focuses on a future outcome:
-
-> Whether an individual reports receiving their first physician diagnosis of hypertension within eight years after their baseline interview in 1982–1984.
-
-The project follows these main stages:
-
-1. Download historical NHEFS datasets from the CDC.
-2. Merge participant records across multiple follow-up waves.
-3. Construct an eight-year prediction target.
-4. Prepare and preprocess the dataset.
-5. Train a Logistic Regression model.
-6. Calibrate predicted probabilities using Platt Scaling.
-7. Evaluate model performance on an independent test set.
-8. Allow users to experiment with input values and obtain prediction scores.
-9. Export the model, evaluation results, and processed datasets.
-
-## Dataset
-
-**Source:** National Health and Nutrition Examination Survey Epidemiologic Follow-up Study (NHEFS).
-
-Official documentation:
-
-- [CDC NHEFS Documentation](https://wwwn.cdc.gov/nchs/nhanes/nhefs/default.aspx)
-- [1982 Interview](https://wwwn.cdc.gov/nchs/data/nhefs/1982intv.pdf)
-- [1986 Interview](https://wwwn.cdc.gov/nchs/data/nhefs/1986intv.pdf)
-- [1987 Interview](https://wwwn.cdc.gov/nchs/data/nhefs/1987intv.pdf)
-- [1992 Interview](https://wwwn.cdc.gov/nchs/data/nhefs/1992intv.pdf)
-
-### Data Collection Waves
-
-The project combines four historical interview waves:
-
-| Wave | Purpose |
-|---|---|
-| 1982–1984 | Baseline participant information |
-| 1986 | First follow-up |
-| 1987 | Second follow-up |
-| 1992 | Final follow-up |
-
-Participant records are matched using their corresponding identification fields across survey waves.
-
-### Target Construction
-
-The target represents whether a participant received their first reported physician diagnosis of hypertension within eight years after the baseline interview.
-
-- `1`: First reported diagnosis within eight years.
-- `0`: No reported diagnosis within eight years, supported by sufficient follow-up information.
-
-Cases with insufficient follow-up, unknown responses, inconsistent diagnosis histories, or uncertain diagnosis dates are excluded rather than incorrectly labeled as negative cases.
-
-The cohort is restricted to participants who reported no previous diagnosis at baseline (`D2 = 2`) and had baseline measured blood pressure below the project's eligibility thresholds:
-
-- Systolic Blood Pressure (SBP) below 130 mmHg.
-- Diastolic Blood Pressure (DBP) below 80 mmHg.
-
-## Features
-
-The current model uses five baseline features:
-
-| Feature | Description | Unit |
-|---|---|---|
-| `age_years` | Participant's age | Years |
-| `sex_female` | Sex encoded as 0 = Male, 1 = Female | Binary |
-| `baseline_sbp` | Baseline systolic blood pressure | mmHg |
-| `baseline_dbp` | Baseline diastolic blood pressure | mmHg |
-| `sleep_hours` | Average sleep duration | Hours/night |
-
-Blood pressure values are derived from available baseline measurements. Sleep duration is optional and can be imputed using the training-set median.
-
-**Note:** The current implementation does not use the original 11-feature schema, BMI, or dietary features as model inputs.
-
-## Machine Learning Model
-
-LEPTOLIC uses Logistic Regression with L2 (Ridge) regularization.
-
-### Training Pipeline
-
-The dataset is divided into four stratified subsets:
-
-| Dataset | Percentage | Purpose |
-|---|---:|---|
-| Training | 55% | Fit preprocessing and model coefficients |
-| Tuning | 15% | Select the regularization strength |
-| Calibration | 15% | Calibrate predicted probabilities |
-| Testing | 15% | Independent performance evaluation |
-
-The random seed is fixed at `42` to make the data split reproducible.
-
-### Model Optimization
-
-Five regularization strengths are evaluated:
-
-`0.01, 0.1, 1.0, 10.0, 100.0`
-
-The best configuration is selected using the Brier Score on the tuning set.
-
-### Probability Calibration
-
-Platt Scaling is applied using the separate calibration dataset to improve the reliability of predicted probabilities.
-
-The final model is also compared against a constant baseline that predicts the event prevalence observed in the training dataset.
-
-### Evaluation Metrics
-
-The project evaluates the model using:
-
-- ROC-AUC
-- Brier Score
-- Log Loss
-- Accuracy
-- Precision
-- Recall
-- F1 Score
-- Balanced Accuracy
-- Confusion Matrix
-- Calibration Analysis
-
-A 95% bootstrap confidence interval is also calculated for the test ROC-AUC.
-
-All evaluation results are generated from the actual dataset during execution. No performance scores are assumed or hardcoded in this README.
-
-## Getting Started
-
-### Requirements
-
-- Python 3
-- NumPy
-- Google Colab (recommended)
-- Internet connection for downloading CDC datasets
-
-The notebook uses NumPy for model training and does not require paid machine learning APIs.
-
-### Running the Project
-
-1. Open the notebook:
-
-   `LEPTOLIC_NHEFS_Future_Prediction.ipynb`
-
-2. Open it in [Google Colab](https://colab.research.google.com/).
-
-3. Select **Runtime → Run all**.
-
-4. Allow the notebook to download the official NHEFS datasets from the CDC.
-
-5. Wait for the data preparation, model training, calibration, and evaluation processes to complete.
-
-6. Review the generated evaluation report.
-
-7. Experiment with different input values in the prediction section.
-
-8. Download the generated output ZIP archive.
-
-**Important:** The pipeline requires successful access to the official CDC datasets. It will stop if downloading or validating the source data fails. It does not silently substitute synthetic data.
-
-## Making Predictions
-
-The notebook provides two ways to experiment with the model:
-
-1. Modify the `INPUT` dictionary directly.
-2. Use the interactive input form provided through `ipywidgets` in Google Colab.
-
-Example:
-
-```python
-INPUT = {
-    'age_years': 50,
-    'sex_female': 0,
-    'baseline_sbp': 120,
-    'baseline_dbp': 75,
-    'sleep_hours': 7
-}
-
-PREVIOUSLY_DIAGNOSED = False
-
-answer = predict_future(
-    model_bundle,
-    INPUT,
-    previously_diagnosed=PREVIOUSLY_DIAGNOSED
-)
-
-print(answer['experimental_probability_8y'])
+```bash
+python -m pip install -r requirements.txt
 ```
 
-The prediction function validates input values against the training data range and the project's baseline eligibility criteria.
+- โหลดพารามิเตอร์และดู encoding: [model/README.md](model/README.md)
+- ทำซ้ำการเลือก calibration ที่ได้รุ่นนี้: [รายงาน befec00](round3/results/calibration_20261111/README_TH.md)
+- รายละเอียดวิธีทดลองและผลความแปรปรวน: [round3](round3/README.md)
+- ประวัติการทดลอง/รุ่นที่ไม่ถูกเลือก: [EXPERIMENTS.md](EXPERIMENTS.md)
 
-Missing sleep duration can be imputed, while other required features must be provided.
+## โครงสร้างที่ใช้เป็นหลัก
 
-## Output Files
-
-After successful execution, the project generates `LEPTOLIC_NHEFS_Future_Outputs.zip`.
-
-The archive contains:
-
-| File | Description |
+| ตำแหน่ง | หน้าที่ |
 |---|---|
-| `NHEFS_Merged_Four_Waves_Raw.csv` | Merged historical participant records |
-| `NHEFS_Target_Audit.csv` | Target construction and exclusion reasons |
-| `NHEFS_Future_8y_Cohort.csv` | Prepared dataset with reliable labels |
-| `NHEFS_Data_Audit.json` | Dataset summary and source information |
-| `NHEFS_Model_Data.csv` | Model features, targets, and dataset splits |
-| `NHEFS_Future_Model.json` | Trained model parameters and preprocessing configuration |
-| `NHEFS_Model_Metrics.json` | Model evaluation results |
-| `NHEFS_Test_Predictions.csv` | Predictions for the held-out test set |
-| `NHEFS_Test_Calibration.csv` | Test-set calibration results |
-| `NHEFS_Feature_Dictionary.csv` | Feature definitions and data sources |
-| `NHEFS_Future_Report.md` | Generated model evaluation and limitations report |
+| `model/` | พารามิเตอร์, manifest, metrics และตัวอย่างของรุ่นอ้างอิงเพียงรุ่นเดียว |
+| `round3/compare_main.py` | รัน notebook algorithm ของ main ที่ pin commit และเทียบรุ่นอ้างอิง |
+| `round3/calibration_study.py` | ทดลอง calibration ที่นำไปสู่รุ่น befec00 |
+| `round3/results/` | หลักฐานรอบต่าง ๆ แยกโฟลเดอร์ ไม่ใช้ผลคนละรุ่นปะปนกัน |
+| `tests/` | Software tests; ไม่ใช่ผลประสิทธิภาพทางการแพทย์ |
+| `LEPTOLIC_NHEFS_Future_Prediction.ipynb` | Notebook baseline เดิมจาก main; เก็บไว้ใช้ตรวจ/อ่านข้อมูล ห้ามสับสนกับรุ่นอ้างอิง |
+| `LEPTOLIC_Round3_Review.ipynb` | Notebook ของการทดลองรอบแรก ไม่ใช่ demo ของรุ่นอ้างอิง |
 
-## Limitations
-
-LEPTOLIC is an experimental research prototype, not a clinically validated prediction system.
-
-Important limitations include:
-
-- **Historical population:** NHEFS participants represent a historical U.S. population, not modern Thai individuals.
-- **Reported diagnosis:** The target is based on self-reported or proxy-reported physician diagnosis, not verified clinical onset.
-- **Selection bias:** Participants with sufficiently reliable follow-up information may differ from those excluded from the analysis.
-- **Incomplete follow-up:** Unknown, missing, and insufficient follow-up cases are excluded instead of being treated as negative outcomes.
-- **Year-only diagnosis dates:** Diagnosis years overlapping the eight-year prediction boundary are excluded because the exact diagnosis date is unavailable.
-- **No competing-risk adjustment:** The current implementation does not apply inverse probability of censoring weighting (IPCW) or competing-risk correction.
-- **No national survey estimates:** The current model does not produce survey-weighted national risk estimates.
-
-The predicted probability should therefore be interpreted as an experimental score conditional on the selected historical cohort, not as an individual's clinically established risk.
-
-**This project is not intended for medical diagnosis, treatment decisions, or clinical use.**
-
-## Disclaimer
-
-This project is an independent research and educational prototype using publicly available NHEFS data.
-
-The analyses and interpretations are those of the project author and do not represent the official views of the CDC or NCHS.
-
----
-
-**Project:** LEPTOLIC  
-**Model:** Ridge Logistic Regression + Platt Scaling  
-**Dataset:** CDC NHEFS  
-**Prediction Horizon:** 8 Years  
-**Execution Environment:** Google Colab (CPU)
+[คู่มือพื้นฐานวิชา](AI_DATA_SCIENCE_FUNDAMENTALS.md) ·
+[คำอธิบาย notebook baseline เดิม](CODE_WALKTHROUGH.md)
