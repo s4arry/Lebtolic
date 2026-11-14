@@ -69,6 +69,7 @@ print({'experimental_score': score, 'experimental_alert': score >= threshold})
 นี่เป็น numerical replay API ซึ่งรับ encoded vector โดยตรง ไม่ใช่แบบฟอร์มคัดกรองที่มี
 input eligibility validation ครบสำหรับผู้ใช้ทั่วไป และไม่ควรนำผลไปใช้ตัดสินใจรักษา
 legacy `round3.predict` CLI และ notebook input form รุ่น 5-feature ยังไม่รองรับ schema นี้
+ฟอร์มสำหรับ demo ของรุ่นนี้ (รับค่าแบบคนทั่วไป + guardrails) อยู่ที่ [demo/README.md](../demo/README.md)
 
 ## ขอบเขต
 

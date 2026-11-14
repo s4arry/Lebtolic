@@ -1,1 +1,2 @@
 -r round3/requirements-balancing.txt
+ipywidgets>=8

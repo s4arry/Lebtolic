@@ -48,6 +48,7 @@ Test เคยเปิดดูหลายครั้งแล้ว ผล�
 python -m pip install -r requirements.txt
 ```
 
+- **Demo ฟอร์มกรอกค่า:** [LEPTOLIC_Demo.ipynb](LEPTOLIC_Demo.ipynb) · [วิธีใช้และ guardrails](demo/README.md)
 - โหลดพารามิเตอร์และดู encoding: [model/README.md](model/README.md)
 - ทำซ้ำการเลือก calibration ที่ได้รุ่นนี้: [รายงาน befec00](round3/results/calibration_20261111/README_TH.md)
 - รายละเอียดวิธีทดลองและผลความแปรปรวน: [round3](round3/README.md)
@@ -58,6 +59,7 @@ python -m pip install -r requirements.txt
 | ตำแหน่ง | หน้าที่ |
 |---|---|
 | `model/` | พารามิเตอร์, manifest, metrics และตัวอย่างของรุ่นอ้างอิงเพียงรุ่นเดียว |
+| `demo/` + `LEPTOLIC_Demo.ipynb` | ฟอร์ม demo ของรุ่นอ้างอิง: แปลงคำตอบเป็น 9 columns + guardrails |
 | `round3/compare_main.py` | รัน notebook algorithm ของ main ที่ pin commit และเทียบรุ่นอ้างอิง |
 | `round3/calibration_study.py` | ทดลอง calibration ที่นำไปสู่รุ่น befec00 |
 | `round3/results/` | หลักฐานรอบต่าง ๆ แยกโฟลเดอร์ ไม่ใช้ผลคนละรุ่นปะปนกัน |
