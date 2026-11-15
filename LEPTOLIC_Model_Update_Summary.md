@@ -1,42 +1,70 @@
-# สรุปภาพรวมการอัปเดตโมเดล LEPTOLIC (Current vs Git)
+# สรุปการอัปเดตโมเดล LEPTOLIC — 15 พฤศจิกายน 2026
 
-เอกสารสรุปความแตกต่าง การอัปเดตโค้ด กระบวนการทางสถิติ และการเปรียบเทียบผลลัพธ์ประสิทธิภาพ (ROC-AUC & Brier Score) ระหว่างโมเดลเดิมบน Git (`gitlebtolic`) กับโมเดลเวอร์ชันปัจจุบันที่อัปเดตแล้ว (`LEPTOLIC_NHEFS_Future_Prediction.ipynb`)
+## สถานะปัจจุบัน
 
----
+Branch `dev-by-gunner` ถูก merge เข้า `main` ผ่าน [PR #2](https://github.com/s4arry/Lebtolic/pull/2)
+เรียบร้อยแล้ว โดยเพิ่ม workflow การทดลอง Round 3, model artifacts, demo, tests และเอกสารประกอบ
 
-## 1. สิ่งที่อัปเดตและเปลี่ยนแปลงในโค้ด (Code & Pipeline Updates)
+**รุ่นอ้างอิงสำหรับงานวิจัย:** Logistic Regression (L2), C=0.1, เพิ่ม baseline weight และ smoking,
+ไม่ใช้ class balancing และไม่เพิ่ม calibration เพิ่มเติม รุ่นนี้เลือกจากผล Development ตาม protocol
+ไม่ใช่การเลือกผู้ชนะย้อนหลังจาก Test
 
-| ส่วนที่เปลี่ยนแปลง | เวอร์ชัน Git เดิม (`gitlebtolic`) | เวอร์ชันปัจจุบัน (Updated) | เหตุผลและผลลัพธ์ |
-| :--- | :--- | :--- | :--- |
-| **1. ฟีเจอร์ที่ใช้ (Features)** | **5 ตัวแปร:**<br>- อายุ (`age_years`)<br>- เพศ (`sex_female`)<br>- ความดันบน (`baseline_sbp`)<br>- ความดันล่าง (`baseline_dbp`)<br>- ชั่วโมงนอน (`sleep_hours`) | **6 ตัวแปร (เพิ่ม `current_smoker`):**<br>- ดึงรหัสคำถาม `L1` และ `L2a` จาก NHEFS 1982<br>- แปลงเป็น `0` (ไม่สูบ/เลิกแล้ว), `1` (ยังสูบอยู่), `NaN` (ไม่ทราบ) | เพิ่มตัวแปรเสี่ยงสำคัญตามหลักสรีรวิทยาและโรคหัวใจ/หลอดเลือด |
-| **2. กระบวนการฝึกโมเดล (Refitting)** | - คัดเลือกค่า Regularization $\lambda$ (Ridge) บน Tune Set<br>- แต่ใช้โมเดลที่ฟิตเฉพาะบน Train Set (55%) ไปทดสอบ | - เลือก $\lambda$ บน Tune Set<br>- **นำ Train + Tune (70%) มารวมเป็น Development Set แล้ว Refit โมเดลและ Preprocessor ใหม่ทั้งหมด** | ได้ข้อมูลฝึกโมเดลมากขึ้น โมเดลมีความเสถียรและ Generalize ดีขึ้น |
-| **3. การหาจุดตัด (Threshold Optimization)** | - ฟิกซ์ค่าจุดตัดตายตัวที่ `threshold = 0.50` | - เพิ่มการค้นหาจุดตัดที่เหมาะสมบน **Calibration Set**<br>- กำหนดเกณฑ์เป้าหมาย **Sensitivity (Recall) $\ge$ 70%** | แก้ปัญหา **Accuracy Paradox** ที่โมเดลเดิมได้ Recall เป็น 0% |
-| **4. สภาพแวดล้อมการทำงาน (Portability)** | - ล็อคโฟลเดอร์ไว้ที่ Google Colab (`/content`) เท่านั้น | - เช็ค path อัตโนมัติ รองรับทั้ง Colab และ **Local Jupyter Notebook** ในเครื่อง | รันออฟไลน์ในเครื่องได้โดยไม่พัง |
-| **5. การดาวน์โหลดผลลัพธ์** | - ไม่มี Cell สำหรับโหลดผลลัพธ์ (มี 10 Cells) | - **เพิ่ม Cell 10** สั่งดาวน์โหลด `LEPTOLIC_NHEFS_Future_Outputs.zip` อัตโนมัติ | สะดวกต่อการนำผล audit, metrics และโมเดลไปใช้งานต่อ |
+- Source candidate commit: `befec00faa9d341b983c984adc087ce0cf4585a8`
+- Model artifact: [model/model.json](model/model.json)
+- Manifest / provenance: [model/manifest.json](model/manifest.json)
+- Feature schema: 6 ตัวแปรตั้งต้น → 9 encoded columns
+- Primary policy: `fpr145`
+- Threshold: `0.09803399686084495`, เลือกจาก development inner OOF
+- Fit final model/preprocessing บน Development 2,311 คน
 
----
+## ผลการประเมิน
 
-## 2. ตารางเปรียบเทียบผลลัพธ์บน Held-out Test Set ($N=409$, ป่วยจริง 25 คน)
+| Metric | Development CV (mean 3 repeats) | Test เดิม |
+|---|---:|---:|
+| ROC-AUC | 0.7294 | 0.7034 |
+| Recall ณ FPR-policy | 43.97% | 40.00% |
+| Precision ณ FPR-policy | 17.11% | 16.95% |
+| F2 ณ FPR-policy | 0.3346 | 0.3145 |
+| FPR ที่พบจริง | 13.84% | 12.76% |
+| Brier (ต่ำดีกว่า) | 0.055488 | 0.057010 |
 
-ทดสอบบนกลุ่มตัวอย่างที่ไม่เคยผ่านการฝึกโมเดลมาก่อน (Unseen Test Data):
+Test มี 409 คน / 25 events: TP=10, FP=49, FN=15, TN=335
 
-| เมทริกซ์ประเมินผล | โมเดลเดิมบน Git (5 Features) | โมเดลปัจจุบัน (6 Features + Refit) | ผลการเปรียบเทียบ |
-| :--- | :---: | :---: | :---: |
-| **ROC-AUC** *(ยิ่งสูงยิ่งดี)* | **0.676** (67.61%) | **0.682** (68.17%) | 🟢 **ดีขึ้น (+0.006)** |
-| **95% Bootstrap CI** | `[0.562, 0.779]` | `[0.569, 0.780]` | 🟢 กรอบความเชื่อมั่นขยับสูงขึ้น |
-| **Brier Score (Model)** *(ยิ่งต่ำยิ่งดี)* | **0.05653** | **0.05640** | 🟢 **แม่นยำขึ้น (Error ลดลง)** |
-| **Brier Score (Baseline)** | 0.05739 | 0.05739 | ✅ ชนะ Dummy Baseline ทั้งคู่ |
-| **Decision Threshold** | `0.50` (ค่า Default) | **`0.054`** (Optimized) | ปรับตามความชุกโรคจริง (~6.1%) |
-| **Recall (Sensitivity)** | **0.0%** (จับคนป่วยไม่ได้เลย 0/25) | **80.0%** (เตือนคนป่วยได้ 20/25 คน) | 🟢 **ตรวจจับผู้มีความเสี่ยงได้จริง** |
-| **Accuracy** | 93.89% (ลวงตา) | 47.43% | แลก Accuracy ลวงตาเพื่อให้จับคนป่วยได้ |
+### เทียบกับ main เดิม
 
----
+| Metric | main เดิม (5 features + Platt) | รุ่นอ้างอิง (weight + smoking) |
+|---|---:|---:|
+| Test ROC-AUC | 0.676146 | 0.703438 |
+| Test Brier | 0.056529 | 0.057010 |
 
-## 3. สรุปประเด็นสำคัญสำหรับใช้รายงานหรือตอบอาจารย์ (Talking Points)
+ROC-AUC มี point estimate สูงขึ้น แต่ Brier แย่ลงเล็กน้อย และ paired 95% intervals
+ของ AUC/Brier คร่อมศูนย์ จึงยังยืนยัน superiority โดยรวมไม่ได้
+ที่ threshold 0.5 ทั้งสองรุ่นไม่ flag ใคร การเปลี่ยน threshold/policy เปลี่ยน trade-off
+ระหว่าง Recall กับ false positives จึงห้ามอธิบายการเพิ่ม Recall ว่าเกิดจาก model quality เพียงอย่างเดียว
 
-1. **ทำไม Recall ในเวอร์ชัน Git ถึงเป็น 0%?**
-   - เพราะเวอร์ชันเดิมตัดเกณฑ์ที่ $50\%$ (`threshold = 0.50`) แต่เนื่องจากโรคนี้ในกลุ่มคนสุขภาพดีมีความชุกเพียง $6.1\%$ โมเดลจึงประเมินความเสี่ยงสูงสุดไว้แค่ราว $10\%$ ทำให้ไม่มีใครแตะ $50\%$ เลย กลายเป็นคนปกติทั้งหมด
-2. **เวอร์ชันปัจจุบันแก้ไขอย่างไร?**
-   - เพิ่มฟีเจอร์พฤติกรรมเสี่ยงคือ **การสูบบุหรี่ปัจจุบัน (`current_smoker`)**
-   - รวมชุดข้อมูล Train + Tune เพื่อ Refit โมเดลให้แม่นยำขึ้น ทำให้ **ROC-AUC ขยับขึ้นเป็น 0.682** และ **Brier Score ดีขึ้นเป็น 0.0564**
-   - กำหนดเกณฑ์คัดกรองทางการแพทย์ใหม่ที่ความเสี่ยงประมาณ **$5.4\%$ (`threshold = 0.054`)** บนชุด Calibration ส่งผลให้บน Test Set ดึง **Recall พุ่งขึ้นเป็น 80% (ตรวจจับคนป่วยได้ 20 จาก 25 คน)**
+## เหตุผลที่ไม่เลือกทางเลือกอื่น
+
+- Class balancing และ oversampling ทำให้ probability calibration เสียหายมากใน workflow ที่ทดลอง
+  (Development Brier ประมาณ 0.232 เทียบประมาณ 0.055–0.056 ใน unbalanced candidates)
+- Calibration follow-up เลือกวิธี `none` จาก inner Brier แบบ one-SE ทั้ง 15 outer folds และ final development
+- Nonlinear follow-up ไม่ผ่าน development improvement screening; tuned quadratic ไม่ได้ดีกว่า linear
+- Smoking-only ให้ Test metrics บางตัวสูงกว่า candidate ในบาง policy แต่ไม่เปลี่ยนผู้ชนะย้อนหลังจาก Test
+
+## ไฟล์สำคัญ
+
+- [Model card / encoding / วิธี replay](model/README.md)
+- [ผลเปรียบเทียบ main เดิม](round3/results/main_comparison_20261111/README_TH.md)
+- [Balancing และ fallback](round3/results/balancing_20261111/README_TH.md)
+- [Calibration follow-up](round3/results/calibration_20261111/README_TH.md)
+- [Nonlinear follow-up](round3/results/nonlinear_20261111/README_TH.md)
+- [สารบัญการทดลอง](EXPERIMENTS.md)
+
+## ข้อจำกัด
+
+ผลลัพธ์คือ reported diagnosis ภายใน 8 ปีใน selected historical NHEFS cohort ของสหรัฐฯ
+ไม่ใช่การวัดยืนยันโรค ไม่มี external validation หรือ Thai validation, มีเพียง 25 events ใน Test
+และ Test ถูกเปิดดูหลายครั้งแล้ว จึงเป็น exploratory internal evaluation เท่านั้น
+ยังไม่เหมาะกับการคัดกรอง วินิจฉัย หรือใช้ตัดสินใจรักษารายบุคคล
+
+เอกสารนี้อัปเดตให้ตรงกับ artifacts ที่ merge เข้า main แล้ว; ดูรายละเอียดตัวเลข,
+protocol, fold variation และ uncertainty ในรายงาน Round 3 ที่ลิงก์ไว้ด้านบน
