@@ -1,5 +1,5 @@
 {
-  "status": "user_selected_research_reference_not_validated_for_clinical_use",
+  "status": "merged_research_reference_not_validated_for_clinical_use",
   "source_commit": "befec00faa9d341b983c984adc087ce0cf4585a8",
   "source_path": "round3/results/calibration_20261111/candidate_models.json",
   "source_key": "none",
@@ -9,5 +9,7 @@
   "comparison_report": "round3/results/main_comparison_20261111/README_TH.md",
   "test_exposed": true,
   "external_validation": false,
-  "main_replaced": false
+  "thai_validation": false,
+  "merged_into_main": true,
+  "legacy_baseline_retained": true
 }
