@@ -1,5 +1,8 @@
 # ประวัติการทดลอง — ไม่ใช่รุ่นอ้างอิงทั้งหมด
 
+[ไดอารี่รายวันภาษาไทย พร้อมเหตุผลและ commit](round3/EXPERIMENT_DIARY_TH.md) ·
+[ตารางนำเสนอหัวข้อ 4](round3/PRESENTATION_TOPIC4_TH.md)
+
 รุ่นอ้างอิงเพียงรุ่นเดียวของ branch นี้อยู่ที่ [model/](model/README.md)
 เลือกตามคำขอผู้ใช้จาก `befec00`, key `none` ใน calibration follow-up
 ไม่เลือก sigmoid หรือ nonlinear จากผล Test ที่ดูดีขึ้นบางค่า

@@ -1,5 +1,8 @@
 # โค้ดและผลการทดลอง LEPTOLIC
 
+- [ตารางสำหรับนำเสนอหัวข้อ 4: Confusion matrix / ROC-AUC](PRESENTATION_TOPIC4_TH.md)
+- [ไดอารี่ภาษาไทย พร้อมวันที่ วิธี ผล และ commit](EXPERIMENT_DIARY_TH.md)
+
 **รุ่นอ้างอิงของ branch:** [weight+smoking จาก befec00](../model/README.md)
 Logistic C=.1, ไม่ calibrate, primary threshold 0.09803399686084495
 ผล comparison กับ main ยังไม่ยืนยันว่าเหนือกว่าทุกด้าน
@@ -26,7 +29,8 @@ python -m round3.compare_main --source /path/to/nhefs_source --output round3_wor
 ## Software checks และกราฟ
 
 ```bash
-python -m unittest discover -s tests -v
+python -m pip install -r requirements-dev.txt
+python -m pytest -q
 # matplotlib เป็น dependency เพิ่มเฉพาะการวาดกราฟ
 python -m round3.report_calibration --results round3/results/calibration_20261111
 ```
