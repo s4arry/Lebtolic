@@ -1,0 +1,28 @@
+{
+  "status": "completed",
+  "source_commit": "4f45d68b7ffa6e665392412d3d0f0d2569f947b3",
+  "python": "3.12.14",
+  "numpy": "2.3.5",
+  "sklearn": "1.8.0",
+  "scipy": "1.17.0",
+  "protocol_sha256": "446b08c7835eae6abd525769e7bff7c57de0b01b3f0379274681d1fe4476d51e",
+  "code_sha256": "6492655b1d95c0ad5b9b61f1657b8e2cb69fde86567cf27366d6ff051029d868",
+  "baseline_portable_max_error": 4.163336342344337e-17,
+  "baseline_refit_max_error": 0.0,
+  "candidate_export_max_errors": {
+    "none": 4.163336342344337e-17,
+    "balanced": 1.1102230246251565e-16,
+    "oversample": 1.1102230246251565e-16,
+    "weight": 5.551115123125783e-17,
+    "smoking": 4.163336342344337e-17,
+    "weight_smoking": 5.551115123125783e-17
+  },
+  "decision_sha256": "6df9640fbb4fc07de789d79c57ca7183e58edaa3609da18d285fb9232c33453d",
+  "fallback_executed": true,
+  "chosen_on_development": "weight_smoking",
+  "outcome": "reported first diagnosis within 8 years, not measured disease",
+  "current_model_replaced": false,
+  "test_selected_anything": false,
+  "uncertainty": "fold/repeat SD descriptive; Test bootstrap conditional on fixed fitted models",
+  "publication": "Anonymous row indices only; original participant IDs/raw survey files stay local"
+}

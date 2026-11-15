@@ -1,0 +1,25 @@
+{
+  "description": "Hypothetical research input, not a patient record; weight in pounds",
+  "features": [
+    "age_years",
+    "sex_female",
+    "baseline_sbp",
+    "baseline_dbp",
+    "weight_lb",
+    "weight_missing",
+    "current_smoker",
+    "former_smoker",
+    "smoking_unknown"
+  ],
+  "row": [
+    50.0,
+    0.0,
+    120.0,
+    75.0,
+    160.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ]
+}

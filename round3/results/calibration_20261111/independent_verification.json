@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "checks": [
+    "All repeat/test confusion counts, AUC, Brier, F2 independently reconstructed",
+    "2311 distinct development rows per repeat and candidate",
+    "Final thresholds exactly reconstructed from saved inner OOF; Test unused",
+    "Uncalibrated outer OOF scores match prior weight_smoking within 1e-12; decisions match exactly",
+    "Code hash and pre-Test decision hash verified"
+  ]
+}

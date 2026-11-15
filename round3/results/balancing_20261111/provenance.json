@@ -1,0 +1,99 @@
+{
+  "source_files": [
+    {
+      "name": "N82int.txt",
+      "sha256": "a25a47cd65bda3a50fbbd158964a64ce4642e8bfba0cfd01f47745d0d4be5c8b",
+      "bytes": 53254760,
+      "url": "https://wwwn.cdc.gov/nchs/data/nhefs/N82int.txt",
+      "matches_historical_archive": true
+    },
+    {
+      "name": "N86int.txt",
+      "sha256": "b38a5a6a2214065d3d80648d78a37f43dc3d5122ffa007af4fbd5e75b4bb614d",
+      "bytes": 19360528,
+      "url": "https://wwwn.cdc.gov/nchs/data/nhefs/N86int.txt",
+      "matches_historical_archive": true
+    },
+    {
+      "name": "N87int.txt",
+      "sha256": "f320f3d519d9af5b74eefbbd78997271c00bccfd47b3be9e1516857f96a249fd",
+      "bytes": 51909616,
+      "url": "https://wwwn.cdc.gov/nchs/data/nhefs/N87int.txt",
+      "matches_historical_archive": true
+    },
+    {
+      "name": "N92int.txt",
+      "sha256": "b4210a6a957460890e00e7130d1377babea6401a5f6bf891a814899108f2b65f",
+      "bytes": 74953356,
+      "url": "https://wwwn.cdc.gov/nchs/data/nhefs/N92int.txt",
+      "matches_historical_archive": true
+    },
+    {
+      "name": "intv82.inputs.labels.txt",
+      "sha256": "0bb6f524070c9fd2fdfe02d9413572bad9e691633513efc93e297cabe8be7eb8",
+      "bytes": 136921,
+      "url": "https://wwwn.cdc.gov/nchs/data/nhefs/intv82.inputs.labels.txt",
+      "matches_historical_archive": true
+    },
+    {
+      "name": "intv86.inputs.labels.txt",
+      "sha256": "e6d86e8216bf6d0fabf507509c5e7a9b72562a56d04eb4a15946024cb4443cde",
+      "bytes": 66967,
+      "url": "https://wwwn.cdc.gov/nchs/data/nhefs/intv86.inputs.labels.txt",
+      "matches_historical_archive": true
+    },
+    {
+      "name": "intv87.inputs.labels.txt",
+      "sha256": "a148c719f1e41b66661070f66f509391303681b8c6ede266b32188d664e437b0",
+      "bytes": 74531,
+      "url": "https://wwwn.cdc.gov/nchs/data/nhefs/intv87.inputs.labels.txt",
+      "matches_historical_archive": true
+    },
+    {
+      "name": "intv92.inputs.labels.txt",
+      "sha256": "40dc3674a3974ba1b1c537de6d3ce13fa4f9d41945677cf0d99248657b6ab285",
+      "bytes": 149153,
+      "url": "https://wwwn.cdc.gov/nchs/data/nhefs/intv92.inputs.labels.txt",
+      "matches_historical_archive": true
+    }
+  ],
+  "split_id_sha256": {
+    "train": "bbd857092a7a83b39d0c938d864eec58a26bba5df0a8ba0d4f179192bed120fc",
+    "tune": "7ce431d9938c0051bd4e3ef624735b33d51ac80156bda9dfeabb4d813b393400",
+    "calibration": "6672f4b0f0bf2c59913f32e17563aaaf355e87277be0ff21aa839c75b476906e",
+    "test": "c8a536c6a16f720e3345d3a696dc13db854067fec5ad232a35c3f83c9cfd17f4",
+    "development": "8fc76e40746cec61e869e3a5025a4af81a01521e4ed28a457469e1482d142980"
+  },
+  "counts": [
+    2720,
+    166,
+    2311,
+    141,
+    409,
+    25
+  ],
+  "joins": {
+    "82": {
+      "rows": 12220,
+      "matched_baseline": 12220,
+      "outside_baseline": 0
+    },
+    "86": {
+      "rows": 3608,
+      "matched_baseline": 3367,
+      "outside_baseline": 241
+    },
+    "87": {
+      "rows": 9998,
+      "matched_baseline": 9309,
+      "outside_baseline": 689
+    },
+    "92": {
+      "rows": 9281,
+      "matched_baseline": 8634,
+      "outside_baseline": 647
+    }
+  },
+  "source_claim": "CDC download; byte-identical to previously supplied archive",
+  "additional_exclusions": []
+}

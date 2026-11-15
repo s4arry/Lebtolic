@@ -1,0 +1,28 @@
+{
+  "source": "round3/results/calibration_20261111",
+  "test": {
+    "variant": "none",
+    "policy": "fpr145",
+    "threshold": 0.09803399686084495,
+    "n": 409.0,
+    "events": 25.0,
+    "tp": 10.0,
+    "fp": 49.0,
+    "fn": 15.0,
+    "tn": 335.0,
+    "recall": 0.4,
+    "precision": 0.1694915254237288,
+    "f2": 0.31446540880503143,
+    "fpr": 0.12760416666666666,
+    "roc_auc": 0.7034375,
+    "ap": 0.12727576578940164,
+    "brier": 0.05701017704605757,
+    "mean_probability": 0.059765540073775686,
+    "observed_rate": 0.061124694376528114,
+    "calibration_in_large": 0.025178257663799733,
+    "calibration_intercept": -0.5377688564408748,
+    "calibration_slope": 0.7792890709386281,
+    "calibration_fit_converged": "True"
+  },
+  "note": "Development metrics are in the source repeat_summary.csv; Test threshold chosen from final inner OOF"
+}

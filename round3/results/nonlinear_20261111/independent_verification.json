@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "checks": [
+    "All outer/repeat/Test confusion counts, AUC, Brier and F2 reconstructed from predictions",
+    "OOF coverage and outer thresholds checked; final thresholds reconstructed from inner OOF",
+    "Final shape/C selection reconstructed from inner fold Brier without Test",
+    "Comparator reproduces prior OOF scores within 1e-12 and decisions exactly",
+    "Code and frozen-decision hashes verified"
+  ]
+}

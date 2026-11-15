@@ -1,0 +1,133 @@
+{
+  "selected": {
+    "features": 4,
+    "family": "logistic",
+    "value": 0.1,
+    "calibration": "none",
+    "mean_inner_brier": 0.05637263127127101,
+    "status": "valid"
+  },
+  "features": [
+    "age_years",
+    "sex_female",
+    "baseline_sbp",
+    "baseline_dbp"
+  ],
+  "training_range": {
+    "age_years": [
+      32.0,
+      85.0
+    ],
+    "sex_female": [
+      0.0,
+      1.0
+    ],
+    "baseline_sbp": [
+      80.0,
+      129.0
+    ],
+    "baseline_dbp": [
+      44.0,
+      79.0
+    ]
+  },
+  "imputer_median": [
+    45.0,
+    1.0,
+    113.0,
+    71.0
+  ],
+  "scaler_mean": [
+    47.24058848983124,
+    0.7196019039376893,
+    112.39809606231069,
+    70.25270445694504
+  ],
+  "scaler_scale": [
+    10.647700791740654,
+    0.4491937263441525,
+    9.315187498944457,
+    5.9728369924409375
+  ],
+  "study_calibration": {
+    "method": "none"
+  },
+  "level_cuts": [
+    0.043779127981187854,
+    0.07015014157426003
+  ],
+  "threshold": 0.04165539699069321,
+  "limitations": "คะแนนทดลองของกลุ่ม NHEFS สหรัฐฯ ในอดีต สำหรับการรายงานวินิจฉัยใน 8 ปี ยังไม่ยืนยันกับคนไทย ไม่ใช่การวินิจฉัยหรือคำแนะนำการรักษา ระดับ 1 ไม่ได้แปลว่าไม่มีโอกาสเกิดเหตุการณ์",
+  "coefficients": [
+    [
+      -0.2193150101736054,
+      0.15058772097072265,
+      0.43862300043099456,
+      0.26420933118294254
+    ]
+  ],
+  "intercept": [
+    -2.875809029195882
+  ],
+  "input_provenance": {
+    "data_origin": "user_supplied_NHEFS_format_archive",
+    "sources": [
+      {
+        "name": "N82int.txt",
+        "url": "https://wwwn.cdc.gov/nchs/data/nhefs/N82int.txt",
+        "bytes": 53254760,
+        "sha256": "a25a47cd65bda3a50fbbd158964a64ce4642e8bfba0cfd01f47745d0d4be5c8b",
+        "url_role": "expected_CDC_URL_not_fetched_in_this_run"
+      },
+      {
+        "name": "intv82.inputs.labels.txt",
+        "url": "https://wwwn.cdc.gov/nchs/data/nhefs/intv82.inputs.labels.txt",
+        "bytes": 136921,
+        "sha256": "0bb6f524070c9fd2fdfe02d9413572bad9e691633513efc93e297cabe8be7eb8",
+        "url_role": "expected_CDC_URL_not_fetched_in_this_run"
+      },
+      {
+        "name": "N86int.txt",
+        "url": "https://wwwn.cdc.gov/nchs/data/nhefs/N86int.txt",
+        "bytes": 19360528,
+        "sha256": "b38a5a6a2214065d3d80648d78a37f43dc3d5122ffa007af4fbd5e75b4bb614d",
+        "url_role": "expected_CDC_URL_not_fetched_in_this_run"
+      },
+      {
+        "name": "intv86.inputs.labels.txt",
+        "url": "https://wwwn.cdc.gov/nchs/data/nhefs/intv86.inputs.labels.txt",
+        "bytes": 66967,
+        "sha256": "e6d86e8216bf6d0fabf507509c5e7a9b72562a56d04eb4a15946024cb4443cde",
+        "url_role": "expected_CDC_URL_not_fetched_in_this_run"
+      },
+      {
+        "name": "N87int.txt",
+        "url": "https://wwwn.cdc.gov/nchs/data/nhefs/N87int.txt",
+        "bytes": 51909616,
+        "sha256": "f320f3d519d9af5b74eefbbd78997271c00bccfd47b3be9e1516857f96a249fd",
+        "url_role": "expected_CDC_URL_not_fetched_in_this_run"
+      },
+      {
+        "name": "intv87.inputs.labels.txt",
+        "url": "https://wwwn.cdc.gov/nchs/data/nhefs/intv87.inputs.labels.txt",
+        "bytes": 74531,
+        "sha256": "a148c719f1e41b66661070f66f509391303681b8c6ede266b32188d664e437b0",
+        "url_role": "expected_CDC_URL_not_fetched_in_this_run"
+      },
+      {
+        "name": "N92int.txt",
+        "url": "https://wwwn.cdc.gov/nchs/data/nhefs/N92int.txt",
+        "bytes": 74953356,
+        "sha256": "b4210a6a957460890e00e7130d1377babea6401a5f6bf891a814899108f2b65f",
+        "url_role": "expected_CDC_URL_not_fetched_in_this_run"
+      },
+      {
+        "name": "intv92.inputs.labels.txt",
+        "url": "https://wwwn.cdc.gov/nchs/data/nhefs/intv92.inputs.labels.txt",
+        "bytes": 149153,
+        "sha256": "40dc3674a3974ba1b1c537de6d3ce13fa4f9d41945677cf0d99248657b6ab285",
+        "url_role": "expected_CDC_URL_not_fetched_in_this_run"
+      }
+    ]
+  }
+}

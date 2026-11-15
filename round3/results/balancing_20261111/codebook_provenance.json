@@ -1,0 +1,26 @@
+{
+  "retrieved_date": "2026-11-11",
+  "files": [
+    {
+      "url": "https://wwwn.cdc.gov/nchs/data/nhefs/1982intv.pdf",
+      "bytes": 11152794,
+      "sha256": "de2e534020a3c97a246bb81190d794205329cee8c6e3e9c606061bcd2aa05457"
+    },
+    {
+      "url": "https://wwwn.cdc.gov/nchs/data/nhefs/1986intv.pdf",
+      "bytes": 15863603,
+      "sha256": "eacd3b3ecf31a7e11c695195204fb7ba0bb745b0b605c121af2a40cb66a6e8a9"
+    },
+    {
+      "url": "https://wwwn.cdc.gov/nchs/data/nhefs/1987intv.pdf",
+      "bytes": 9354367,
+      "sha256": "60317c3f4ce0f680bea2ceb7295d46c4b1247b3da99e4e5050b9bc3ba57768f9"
+    },
+    {
+      "url": "https://wwwn.cdc.gov/nchs/data/nhefs/1992intv.pdf",
+      "bytes": 26054777,
+      "sha256": "cd866efc08419a802f7e17c093a2bcebc658d2bab8395cef5affe217f4d97942"
+    }
+  ],
+  "scope": "Selected documented fields, not full codebook audit"
+}

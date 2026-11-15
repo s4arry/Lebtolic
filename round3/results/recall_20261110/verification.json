@@ -1,0 +1,14 @@
+{
+  "checks_passed": [
+    "All 5 threshold profiles independently reproduced from previously published Test scores",
+    "Final development model selection and threshold reproduced exactly",
+    "409 portable candidate predictions match fitted model to 1e-12",
+    "27 software tests passed; 2 new tests cover linear/quadratic exports and OOF policy"
+  ],
+  "default_policy": "14.5% retained; user requested comparison before selecting",
+  "source_hashes": {
+    "round3/recall_study.py": "a13055057c7b627f85d711e3a37a317af3bb6e227edc3a8913d9155ac45105a6",
+    "round3_work/real_nhefs_20261105_run01/split_manifest.csv": "d3f9b6037c4f2c58e44d9ec3064c25e7bea42d34082f65ecf89218e936713099",
+    "round3_work/real_nhefs_20261105_run01/outputs/NHEFS_Future_8y_Cohort.csv": "fc03ac7c59a8c8b8abe4b71d38111d02fe59d8a6284891241dc8db19ec5a7b6d"
+  }
+}

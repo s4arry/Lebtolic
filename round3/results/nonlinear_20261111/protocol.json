@@ -1,0 +1,21 @@
+{
+  "configs": [
+    "linear:0.01",
+    "linear:0.1",
+    "linear:1.0",
+    "quadratic:0.01",
+    "quadratic:0.1",
+    "quadratic:1.0"
+  ],
+  "variants": [
+    "none",
+    "linear",
+    "quadratic",
+    "selected"
+  ],
+  "outer_folds": 5,
+  "repeats": 3,
+  "inner_folds": 3,
+  "seed": 42,
+  "protocol_sha256": "3fe4cd99c328b808ea3a93d4aedca6a3467dfc2d402895687b5eae9c40157363"
+}

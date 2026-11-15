@@ -1,0 +1,16 @@
+{
+  "experimental_probability_8y": 0.06875724048113405,
+  "level": 2,
+  "meaning": "ระดับสัมพัทธ์ตามจุดแบ่งคะแนน development OOF ของ NHEFS",
+  "warnings": [],
+  "limitations": "คะแนนทดลองของกลุ่ม NHEFS สหรัฐฯ ในอดีต สำหรับการรายงานวินิจฉัยใน 8 ปี ยังไม่ยืนยันกับคนไทย ไม่ใช่การวินิจฉัยหรือคำแนะนำการรักษา ระดับ 1 ไม่ได้แปลว่าไม่มีโอกาสเกิดเหตุการณ์",
+  "features_used": [
+    "age_years",
+    "sex_female",
+    "baseline_sbp",
+    "baseline_dbp"
+  ],
+  "decision_threshold": 0.09186810148551343,
+  "threshold_policy": "maximize recall subject to empirical development OOF FPR budget",
+  "experimental_alert": false
+}

@@ -1,0 +1,76 @@
+{
+  "selected": {
+    "features": 4,
+    "degree": 1,
+    "C": 1.0,
+    "mean_inner_partial_auc": 0.5494455618958999
+  },
+  "policy": {
+    "threshold": 0.0961560579641432,
+    "max_fpr": 0.145,
+    "allowed_false_positives": 314,
+    "development_tp": 46,
+    "development_fp": 309,
+    "development_positives": 141,
+    "development_negatives": 2170,
+    "development_recall": 0.3262411347517731,
+    "development_fpr": 0.1423963133640553,
+    "objective": "maximize recall subject to empirical development OOF FPR budget"
+  },
+  "candidates": [
+    {
+      "features": 4,
+      "degree": 1,
+      "C": 0.01,
+      "mean_inner_partial_auc": 0.5452517121622407
+    },
+    {
+      "features": 4,
+      "degree": 1,
+      "C": 0.1,
+      "mean_inner_partial_auc": 0.5482490133524583
+    },
+    {
+      "features": 4,
+      "degree": 1,
+      "C": 1.0,
+      "mean_inner_partial_auc": 0.5494455618958999
+    },
+    {
+      "features": 5,
+      "degree": 1,
+      "C": 0.01,
+      "mean_inner_partial_auc": 0.5341042745022051
+    },
+    {
+      "features": 5,
+      "degree": 1,
+      "C": 0.1,
+      "mean_inner_partial_auc": 0.5357872646826258
+    },
+    {
+      "features": 5,
+      "degree": 1,
+      "C": 1.0,
+      "mean_inner_partial_auc": 0.5364071466723974
+    },
+    {
+      "features": 4,
+      "degree": 2,
+      "C": 0.01,
+      "mean_inner_partial_auc": 0.543451497492033
+    },
+    {
+      "features": 4,
+      "degree": 2,
+      "C": 0.1,
+      "mean_inner_partial_auc": 0.5471155390355982
+    },
+    {
+      "features": 4,
+      "degree": 2,
+      "C": 1.0,
+      "mean_inner_partial_auc": 0.5488796246501951
+    }
+  ]
+}

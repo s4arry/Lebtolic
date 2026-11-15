@@ -1,0 +1,216 @@
+{
+  "balancing": {
+    "checks": {
+      "balanced": {
+        "brier_lower_every_repeat": false,
+        "f2_higher_every_repeat": false,
+        "budget_recall_higher_every_repeat": false,
+        "mean_budget_fpr_not_higher": true,
+        "eligible": false
+      },
+      "oversample": {
+        "brier_lower_every_repeat": false,
+        "f2_higher_every_repeat": false,
+        "budget_recall_higher_every_repeat": false,
+        "mean_budget_fpr_not_higher": true,
+        "eligible": false
+      }
+    },
+    "chosen": "none",
+    "note": "Development screening rule, not significance or external-validation evidence"
+  },
+  "fallback": {
+    "checks": {
+      "weight": {
+        "brier_lower_every_repeat": true,
+        "f2_higher_every_repeat": true,
+        "budget_recall_higher_every_repeat": true,
+        "mean_budget_fpr_not_higher": true,
+        "eligible": true
+      },
+      "smoking": {
+        "brier_lower_every_repeat": false,
+        "f2_higher_every_repeat": false,
+        "budget_recall_higher_every_repeat": false,
+        "mean_budget_fpr_not_higher": false,
+        "eligible": false
+      },
+      "weight_smoking": {
+        "brier_lower_every_repeat": true,
+        "f2_higher_every_repeat": true,
+        "budget_recall_higher_every_repeat": true,
+        "mean_budget_fpr_not_higher": true,
+        "eligible": true
+      }
+    },
+    "chosen": "weight_smoking",
+    "note": "Development screening rule, not significance or external-validation evidence"
+  },
+  "chosen": "weight_smoking",
+  "policy_action": "candidate requires further validation",
+  "final_thresholds": {
+    "none": {
+      "f2": {
+        "threshold": 0.059544302070040196,
+        "tune_f2": 0.2871105681124007,
+        "objective": "max_F2_on_development_OOF_only"
+      },
+      "fpr145": {
+        "threshold": 0.09285830791484896,
+        "max_fpr": 0.145,
+        "allowed_false_positives": 314,
+        "development_tp": 41,
+        "development_fp": 307,
+        "development_positives": 141,
+        "development_negatives": 2170,
+        "development_recall": 0.2907801418439716,
+        "development_fpr": 0.14147465437788018,
+        "objective": "maximize recall subject to empirical development OOF FPR budget"
+      }
+    },
+    "balanced": {
+      "f2": {
+        "threshold": 0.5163009989873318,
+        "tune_f2": 0.28610354223433243,
+        "objective": "max_F2_on_development_OOF_only"
+      },
+      "fpr145": {
+        "threshold": 0.6232479505774943,
+        "max_fpr": 0.145,
+        "allowed_false_positives": 314,
+        "development_tp": 44,
+        "development_fp": 311,
+        "development_positives": 141,
+        "development_negatives": 2170,
+        "development_recall": 0.3120567375886525,
+        "development_fpr": 0.14331797235023042,
+        "objective": "maximize recall subject to empirical development OOF FPR budget"
+      }
+    },
+    "oversample": {
+      "f2": {
+        "threshold": 0.514716764326477,
+        "tune_f2": 0.28852681602172436,
+        "objective": "max_F2_on_development_OOF_only"
+      },
+      "fpr145": {
+        "threshold": 0.6285247371842408,
+        "max_fpr": 0.145,
+        "allowed_false_positives": 314,
+        "development_tp": 44,
+        "development_fp": 297,
+        "development_positives": 141,
+        "development_negatives": 2170,
+        "development_recall": 0.3120567375886525,
+        "development_fpr": 0.13686635944700462,
+        "objective": "maximize recall subject to empirical development OOF FPR budget"
+      }
+    },
+    "weight": {
+      "f2": {
+        "threshold": 0.07189896536291836,
+        "tune_f2": 0.3785357737104825,
+        "objective": "max_F2_on_development_OOF_only"
+      },
+      "fpr145": {
+        "threshold": 0.09275587862735886,
+        "max_fpr": 0.145,
+        "allowed_false_positives": 314,
+        "development_tp": 57,
+        "development_fp": 314,
+        "development_positives": 141,
+        "development_negatives": 2170,
+        "development_recall": 0.40425531914893614,
+        "development_fpr": 0.1447004608294931,
+        "objective": "maximize recall subject to empirical development OOF FPR budget"
+      }
+    },
+    "smoking": {
+      "f2": {
+        "threshold": 0.053869797071052966,
+        "tune_f2": 0.30017152658662094,
+        "objective": "max_F2_on_development_OOF_only"
+      },
+      "fpr145": {
+        "threshold": 0.09476782145313724,
+        "max_fpr": 0.145,
+        "allowed_false_positives": 314,
+        "development_tp": 36,
+        "development_fp": 309,
+        "development_positives": 141,
+        "development_negatives": 2170,
+        "development_recall": 0.2553191489361702,
+        "development_fpr": 0.1423963133640553,
+        "objective": "maximize recall subject to empirical development OOF FPR budget"
+      }
+    },
+    "weight_smoking": {
+      "f2": {
+        "threshold": 0.06095241728347069,
+        "tune_f2": 0.36304816678648455,
+        "objective": "max_F2_on_development_OOF_only"
+      },
+      "fpr145": {
+        "threshold": 0.0945946582515396,
+        "max_fpr": 0.145,
+        "allowed_false_positives": 314,
+        "development_tp": 66,
+        "development_fp": 305,
+        "development_positives": 141,
+        "development_negatives": 2170,
+        "development_recall": 0.46808510638297873,
+        "development_fpr": 0.14055299539170507,
+        "objective": "maximize recall subject to empirical development OOF FPR budget"
+      }
+    }
+  },
+  "feature_sets": {
+    "none": [
+      "age_years",
+      "sex_female",
+      "baseline_sbp",
+      "baseline_dbp"
+    ],
+    "balanced": [
+      "age_years",
+      "sex_female",
+      "baseline_sbp",
+      "baseline_dbp"
+    ],
+    "oversample": [
+      "age_years",
+      "sex_female",
+      "baseline_sbp",
+      "baseline_dbp"
+    ],
+    "weight": [
+      "age_years",
+      "sex_female",
+      "baseline_sbp",
+      "baseline_dbp",
+      "weight_lb",
+      "weight_missing"
+    ],
+    "smoking": [
+      "age_years",
+      "sex_female",
+      "baseline_sbp",
+      "baseline_dbp",
+      "current_smoker",
+      "former_smoker",
+      "smoking_unknown"
+    ],
+    "weight_smoking": [
+      "age_years",
+      "sex_female",
+      "baseline_sbp",
+      "baseline_dbp",
+      "weight_lb",
+      "weight_missing",
+      "current_smoker",
+      "former_smoker",
+      "smoking_unknown"
+    ]
+  },
+  "test_used_for_selection": false
+}

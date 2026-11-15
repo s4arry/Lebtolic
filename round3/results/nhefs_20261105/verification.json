@@ -1,0 +1,20 @@
+{
+  "evaluation_source_commit": "8b8e6475d2150ae055fa4530a46f570234e75900",
+  "evaluation_run": "real_nhefs_20261105_run01",
+  "archive_sha256": "b033492b7366a3aa7574d0b5965cc568db831263370f3dba5fff27a9066185cd",
+  "supplied_data_origin": "User reports CDC download; layout/record validation and legacy-score reproduction passed; no independently published CDC checksum checked",
+  "checks_passed": [
+    "All four waves parsed; eight required files present",
+    "Legacy Test AUC and Brier reproduced to 1e-14",
+    "All 409 exported JSON model predictions match stored scores to 1e-12",
+    "2720 unique cohort IDs; 409 unique Test IDs",
+    "Test IDs disjoint from development OOF; exactly 3 OOF scores per development person",
+    "Independent sklearn AUC, AP and Brier calculations match",
+    "Independent 2000-draw paired Brier bootstrap matches stored CI to 1e-14",
+    "Notebook Run all completed; metrics dictionary exactly equals separate CLI run",
+    "19 software fixture tests passed; pip check passed",
+    "Actual model CLI demo succeeded; age 20 and prior diagnosis inputs rejected"
+  ],
+  "publication_note": "No raw survey files or original participant IDs are committed. Test row order and paired scores are retained for metric verification.",
+  "study_code_sha256_matches_metrics": true
+}

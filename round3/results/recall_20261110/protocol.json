@@ -1,0 +1,11 @@
+{
+  "max_fpr": 0.145,
+  "outer_folds": 5,
+  "repeats": 3,
+  "inner_folds": 3,
+  "seed": 42,
+  "objective": "mean inner standardized partial ROC-AUC at max_fpr=0.145",
+  "candidates": "linear 4/5 features and quadratic 4 features; C=.01/.1/1; no calibration",
+  "selection": "all feature scaling, transformations, model and threshold choices inside development",
+  "interpretation": "exploratory follow-up on previously exposed Test; not independent confirmation"
+}

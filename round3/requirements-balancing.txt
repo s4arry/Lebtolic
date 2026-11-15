@@ -1,0 +1,5 @@
+# Exact numerical environment used for balancing_20261111 (Python 3.12.14).
+# Separate from historical requirements to preserve prior-run provenance.
+numpy==2.3.5
+scipy==1.17.0
+scikit-learn==1.8.0

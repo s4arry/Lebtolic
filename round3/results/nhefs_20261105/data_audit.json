@@ -1,0 +1,269 @@
+{
+  "summary": {
+    "included": {
+      "n": 2720,
+      "features": {
+        "age_years": {
+          "missing_n": 0,
+          "median": 45.0,
+          "min": 32.0,
+          "max": 85.0
+        },
+        "sex_female": {
+          "missing_n": 0,
+          "median": 1.0,
+          "min": 0.0,
+          "max": 1.0
+        },
+        "baseline_sbp": {
+          "missing_n": 0,
+          "median": 113.0,
+          "min": 80.0,
+          "max": 129.0
+        },
+        "baseline_dbp": {
+          "missing_n": 0,
+          "median": 71.0,
+          "min": 38.0,
+          "max": 79.0
+        },
+        "sleep_hours": {
+          "missing_n": 96,
+          "median": 7.0,
+          "min": 2.0,
+          "max": 14.0
+        }
+      }
+    },
+    "excluded": {
+      "n": 9500,
+      "features": {
+        "age_years": {
+          "missing_n": 0,
+          "median": 66.0,
+          "min": 32.0,
+          "max": 97.0
+        },
+        "sex_female": {
+          "missing_n": 0,
+          "median": 1.0,
+          "min": 0.0,
+          "max": 1.0
+        },
+        "baseline_sbp": {
+          "missing_n": 2264,
+          "median": 134.0,
+          "min": 84.0,
+          "max": 240.0
+        },
+        "baseline_dbp": {
+          "missing_n": 2280,
+          "median": 80.0,
+          "min": 31.0,
+          "max": 170.0
+        },
+        "sleep_hours": {
+          "missing_n": 2335,
+          "median": 7.0,
+          "min": 2.0,
+          "max": 18.0
+        }
+      }
+    }
+  },
+  "joins": {
+    "82": {
+      "rows": 12220,
+      "matched_baseline": 12220,
+      "outside_baseline": 0
+    },
+    "86": {
+      "rows": 3608,
+      "matched_baseline": 3367,
+      "outside_baseline": 241
+    },
+    "87": {
+      "rows": 9998,
+      "matched_baseline": 9309,
+      "outside_baseline": 689
+    },
+    "92": {
+      "rows": 9281,
+      "matched_baseline": 8634,
+      "outside_baseline": 647
+    }
+  },
+  "additional_exclusions": [],
+  "original_data_audit": {
+    "wave_rows": {
+      "82": 12220,
+      "86": 3608,
+      "87": 9998,
+      "92": 9281
+    },
+    "cohort_n": 2720,
+    "target_counts": {
+      "0": 2554,
+      "1": 166
+    },
+    "all_reasons": {
+      "baseline_measured_bp_above_project_cutoff": 2930,
+      "baseline_prior_diagnosis_or_unknown": 4748,
+      "explicit_no_with_complete_8y_followup": 2506,
+      "baseline_age_sex_or_bp_missing": 1168,
+      "prior_or_same_year_diagnosis": 69,
+      "diagnosis_year_conflicts_with_later_explicit_no": 20,
+      "no_completed_surviving_final_interview": 462,
+      "borderline_or_discrepant_report": 37,
+      "reported_diagnosis_within_8y": 166,
+      "first_reported_diagnosis_after_8y": 48,
+      "positive_history_without_reliable_year": 32,
+      "diagnosis_year_overlaps_horizon": 26,
+      "final_target_unknown_or_skipped": 6,
+      "conflicting_first_diagnosis_years": 1,
+      "contradictory_later_no_after_yes": 1
+    },
+    "sources": [
+      {
+        "name": "N82int.txt",
+        "url": "https://wwwn.cdc.gov/nchs/data/nhefs/N82int.txt",
+        "bytes": 53254760,
+        "sha256": "a25a47cd65bda3a50fbbd158964a64ce4642e8bfba0cfd01f47745d0d4be5c8b",
+        "url_role": "expected_CDC_URL_not_fetched_in_this_run"
+      },
+      {
+        "name": "intv82.inputs.labels.txt",
+        "url": "https://wwwn.cdc.gov/nchs/data/nhefs/intv82.inputs.labels.txt",
+        "bytes": 136921,
+        "sha256": "0bb6f524070c9fd2fdfe02d9413572bad9e691633513efc93e297cabe8be7eb8",
+        "url_role": "expected_CDC_URL_not_fetched_in_this_run"
+      },
+      {
+        "name": "N86int.txt",
+        "url": "https://wwwn.cdc.gov/nchs/data/nhefs/N86int.txt",
+        "bytes": 19360528,
+        "sha256": "b38a5a6a2214065d3d80648d78a37f43dc3d5122ffa007af4fbd5e75b4bb614d",
+        "url_role": "expected_CDC_URL_not_fetched_in_this_run"
+      },
+      {
+        "name": "intv86.inputs.labels.txt",
+        "url": "https://wwwn.cdc.gov/nchs/data/nhefs/intv86.inputs.labels.txt",
+        "bytes": 66967,
+        "sha256": "e6d86e8216bf6d0fabf507509c5e7a9b72562a56d04eb4a15946024cb4443cde",
+        "url_role": "expected_CDC_URL_not_fetched_in_this_run"
+      },
+      {
+        "name": "N87int.txt",
+        "url": "https://wwwn.cdc.gov/nchs/data/nhefs/N87int.txt",
+        "bytes": 51909616,
+        "sha256": "f320f3d519d9af5b74eefbbd78997271c00bccfd47b3be9e1516857f96a249fd",
+        "url_role": "expected_CDC_URL_not_fetched_in_this_run"
+      },
+      {
+        "name": "intv87.inputs.labels.txt",
+        "url": "https://wwwn.cdc.gov/nchs/data/nhefs/intv87.inputs.labels.txt",
+        "bytes": 74531,
+        "sha256": "a148c719f1e41b66661070f66f509391303681b8c6ede266b32188d664e437b0",
+        "url_role": "expected_CDC_URL_not_fetched_in_this_run"
+      },
+      {
+        "name": "N92int.txt",
+        "url": "https://wwwn.cdc.gov/nchs/data/nhefs/N92int.txt",
+        "bytes": 74953356,
+        "sha256": "b4210a6a957460890e00e7130d1377babea6401a5f6bf891a814899108f2b65f",
+        "url_role": "expected_CDC_URL_not_fetched_in_this_run"
+      },
+      {
+        "name": "intv92.inputs.labels.txt",
+        "url": "https://wwwn.cdc.gov/nchs/data/nhefs/intv92.inputs.labels.txt",
+        "bytes": 149153,
+        "sha256": "40dc3674a3974ba1b1c537de6d3ce13fa4f9d41945677cf0d99248657b6ab285",
+        "url_role": "expected_CDC_URL_not_fetched_in_this_run"
+      }
+    ],
+    "data_origin": "user_supplied_NHEFS_format_archive",
+    "horizon_years": 8,
+    "features": [
+      "age_years",
+      "sex_female",
+      "baseline_sbp",
+      "baseline_dbp",
+      "sleep_hours"
+    ],
+    "target": "first reported physician diagnosis within 8 years",
+    "limitations": [
+      "historical US cohort",
+      "self/proxy reported diagnosis; not measured future hypertension",
+      "year-only event time; horizon-overlap cases excluded",
+      "unknown, lost and early deaths without known event excluded",
+      "selection bias; no IPCW/competing-risk adjustment",
+      "not validated for modern Thai users",
+      "sleep numeric physical-validity filtering; dietary raw codes retained but not modeled",
+      "BMI and original 11-feature schema not available in this prototype"
+    ],
+    "provenance_note": "CDC origin reported by supplier; not independently authenticated by a published checksum"
+  },
+  "input_archive": {
+    "source": "user_supplied_archive",
+    "archive_sha256": "b033492b7366a3aa7574d0b5965cc568db831263370f3dba5fff27a9066185cd",
+    "format_validation": "all four waves parsed with their supplied layouts",
+    "provenance_note": "CDC origin reported by supplier; not independently authenticated by a published checksum",
+    "wave_rows": {
+      "82": 12220,
+      "86": 3608,
+      "87": 9998,
+      "92": 9281
+    },
+    "files": [
+      {
+        "name": "N82int.txt",
+        "bytes": 53254760,
+        "sha256": "a25a47cd65bda3a50fbbd158964a64ce4642e8bfba0cfd01f47745d0d4be5c8b",
+        "expected_source_url": "https://wwwn.cdc.gov/nchs/data/nhefs/N82int.txt"
+      },
+      {
+        "name": "N86int.txt",
+        "bytes": 19360528,
+        "sha256": "b38a5a6a2214065d3d80648d78a37f43dc3d5122ffa007af4fbd5e75b4bb614d",
+        "expected_source_url": "https://wwwn.cdc.gov/nchs/data/nhefs/N86int.txt"
+      },
+      {
+        "name": "N87int.txt",
+        "bytes": 51909616,
+        "sha256": "f320f3d519d9af5b74eefbbd78997271c00bccfd47b3be9e1516857f96a249fd",
+        "expected_source_url": "https://wwwn.cdc.gov/nchs/data/nhefs/N87int.txt"
+      },
+      {
+        "name": "N92int.txt",
+        "bytes": 74953356,
+        "sha256": "b4210a6a957460890e00e7130d1377babea6401a5f6bf891a814899108f2b65f",
+        "expected_source_url": "https://wwwn.cdc.gov/nchs/data/nhefs/N92int.txt"
+      },
+      {
+        "name": "intv82.inputs.labels.txt",
+        "bytes": 136921,
+        "sha256": "0bb6f524070c9fd2fdfe02d9413572bad9e691633513efc93e297cabe8be7eb8",
+        "expected_source_url": "https://wwwn.cdc.gov/nchs/data/nhefs/intv82.inputs.labels.txt"
+      },
+      {
+        "name": "intv86.inputs.labels.txt",
+        "bytes": 66967,
+        "sha256": "e6d86e8216bf6d0fabf507509c5e7a9b72562a56d04eb4a15946024cb4443cde",
+        "expected_source_url": "https://wwwn.cdc.gov/nchs/data/nhefs/intv86.inputs.labels.txt"
+      },
+      {
+        "name": "intv87.inputs.labels.txt",
+        "bytes": 74531,
+        "sha256": "a148c719f1e41b66661070f66f509391303681b8c6ede266b32188d664e437b0",
+        "expected_source_url": "https://wwwn.cdc.gov/nchs/data/nhefs/intv87.inputs.labels.txt"
+      },
+      {
+        "name": "intv92.inputs.labels.txt",
+        "bytes": 149153,
+        "sha256": "40dc3674a3974ba1b1c537de6d3ce13fa4f9d41945677cf0d99248657b6ab285",
+        "expected_source_url": "https://wwwn.cdc.gov/nchs/data/nhefs/intv92.inputs.labels.txt"
+      }
+    ]
+  },
+  "target_note": "conservative death guard; codebook confirmation pending"
+}

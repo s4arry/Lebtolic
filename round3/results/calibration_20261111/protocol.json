@@ -1,0 +1,15 @@
+{
+  "methods": [
+    "none",
+    "intercept",
+    "sigmoid"
+  ],
+  "outer_folds": 5,
+  "repeats": 3,
+  "inner_folds": 3,
+  "calibration_folds": 3,
+  "seed": 42,
+  "C": 0.1,
+  "selection": "one-SE inner Brier, prefer none/intercept/sigmoid",
+  "protocol_sha256": "fdbe0bb2c8f199901b5f8666da5d159fd040bc7c42f1f7041dc498cfa175c38c"
+}

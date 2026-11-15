@@ -1,0 +1,43 @@
+{
+  "main": {
+    "f2": {
+      "threshold": 0.02843069090000524,
+      "tune_f2": 0.2604166666666667,
+      "objective": "max_F2_on_development_OOF_only"
+    },
+    "fpr145": {
+      "threshold": 0.08876530574328555,
+      "max_fpr": 0.145,
+      "allowed_false_positives": 314,
+      "development_tp": 31,
+      "development_fp": 312,
+      "development_positives": 141,
+      "development_negatives": 2170,
+      "development_recall": 0.2198581560283688,
+      "development_fpr": 0.14377880184331798,
+      "objective": "maximize recall subject to empirical development OOF FPR budget"
+    }
+  },
+  "befec00": {
+    "f2": {
+      "threshold": 0.06078679160536861,
+      "tune_f2": 0.35765379113018597,
+      "objective": "max_F2_on_development_OOF_only"
+    },
+    "fpr145": {
+      "threshold": 0.09803399686084495,
+      "max_fpr": 0.145,
+      "allowed_false_positives": 314,
+      "development_tp": 59,
+      "development_fp": 282,
+      "development_positives": 141,
+      "development_negatives": 2170,
+      "development_recall": 0.41843971631205673,
+      "development_fpr": 0.12995391705069123,
+      "objective": "maximize recall subject to empirical development OOF FPR budget"
+    }
+  },
+  "main_selected_ridge": 10.0,
+  "candidate_fixed": true,
+  "test_used_for_choices": false
+}

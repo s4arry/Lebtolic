@@ -1,0 +1,13 @@
+id,date,model,auc,brier,status,source,score_column
+M01,5 พ.ย. / เทียบซ้ำ 14 พ.ย.,Legacy 5 ตัวแปร + Platt,0.6761458333333333,0.056529185516960026,baseline,results/main_comparison_20261111/test_scores.csv,main_score
+M02,5 พ.ย.,LR 4 ตัวแปร C=.1,0.7054166666666667,0.055794904802818256,รุ่น F2 เดิม,results/balancing_20261111/test_scores.csv,none
+M03,10 พ.ย.,LR 4 ตัวแปร C=1,0.7057291666666667,0.055768657061002376,ไม่แทนรุ่นเดิม,results/recall_20261110/paired_test_scores.csv,candidate_score
+M04,11 พ.ย.,LR 4 ตัวแปร + class weights,0.7091666666666667,0.21490683747901124,ไม่เลือก balancing,results/balancing_20261111/test_scores.csv,balanced
+M05,11 พ.ย.,LR 4 ตัวแปร + oversampling,0.7151041666666667,0.21468910497844954,ไม่เลือก balancing,results/balancing_20261111/test_scores.csv,oversample
+M06,11 พ.ย.,LR 4 ตัวแปร + น้ำหนัก,0.6970833333333334,0.05710226433520271,candidate,results/balancing_20261111/test_scores.csv,weight
+M07,11 พ.ย.,LR 4 ตัวแปร + สูบบุหรี่,0.7254166666666667,0.05562258976180349,candidate; ไม่เลือกจาก Test AUC,results/balancing_20261111/test_scores.csv,smoking
+M08,11 พ.ย. / จัดเป็น reference 14 พ.ย.,LR + น้ำหนักและสูบบุหรี่ C=.1,0.7034375,0.05701017704605757,รุ่นที่ demo/สไลด์ใช้อยู่,results/calibration_20261111/test_scores.csv,none
+M09,11 พ.ย.,M08 + intercept calibration,0.7034375,0.057010207788291335,ไม่เพิ่ม calibration,results/calibration_20261111/test_scores.csv,intercept
+M10,11 พ.ย.,M08 + sigmoid calibration,0.7034375,0.05684204389573659,ไม่เพิ่ม calibration,results/calibration_20261111/test_scores.csv,sigmoid
+M11,11 พ.ย.,LR 6 ตัวแปร เลือก C แบบ nested (final .01),0.6895833333333333,0.05646945333493223,ไม่ผ่าน development screening,results/nonlinear_20261111/test_scores.csv,linear
+M12,11 พ.ย.,Quadratic LR เลือก C แบบ nested,0.7122916666666667,0.05664173945958609,ไม่ผ่าน development screening,results/nonlinear_20261111/test_scores.csv,quadratic

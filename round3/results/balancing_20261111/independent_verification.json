@@ -1,0 +1,23 @@
+{
+  "status": "passed",
+  "checked_variants": [
+    "none",
+    "balanced",
+    "oversample",
+    "weight",
+    "smoking",
+    "weight_smoking"
+  ],
+  "development_rows_per_repeat": 2311,
+  "repeats": 3,
+  "outer_fold_metric_rows": 180,
+  "test_metric_rows": 12,
+  "checks": [
+    "All fold/repeat/test confusion matrices and ROC-AUC/Brier/F2 recalculated from saved predictions",
+    "Every development person has exactly one prediction per repeat per method",
+    "Outer decisions equal scores compared with stored training-selected thresholds",
+    "Final thresholds reproduce exactly from development OOF; no Test input",
+    "All resampling count records match training-only policy",
+    "Study code and frozen decision hashes match"
+  ]
+}

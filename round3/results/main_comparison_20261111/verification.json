@@ -1,0 +1,24 @@
+{
+  "main_commit": "6ce4577dc3fa40ea1d3fe1e4e726119089c378ba",
+  "candidate_commit": "befec00faa9d341b983c984adc087ce0cf4585a8",
+  "main_notebook_sha256": "4abe70e50436c337bb86c03e0d8471aa79b7cc1a268ef712589b456babfe5d6f",
+  "code_sha256": "bfec7ccc8e755e7e5ab2db90370c45b023593f0ffc346b294b0706025cf4d08b",
+  "main_saved_auc_reproduced": true,
+  "main_saved_brier_reproduced": true,
+  "main_ridge": 10.0,
+  "main_platt_coefficients": [
+    -1.4312366838846817,
+    0.4649175348695237
+  ],
+  "counts": [
+    2720,
+    166,
+    2311,
+    141,
+    409,
+    25
+  ],
+  "same_test_membership": true,
+  "test_selected_model": false,
+  "main_documentation_conflict": "Main summary claims 6 features/refit/AUC .682; actual notebook and outputs have 5 features/AUC .6761458333"
+}

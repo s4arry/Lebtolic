@@ -1,0 +1,7 @@
+{
+  "max_fpr": 0.145,
+  "selection_data": "mean repeated development OOF scores per person",
+  "tie_rule": "maximum TP, minimum FP, highest threshold",
+  "test_scope": "previously exposed historical Test; exploratory policy update",
+  "guarantee": "empirical development constraint, not a population or Test guarantee"
+}

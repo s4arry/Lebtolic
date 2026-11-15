@@ -1,0 +1,62 @@
+{
+  "source": "user_supplied_archive",
+  "archive_sha256": "b033492b7366a3aa7574d0b5965cc568db831263370f3dba5fff27a9066185cd",
+  "format_validation": "all four waves parsed with their supplied layouts",
+  "provenance_note": "CDC origin reported by supplier; not independently authenticated by a published checksum",
+  "wave_rows": {
+    "82": 12220,
+    "86": 3608,
+    "87": 9998,
+    "92": 9281
+  },
+  "files": [
+    {
+      "name": "N82int.txt",
+      "bytes": 53254760,
+      "sha256": "a25a47cd65bda3a50fbbd158964a64ce4642e8bfba0cfd01f47745d0d4be5c8b",
+      "expected_source_url": "https://wwwn.cdc.gov/nchs/data/nhefs/N82int.txt"
+    },
+    {
+      "name": "N86int.txt",
+      "bytes": 19360528,
+      "sha256": "b38a5a6a2214065d3d80648d78a37f43dc3d5122ffa007af4fbd5e75b4bb614d",
+      "expected_source_url": "https://wwwn.cdc.gov/nchs/data/nhefs/N86int.txt"
+    },
+    {
+      "name": "N87int.txt",
+      "bytes": 51909616,
+      "sha256": "f320f3d519d9af5b74eefbbd78997271c00bccfd47b3be9e1516857f96a249fd",
+      "expected_source_url": "https://wwwn.cdc.gov/nchs/data/nhefs/N87int.txt"
+    },
+    {
+      "name": "N92int.txt",
+      "bytes": 74953356,
+      "sha256": "b4210a6a957460890e00e7130d1377babea6401a5f6bf891a814899108f2b65f",
+      "expected_source_url": "https://wwwn.cdc.gov/nchs/data/nhefs/N92int.txt"
+    },
+    {
+      "name": "intv82.inputs.labels.txt",
+      "bytes": 136921,
+      "sha256": "0bb6f524070c9fd2fdfe02d9413572bad9e691633513efc93e297cabe8be7eb8",
+      "expected_source_url": "https://wwwn.cdc.gov/nchs/data/nhefs/intv82.inputs.labels.txt"
+    },
+    {
+      "name": "intv86.inputs.labels.txt",
+      "bytes": 66967,
+      "sha256": "e6d86e8216bf6d0fabf507509c5e7a9b72562a56d04eb4a15946024cb4443cde",
+      "expected_source_url": "https://wwwn.cdc.gov/nchs/data/nhefs/intv86.inputs.labels.txt"
+    },
+    {
+      "name": "intv87.inputs.labels.txt",
+      "bytes": 74531,
+      "sha256": "a148c719f1e41b66661070f66f509391303681b8c6ede266b32188d664e437b0",
+      "expected_source_url": "https://wwwn.cdc.gov/nchs/data/nhefs/intv87.inputs.labels.txt"
+    },
+    {
+      "name": "intv92.inputs.labels.txt",
+      "bytes": 149153,
+      "sha256": "40dc3674a3974ba1b1c537de6d3ce13fa4f9d41945677cf0d99248657b6ab285",
+      "expected_source_url": "https://wwwn.cdc.gov/nchs/data/nhefs/intv92.inputs.labels.txt"
+    }
+  ]
+}

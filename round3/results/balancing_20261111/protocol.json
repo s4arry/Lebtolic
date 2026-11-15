@@ -1,0 +1,16 @@
+{
+  "seed": 42,
+  "outer_folds": 5,
+  "repeats": 3,
+  "inner_folds": 3,
+  "C": 0.1,
+  "threshold_policies": [
+    "f2",
+    "fpr145"
+  ],
+  "max_fpr": 0.145,
+  "bootstrap_repetitions": 2000,
+  "selection": "development only; all-repeat joint criterion",
+  "hyperparameters": "C fixed before experiment; nesting selects thresholds",
+  "test_scope": "previously exposed, exploratory internal evaluation"
+}

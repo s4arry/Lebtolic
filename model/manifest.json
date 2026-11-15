@@ -1,0 +1,13 @@
+{
+  "status": "user_selected_research_reference_not_validated_for_clinical_use",
+  "source_commit": "befec00faa9d341b983c984adc087ce0cf4585a8",
+  "source_path": "round3/results/calibration_20261111/candidate_models.json",
+  "source_key": "none",
+  "model_sha256": "9848deef34c482ba7930b82b9de9c79077f35afd5b7369dc3c0f53a639651cb8",
+  "primary_policy": "fpr145",
+  "threshold": 0.09803399686084495,
+  "comparison_report": "round3/results/main_comparison_20261111/README_TH.md",
+  "test_exposed": true,
+  "external_validation": false,
+  "main_replaced": false
+}
